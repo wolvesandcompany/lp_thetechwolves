@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Wolves & Company Blog]]></title>
+        <description><![CDATA[Expert insights on AI automation, digital transformation, and business process optimization for SMEs and startups.]]></description>
+        <link>https://wolvesandcompany.com</link>
+        <image>
+            <url>https://wolvesandcompany.com/wolf.png</url>
+            <title>Wolves &amp; Company Blog</title>
+            <link>https://wolvesandcompany.com</link>
+        </image>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Thu, 09 Oct 2025 06:34:44 GMT</lastBuildDate>
+        <atom:link href="https://wolvesandcompany.com/rss.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Thu, 09 Oct 2025 06:34:44 GMT</pubDate>
+        <copyright><![CDATA[© 2025 Wolves & Company]]></copyright>
+        <language><![CDATA[en-US]]></language>
+        <managingEditor><![CDATA[team@wolvesandcompany.com (Wolves & Company)]]></managingEditor>
+        <webMaster><![CDATA[team@wolvesandcompany.com (Wolves & Company)]]></webMaster>
+        <ttl>60</ttl>
+        <category><![CDATA[Technology]]></category>
+        <category><![CDATA[AI]]></category>
+        <category><![CDATA[Automation]]></category>
+        <category><![CDATA[Business]]></category>
+        <category><![CDATA[Digital Transformation]]></category>
+        <item>
+            <title><![CDATA[AI Automation for SMEs: A Practical Guide]]></title>
+            <description><![CDATA[Discover how small and medium enterprises can leverage AI automation to streamline operations, reduce costs, and accelerate growth through practical implementation strategies.]]></description>
+            <link>https://wolvesandcompany.com/blog/ai-automation-for-smes</link>
+            <guid isPermaLink="false">https://wolvesandcompany.com/blog/ai-automation-for-smes</guid>
+            <category><![CDATA[AI]]></category>
+            <category><![CDATA[Automation]]></category>
+            <category><![CDATA[SME]]></category>
+            <category><![CDATA[Business Process]]></category>
+            <category><![CDATA[Digital Transformation]]></category>
+            <dc:creator><![CDATA[Wolves & Company]]></dc:creator>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <enclosure url="https://wolvesandcompany.com/og-image.webp" length="0" type="image/webp"/>
+        </item>
+    </channel>
+</rss>

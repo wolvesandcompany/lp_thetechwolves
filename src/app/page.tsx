@@ -41,6 +41,7 @@ export default function HomePage() {
     { name: "Templates", link: "#templates" },
     { name: "Industries", link: "#industries" },
     { name: "Testimonials", link: "#testimonials" },
+    { name: "Blog", link: "/blog" },
   ];
 
   const handleMobileClick = () => {

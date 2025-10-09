@@ -29,7 +29,6 @@ const nextConfig = {
   // ✅ Performance optimizations
   poweredByHeader: false,
   generateEtags: false,
-  swcMinify: true, // <--- IMPORTANT
 
   // ✅ Experimental: optimize imports for specific packages
   experimental: {
