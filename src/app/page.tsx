@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Metadata } from 'next';
 import { Hero } from "../components/hero";
 import {
   Navbar,
@@ -23,6 +24,14 @@ import Service from "../components/Service";
 import TechStack from "../components/tech-stack";
 import Pricing from "../components/pricing";
 import ExploreTemplates from "../components/templates";
+import { StructuredData } from "../components/StructuredData";
+import { 
+  generateOrganizationSchema, 
+  generateWebsiteSchema, 
+  generateServiceSchema,
+  generateFAQSchema,
+  generateHowToSchema 
+} from "../lib/seo";
 
 export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,6 +43,62 @@ export default function HomePage() {
     const el = document.getElementById("root");
     setRootElement(el);
   }, []);
+
+  // SEO-optimized service data for structured markup
+  const services = [
+    {
+      name: "AI Automation Solutions",
+      description: "Custom AI implementation to automate business processes and increase efficiency by up to 80%.",
+      url: "#service"
+    },
+    {
+      name: "Custom Software Development",
+      description: "Tailored web and mobile applications built with modern technologies for optimal performance.",
+      url: "#service"
+    },
+    {
+      name: "Digital Transformation Consulting",
+      description: "Strategic guidance to modernize your business operations and accelerate growth.",
+      url: "#service"
+    },
+    {
+      name: "Business Process Optimization",
+      description: "Streamline workflows and eliminate inefficiencies with data-driven process improvements.",
+      url: "#service"
+    }
+  ];
+
+  // FAQ data for structured markup and AI extraction
+  const faqs = [
+    {
+      question: "How quickly can we see results from AI automation?",
+      answer: "Most clients see initial results within 2-4 weeks of implementation, with full optimization achieved in 8-12 weeks."
+    },
+    {
+      question: "What types of businesses benefit most from our solutions?",
+      answer: "SMEs and startups in healthcare, finance, manufacturing, and e-commerce see the highest ROI from our AI automation services."
+    },
+    {
+      question: "Do you provide ongoing support after implementation?",
+      answer: "Yes, we offer 24/7 technical support, regular system updates, and performance optimization as part of our service packages."
+    }
+  ];
+
+  // How-to steps for getting started
+  const howToSteps = [
+    {
+      name: "Book a Discovery Call",
+      text: "Schedule a free 30-minute consultation to discuss your business needs and automation opportunities."
+    },
+    {
+      name: "Receive Custom Strategy",
+      text: "Get a detailed implementation plan with timeline, costs, and expected ROI within 48 hours."
+    },
+    {
+      name: "Launch Your Solution",
+      text: "Our team handles complete setup, testing, and training to ensure smooth deployment and adoption."
+    }
+  ];
 
   const navItems = [
     { name: "Service", link: "#service" },
@@ -51,6 +116,13 @@ export default function HomePage() {
 
   return (
     <main className="flex flex-col min-h-screen  text-white">
+      {/* SEO: Structured Data for Search Engines and AI */}
+      <StructuredData data={generateOrganizationSchema()} />
+      <StructuredData data={generateWebsiteSchema()} />
+      <StructuredData data={generateServiceSchema(services)} />
+      <StructuredData data={generateFAQSchema(faqs)} />
+      <StructuredData data={generateHowToSchema(howToSteps)} />
+
       {/* --- Navbar --- */}
       <Navbar>
         {/* Desktop Nav */}

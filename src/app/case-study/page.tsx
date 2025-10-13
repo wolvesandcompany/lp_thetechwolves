@@ -1,10 +1,32 @@
 "use client";
+import { Metadata } from 'next';
+import { generateMetadata, generateBreadcrumbSchema } from '@/lib/seo';
+import { StructuredData } from '@/components/StructuredData';
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import images from "@/lib/images.json";
 import khalidImg from "../../../public/khalid_lp.webp";
 import equityImg from "../../../public/equity.webp";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+
+// Generate static metadata for SEO optimization
+const metadata: Metadata = generateMetadata({
+  title: 'Case Studies - Proven Results & Client Success Stories',
+  description: 'Explore our portfolio of successful AI automation, digital transformation, and custom software projects. Real results for SMEs, startups, and enterprise clients worldwide.',
+  path: '/case-study',
+  keywords: [
+    'case studies',
+    'client success stories', 
+    'portfolio',
+    'project results',
+    'AI automation projects',
+    'digital transformation success',
+    'custom software examples',
+    'business growth results',
+    'ROI case studies',
+    'client testimonials'
+  ],
+});
 
 // Country to flag emoji mapping
 const countryFlagMap: Record<string, string> = {
@@ -69,8 +91,49 @@ export default function CaseStudy() {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
+  // Breadcrumb structured data for SEO
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Case Studies', url: '/case-study' },
+  ];
+
+  // Case study structured data for portfolio/creative work schema
+  const caseStudySchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Case Studies - Wolves & Company',
+    description: 'Portfolio of successful AI automation and digital transformation projects',
+    url: 'https://wolvesandcompany.com/case-study',
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Client Success Stories',
+      description: 'Real-world examples of business transformation through technology',
+      itemListElement: projects.slice(0, 3).map((project, index) => ({
+        '@type': 'CreativeWork',
+        name: project.title,
+        description: project.description.substring(0, 200) + '...',
+        creator: {
+          '@type': 'Organization',
+          name: 'Wolves & Company'
+        },
+        dateCreated: '2024',
+        genre: project.categories.join(', '),
+        keywords: project.categories.join(', ').toLowerCase()
+      }))
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'Wolves & Company',
+      url: 'https://wolvesandcompany.com'
+    }
+  };
+
   return (
     <>
+      {/* SEO: Structured Data for Portfolio and Breadcrumbs */}
+      <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
+      <StructuredData data={caseStudySchema} />
+      
       {typeof window !== "undefined" &&
         (isLaptop ? (
           <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">

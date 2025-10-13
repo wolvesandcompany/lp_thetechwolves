@@ -1,6 +1,37 @@
+import { Metadata } from 'next';
+import { generateMetadata, generateBreadcrumbSchema } from '@/lib/seo';
+import { StructuredData } from '@/components/StructuredData';
+
+// Generate static metadata for SEO optimization
+export const metadata: Metadata = generateMetadata({
+  title: 'Terms and Conditions - Service Agreement & Legal Terms',
+  description: 'Review the terms and conditions for using Wolves & Company services. Legal agreement covering service usage, responsibilities, and contractual obligations.',
+  path: '/terms',
+  keywords: [
+    'terms and conditions',
+    'service agreement',
+    'legal terms',
+    'user agreement',
+    'service terms',
+    'contractual obligations',
+    'usage policy',
+    'service conditions',
+    'legal agreement',
+    'terms of service'
+  ],
+});
+
 export default function TermsPage() {
+  // Breadcrumb structured data
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Terms and Conditions', url: '/terms' },
+  ];
+
   return (
     <main className="max-w-4xl mx-auto px-4 py-16 text-neutral-800 dark:text-neutral-200">
+      {/* SEO: Structured Data */}
+      <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
       <div className="max-w-4xl mx-auto">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-8">

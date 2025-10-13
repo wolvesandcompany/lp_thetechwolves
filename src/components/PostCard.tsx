@@ -14,68 +14,75 @@ export function PostCard({ post }: PostCardProps) {
   });
 
   return (
-    <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
-      {/* Optional: Add blog post image if available */}
+    <article className="group bg-white dark:bg-neutral-900/50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-neutral-200 dark:border-neutral-800 hover:border-teal-300 dark:hover:border-teal-700 transform hover:-translate-y-2">
+      {/* Optional: Add blog post image with enhanced hover effects */}
       {post.ogImage && (
-        <div className="aspect-video w-full overflow-hidden">
+        <div className="relative aspect-video w-full overflow-hidden">
           <img
             src={post.ogImage}
             alt={post.title}
             loading="lazy"
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
       )}
       
-      <div className="p-6">
-        {/* Post meta information */}
-        <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
-          <time dateTime={post.date} className="font-medium">
+      <div className="p-8">
+        {/* Post meta information with teal accents */}
+        <div className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+          <time dateTime={post.date} className="font-medium text-teal-600 dark:text-teal-400">
             {formattedDate}
           </time>
-          <span>•</span>
+          <span className="w-1 h-1 bg-neutral-400 rounded-full"></span>
           <span>{post.readingTime} min read</span>
-          <span>•</span>
+          <span className="w-1 h-1 bg-neutral-400 rounded-full"></span>
           <span className="font-medium">{post.author}</span>
         </div>
 
-        {/* Post title - semantic H2 for proper heading hierarchy */}
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
+        {/* Post title with gradient hover effect */}
+        <h2 className="text-xl lg:text-2xl font-bold text-neutral-900 dark:text-white mb-4 leading-tight">
           <Link 
             href={`/blog/${post.slug}`}
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+            className="hover:bg-gradient-to-r hover:from-teal-600 hover:to-teal-500 hover:bg-clip-text hover:text-transparent transition-all duration-300"
           >
             {post.title}
           </Link>
         </h2>
 
-        {/* Post summary/excerpt */}
-        <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+        {/* Post summary with better typography */}
+        <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed line-clamp-3">
           {post.summary}
         </p>
 
-        {/* Tags */}
+        {/* Tags with teal styling */}
         {post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags.map((tag) => (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {post.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full font-medium"
+                className="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 text-xs font-medium rounded-full border border-teal-200 dark:border-teal-800"
               >
                 {tag}
               </span>
             ))}
+            {post.tags.length > 3 && (
+              <span className="px-3 py-1 text-xs text-neutral-500 dark:text-neutral-400">
+                +{post.tags.length - 3} more
+              </span>
+            )}
           </div>
         )}
 
-        {/* Read more link */}
+        {/* Enhanced read more link */}
         <Link
           href={`/blog/${post.slug}`}
-          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold transition-colors duration-200"
+          className="group/link inline-flex items-center text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 font-semibold transition-all duration-300"
         >
           Read full article
           <svg
-            className="ml-2 w-4 h-4"
+            className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

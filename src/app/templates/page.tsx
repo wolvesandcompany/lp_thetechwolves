@@ -1,6 +1,7 @@
-"use client";
-
 import React from "react";
+import { Metadata } from 'next';
+import { generateMetadata, generateBreadcrumbSchema } from '@/lib/seo';
+import { StructuredData } from '@/components/StructuredData';
 import Image from "next/image";
 import business from "../../../public/business.webp";
 import eco from "../../../public/eco.webp";
@@ -14,6 +15,30 @@ import homeserv from "../../../public/homeserv.webp";
 import interior from "../../../public/interior.webp";
 
 import { SquareArrowOutUpRight } from "lucide-react";
+
+// Generate static metadata for SEO optimization
+export const metadata: Metadata = generateMetadata({
+  title: 'Website Templates - Professional & Industry-Specific Designs',
+  description: 'Explore our collection of premium website templates for healthcare, business consulting, e-commerce, and more. Ready-to-use designs optimized for conversion and SEO.',
+  path: '/templates',
+  keywords: [
+    'website templates',
+    'business templates',
+    'healthcare website design',
+    'consulting templates',
+    'e-commerce templates',
+    'professional website designs',
+    'responsive templates',
+    'industry-specific templates',
+    'conversion-optimized',
+    'SEO-friendly templates'
+  ],
+});
+
+// Generate static params for SSG
+export async function generateStaticParams() {
+  return [{}]; // Generate static templates page
+}
 
 const templates = [
   {
@@ -188,18 +213,80 @@ function Pill({ children }: { children: React.ReactNode }) {
 }
 
 export default function TemplatesShowcase() {
+  // Breadcrumb structured data for SEO
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Templates', url: '/templates' },
+  ];
+
+  // Templates structured data for product catalog
+  const templatesSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Website Templates - Wolves & Company',
+    description: 'Professional website templates for various industries',
+    url: 'https://wolvesandcompany.com/templates',
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Premium Website Templates',
+      description: 'Industry-specific, conversion-optimized website templates',
+      itemListElement: templates.slice(0, 6).map((template, index) => ({
+        '@type': 'SoftwareApplication',
+        position: index + 1,
+        name: template.name,
+        description: template.description,
+        url: template.url,
+        applicationCategory: 'WebApplication',
+        operatingSystem: 'All',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock'
+        },
+        creator: {
+          '@type': 'Organization',
+          name: 'Wolves & Company'
+        },
+        keywords: template.keywords.join(', ')
+      }))
+    }
+  };
+
+  // Key takeaways for AI/LLM extraction
+  const keyTakeaways = [
+    "Professional templates designed for high conversion rates",
+    "Industry-specific designs for healthcare, consulting, and business",
+    "Mobile-responsive and SEO-optimized for better search visibility",
+    "Ready-to-use with live demos and customization options"
+  ];
+
   return (
     <div className="bg-white min-h-screen py-16 px-4">
-      {/* Header Section with styling similar to /team */}
+      {/* SEO: Structured Data */}
+      <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
+      <StructuredData data={templatesSchema} />
+
+      {/* Header Section with AI-optimized content */}
       <div className="max-w-6xl mx-auto py-36 px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-teal-900 mb-4">
-          Website Template Demos
+        <h1 className="text-4xl md:text-5xl font-bold text-teal-900 mb-6">
+          Professional Website Templates
         </h1>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-600 text-lg mb-8">
           Explore our professionally designed templates. Preview each demo and
           discover the perfect fit for your next project. Each template includes
           a live preview, detailed description, and key features.
         </p>
+
+        {/* Key Takeaways Section for AI/LLM Optimization */}
+        <div className="bg-gray-50 rounded-lg p-6 mb-12">
+          <h2 className="text-2xl font-semibold mb-4 text-teal-800">Key Takeaways</h2>
+          <ul className="list-disc list-inside text-left max-w-3xl mx-auto space-y-2">
+            {keyTakeaways.map((takeaway, index) => (
+              <li key={index} className="text-gray-700">{takeaway}</li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="max-w-5xl mx-auto">
         <div className="grid gap-10 md:grid-cols-2">

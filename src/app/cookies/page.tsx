@@ -1,6 +1,37 @@
+import { Metadata } from 'next';
+import { generateMetadata, generateBreadcrumbSchema } from '@/lib/seo';
+import { StructuredData } from '@/components/StructuredData';
+
+// Generate static metadata for SEO optimization
+export const metadata: Metadata = generateMetadata({
+  title: 'Cookie Policy - Website Cookies & Tracking Information',
+  description: 'Learn about how Wolves & Company uses cookies and tracking technologies. Cookie policy explaining data collection, usage, and your control options.',
+  path: '/cookies',
+  keywords: [
+    'cookie policy',
+    'website cookies',
+    'tracking information',
+    'data collection',
+    'privacy settings',
+    'cookie consent',
+    'tracking technologies',
+    'website analytics',
+    'user preferences',
+    'cookie management'
+  ],
+});
+
 export default function CookiesPolicy() {
+  // Breadcrumb structured data
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Cookie Policy', url: '/cookies' },
+  ];
+
   return (
     <main className="max-w-4xl mx-auto px-4 py-16 text-neutral-800 dark:text-neutral-200">
+      {/* SEO: Structured Data */}
+      <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
 
       <div className="max-w-4xl mx-auto">
         <div className="text-center">

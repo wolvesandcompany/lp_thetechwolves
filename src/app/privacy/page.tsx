@@ -1,6 +1,37 @@
+import { Metadata } from 'next';
+import { generateMetadata, generateBreadcrumbSchema } from '@/lib/seo';
+import { StructuredData } from '@/components/StructuredData';
+
+// Generate static metadata for SEO optimization
+export const metadata: Metadata = generateMetadata({
+  title: 'Privacy Policy - Data Protection & Security',
+  description: 'Learn how Wolves & Company protects your personal information and data. Comprehensive privacy policy covering data collection, usage, and your rights under applicable laws.',
+  path: '/privacy',
+  keywords: [
+    'privacy policy',
+    'data protection',
+    'information security',
+    'personal information',
+    'data rights',
+    'GDPR compliance',
+    'privacy rights',
+    'data collection',
+    'information usage',
+    'data security'
+  ],
+});
+
 export default function PrivacyPolicy() {
+  // Breadcrumb structured data
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Privacy Policy', url: '/privacy' },
+  ];
+
   return (
     <main className="max-w-4xl mx-auto px-4 py-16 text-neutral-800 dark:text-neutral-200">
+      {/* SEO: Structured Data */}
+      <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
 
       <div className="max-w-4xl mx-auto">
         <div className="text-center">
