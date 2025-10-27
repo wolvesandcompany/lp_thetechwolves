@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+// Static footer with hardcoded recent posts links
+// This avoids the need for server-side data fetching in a client component context
 export function Footer() {
   return (
     <footer className="bg-teal-900 text-white px-6 py-24">
@@ -15,6 +17,15 @@ export function Footer() {
         <div>
           <h4 className="text-lg font-medium text-white mb-3">Pages</h4>
           <ul className="space-y-2 text-sm">
+            <li>
+              <Link
+                href="/blog"
+                className="hover:underline"
+                rel="noopener noreferrer"
+              >
+                Blog
+              </Link>
+            </li>
             <li>
               <Link
                 href="/team"
