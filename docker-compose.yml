@@ -19,5 +19,5 @@ services:
 
 networks:
   default:
-    name: traefik_default
+    name: clinic_ai_default
     external: true
