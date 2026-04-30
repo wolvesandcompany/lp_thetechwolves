@@ -2,8 +2,13 @@ node_modules
 .next
 .git
 .gitignore
-*.md
 .DS_Store
 .env*
 .vercel
-scripts
+.claude
+README.md
+*.local
+
+# Only ignore root-level docs, not blog content
+/BLOG_SETUP_REPORT.md
+/SEO_IMPLEMENTATION_GUIDE.md
