@@ -11,7 +11,7 @@
     "optimize-images": "node scripts/optimize-images-working.js && node scripts/move-optimized-to-public.js",
     "build:optimized": "npm run optimize-images && next build",
     "blog:dev": "next dev --turbopack",
-    "build:blog": "node scripts/generate-rss.js && node scripts/update-sitemap.js",
+    "build:blog": "node scripts/generate-rss.js",
     "create:post": "node scripts/create-post.js"
   },
   "dependencies": {
