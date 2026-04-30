@@ -96,14 +96,14 @@ export default function TechStack() {
   return (
     <section
       id="tech-stack"
-      className="w-full py-16 sm:py-20 md:py-32 lg:py-40 bg-white dark:bg-neutral-950"
+      className="w-full py-16 sm:py-20 md:py-32 lg:py-40 bg-neutral-950 dark:bg-neutral-950"
     >
       <div className="max-w-6xl mx-auto px-2 sm:px-4">
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white">
             Tech Stack
           </h2>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-400 dark:text-neutral-300 max-w-2xl mx-auto">
             Tools and platforms we use to build fast, scalable experiences.
           </p>
         </div>

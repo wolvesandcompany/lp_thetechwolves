@@ -2,7 +2,7 @@
 title: "From Manual to AI: Transforming Your Business Processes in 90 Days"
 date: "2025-10-20"
 modifiedDate: "2025-10-25"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 authorType: "Organization"
 authorUrl: "https://thetechwolves.com"
 category: "Digital Transformation"
@@ -15,7 +15,7 @@ summary: "A practical 90-day roadmap to transform manual business processes with
 description: "Step-by-step 90-day roadmap to transform manual business processes with AI. Week-by-week action plans, implementation strategies, and real-world transformation examples."
 keywords: "digital transformation, AI transformation, business process automation, 90 day plan, AI implementation, process automation roadmap, business transformation"
 canonical: "/blog/manual-to-ai-transformation-90-days"
-ogImage: "/og-image.webp"
+ogImage: "/images/blog/manual-to-ai-transformation-90-days.webp"
 banner: "/fintech.webp"
 readTime: "9 min read"
 ---
@@ -789,7 +789,7 @@ The best time to start was yesterday. The second best time is today.
 
 **Ready to begin your 90-day transformation?**
 
-At Wolves & Company, we've guided dozens of businesses through this exact process. We can help you:
+At The Tech Wolves, we've guided dozens of businesses through this exact process. We can help you:
 
 - **Week 0:** Audit your operations and create your custom 90-day plan
 - **Weeks 1-12:** Implement automations with expert guidance

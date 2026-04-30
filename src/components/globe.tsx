@@ -7,18 +7,18 @@ const World = dynamic(() => import("./ui/globe").then((m) => m.World), {
 export default function Globe() {
   const globeConfig = {
     pointSize: 4,
-    globeColor: "#062056",
+    globeColor: "#062a23",
     showAtmosphere: true,
-    atmosphereColor: "#FFFFFF",
-    atmosphereAltitude: 0.1,
-    emissive: "#062056",
-    emissiveIntensity: 0.1,
+    atmosphereColor: "#34D399",
+    atmosphereAltitude: 0.12,
+    emissive: "#0a3a30",
+    emissiveIntensity: 0.15,
     shininess: 0.9,
-    polygonColor: "rgba(255,255,255,0.7)",
-    ambientLight: "#38bdf8",
+    polygonColor: "rgba(110, 231, 183, 0.7)",
+    ambientLight: "#34D399",
     directionalLeftLight: "#ffffff",
     directionalTopLight: "#ffffff",
-    pointLight: "#ffffff",
+    pointLight: "#34D399",
     arcTime: 1000,
     arcLength: 0.9,
     rings: 1,
@@ -27,7 +27,7 @@ export default function Globe() {
     autoRotate: true,
     autoRotateSpeed: 0.5,
   };
-  const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
+  const colors = ["#34D399", "#10B981", "#6EE7B7"];
   const sampleArcs = [
     {
       order: 1,
@@ -392,11 +392,11 @@ export default function Globe() {
   ];
   
   return (
-    <div className="w-full md:w-1/2 relative min-h-[300px] md:min-h-[500px]">
+    <div className="relative mx-auto aspect-square w-full max-w-[520px]">
       <div className="absolute inset-0 z-10">
         <World data={sampleArcs} globeConfig={globeConfig} />
       </div>
-      <div className="absolute w-full bottom-0 h-40 bg-gradient-to-b from-transparent to-white dark:to-black pointer-events-none z-20" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-b from-transparent to-[#050505]" />
     </div>
   );
 }

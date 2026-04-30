@@ -2,7 +2,7 @@
 title: "Building an AI Chatbot That Actually Helps Your Customers (Not Annoys Them)"
 date: "2025-10-18"
 modifiedDate: "2025-10-25"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 authorType: "Organization"
 authorUrl: "https://thetechwolves.com"
 category: "AI & Customer Support"
@@ -15,7 +15,7 @@ summary: "Learn how to build intelligent, helpful AI chatbots that customers act
 description: "A comprehensive guide to building AI chatbots powered by LLMs that genuinely help customers. Learn design principles, implementation strategies, and avoid common mistakes that frustrate users."
 keywords: "AI chatbot, customer support automation, LLM chatbot, conversational AI, chatbot design, GPT chatbot, customer service AI, intelligent chatbot"
 canonical: "/blog/building-ai-chatbot-for-your-business"
-ogImage: "/og-image.webp"
+ogImage: "/images/blog/building-ai-chatbot-for-your-business.webp"
 banner: "/healthtech.webp"
 readTime: "8 min read"
 ---
@@ -694,7 +694,7 @@ The businesses winning with AI chatbots aren't just deploying technology—they'
 
 ## Ready to Build Your Helpful AI Chatbot?
 
-At Wolves & Company, we've helped dozens of businesses build AI chatbots that customers actually like using. We can help you:
+At The Tech Wolves, we've helped dozens of businesses build AI chatbots that customers actually like using. We can help you:
 
 - Audit your support needs and design the right chatbot strategy
 - Build custom chatbots integrated with your systems

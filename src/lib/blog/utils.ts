@@ -1,152 +1,225 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 
-// Define the directory where your markdown files live.
-// Points to the content/blog directory where your markdown files are stored.
-const postsDirectory = path.join(process.cwd(), "content", "blog");
-
-// Define a simple type for the data returned by getAllPosts and getPostBySlug
-export type PostMeta = {
+// Blog post interface for type safety and SEO metadata structure
+export interface BlogPost {
   slug: string;
   title: string;
   date: string;
-  category?: string;
-  author?: string;
-  authorType?: "Person" | "Organization";
-  authorUrl?: string;
-  tags?: string[];
-  summary?: string;
-  description?: string;
-  keywords?: string;
-  canonical?: string;
-  ogImage?: string;
-  banner?: string;
-  readingTime?: string;
-  readTime?: string;
-  modifiedDate?: string;
-};
+  modified?: string;
+  author: string;
+  tags: string[];
+  summary: string;
+  canonical: string;
+  ogImage: string;
+  content: string;
+  readingTime: number;
+  wordCount: number;
+}
 
-export type PostData = {
-  meta: PostMeta;
-  content: string; // The full markdown content
-};
+// Get the blog content directory path
+const blogDirectory = path.join(process.cwd(), 'content/blog');
 
-// --- CORE UTILITY FUNCTIONS ---
+// Ensure blog directory exists
+if (!fs.existsSync(blogDirectory)) {
+  fs.mkdirSync(blogDirectory, { recursive: true });
+}
 
-/**
- * Retrieves a list of all posts (metadata only), sorted by date.
- */
-export const getAllPosts = (): PostMeta[] => {
-  const fileNames = fs.readdirSync(postsDirectory);
+// Calculate reading time based on average reading speed (200 words per minute)
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 200;
+  const wordCount = content.split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
+}
 
-  const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith('.md'))
-    .map((fileName) => {
-      // Use the file name as the slug
-      const slug = fileName.replace(/\.md$/, "");
-
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, "utf-8");
-
-      const matterResult = matter(fileContents);
-
-      return {
-        slug,
-        title: matterResult.data.title as string,
-        date: matterResult.data.date as string,
-        category: matterResult.data.category as string,
-        author: matterResult.data.author as string,
-        authorType: matterResult.data.authorType as "Person" | "Organization",
-        authorUrl: matterResult.data.authorUrl as string,
-        tags: matterResult.data.tags as string[],
-        summary: matterResult.data.summary as string,
-        description: matterResult.data.description as string,
-        keywords: matterResult.data.keywords as string,
-        canonical: matterResult.data.canonical as string,
-        ogImage: matterResult.data.ogImage as string,
-        banner: matterResult.data.banner as string,
-        readTime: matterResult.data.readTime as string,
-        modifiedDate: matterResult.data.modifiedDate as string,
-      } as PostMeta;
-    });
-
-  // Sort posts by date in descending order (newest first)
-  return allPostsData.sort((a, b) => {
-    const dateOne = new Date(a.date).getTime();
-    const dateTwo = new Date(b.date).getTime();
-    return dateTwo - dateOne; // Sort descending (newest post first)
-  });
-};
-
-/**
- * Alias for getAllPosts - supports legacy code
- */
-export const getAllBlogPosts = (limit?: number): PostMeta[] => {
-  const posts = getAllPosts();
-  return limit ? posts.slice(0, limit) : posts;
-};
-
-/**
- * Retrieves the full content and metadata for a single post by slug.
- */
-export const getPostBySlug = (slug: string): PostData | null => {
+// Get all blog post slugs for static generation
+export function getBlogSlugs(): string[] {
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, "utf-8");
+    const files = fs.readdirSync(blogDirectory);
+    return files
+      .filter(file => file.endsWith('.md'))
+      .map(file => file.replace('.md', ''));
+  } catch (error) {
+    console.warn('Blog directory not found, returning empty slugs array');
+    return [];
+  }
+}
 
-    // matter returns both data (frontmatter) and content (markdown body)
-    const matterResult = matter(fileContents);
+// Get blog post by slug with full content and metadata
+export function getBlogPost(slug: string): BlogPost | null {
+  try {
+    const filePath = path.join(blogDirectory, `${slug}.md`);
+    
+    if (!fs.existsSync(filePath)) {
+      return null;
+    }
 
-    // Calculate reading time (rough estimate: 200 words per minute)
-    const wordCount = matterResult.content.split(/\s+/).length;
-    const readingTime = `${Math.ceil(wordCount / 200)} min read`;
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const { data, content } = matter(fileContents);
+
+    // Validate required frontmatter fields for SEO
+    const requiredFields = ['title', 'date', 'author', 'summary'];
+    for (const field of requiredFields) {
+      if (!data[field]) {
+        console.warn(`Missing required field '${field}' in ${slug}.md`);
+      }
+    }
+
+    const wordCount = content.split(/\s+/).filter(Boolean).length;
 
     return {
-      meta: {
-        slug,
-        title: matterResult.data.title as string,
-        date: matterResult.data.date as string,
-        category: matterResult.data.category as string,
-        author: matterResult.data.author as string,
-        authorType: matterResult.data.authorType as "Person" | "Organization",
-        authorUrl: matterResult.data.authorUrl as string,
-        tags: matterResult.data.tags as string[],
-        summary: matterResult.data.summary as string,
-        description: matterResult.data.description as string,
-        keywords: matterResult.data.keywords as string,
-        canonical: matterResult.data.canonical as string,
-        ogImage: matterResult.data.ogImage as string,
-        banner: matterResult.data.banner as string,
-        readTime: matterResult.data.readTime as string,
-        modifiedDate: matterResult.data.modifiedDate as string,
-        readingTime,
-      },
-      content: matterResult.content,
+      slug,
+      title: data.title || 'Untitled',
+      date: data.date || new Date().toISOString(),
+      modified: data.modified || data.modifiedDate || data.date,
+      author: data.author || 'The Tech Wolves',
+      tags: data.tags || [],
+      summary: data.summary || '',
+      canonical: data.canonical || `/blog/${slug}`,
+      ogImage: data.ogImage || '/og-image.webp',
+      content,
+      readingTime: calculateReadingTime(content),
+      wordCount,
     };
   } catch (error) {
-    // If file is not found, return null to trigger Next.js notFound()
+    console.error(`Error reading blog post ${slug}:`, error);
     return null;
   }
-};
+}
 
-/**
- * Generate JSON-LD schema for a blog post
- */
-export const generateBlogJsonLd = (post: PostMeta, url: string) => {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
+
+// Get all blog posts with pagination support for blog listing page
+export function getAllBlogPosts(limit?: number): BlogPost[] {
+  try {
+    const slugs = getBlogSlugs();
+    const posts = slugs
+      .map(slug => getBlogPost(slug))
+      .filter((post): post is BlogPost => post !== null)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    return limit ? posts.slice(0, limit) : posts;
+  } catch (error) {
+    console.error('Error getting all blog posts:', error);
+    return [];
+  }
+}
+
+// Alias for compatibility with sitemap.ts and rss.xml/route.ts
+export const getAllPosts = getAllBlogPosts;
+
+// Extract FAQ sections from markdown content for structured data
+export function extractFAQ(content: string): Array<{ question: string; answer: string }> {
+  const faqRegex = /### (.+?\?)\s*\n\n(.+?)(?=\n###|\n##|$)/g;
+  const faqs: Array<{ question: string; answer: string }> = [];
+  let match;
+
+  while ((match = faqRegex.exec(content)) !== null) {
+    faqs.push({
+      question: match[1].trim(),
+      answer: match[2].trim().replace(/\n/g, ' '),
+    });
+  }
+
+  return faqs;
+}
+
+// Extract HowTo steps from markdown content for structured data
+export function extractHowToSteps(content: string): Array<{ name: string; text: string }> {
+  const stepRegex = /### Step \d+: (.+?)\s*\n\n(.+?)(?=\n###|\n##|$)/g;
+  const steps: Array<{ name: string; text: string }> = [];
+  let match;
+
+  while ((match = stepRegex.exec(content)) !== null) {
+    steps.push({
+      name: match[1].trim(),
+      text: match[2].trim().replace(/\n/g, ' '),
+    });
+  }
+
+  return steps;
+}
+
+// Generate JSON-LD structured data for blog posts (SEO optimization)
+export function generateBlogJsonLd(post: BlogPost, url: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com';
+  const fullUrl = `${baseUrl}${url}`;
+  
+  const article = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
     headline: post.title,
-    datePublished: post.date,
+    description: post.summary,
+    abstract: post.summary,
+    inLanguage: 'en-US',
+    wordCount: post.wordCount,
+    timeRequired: `PT${post.readingTime}M`,
     author: {
-      "@type": "Person",
-      name: post.author || "Wolves & Company",
+      '@type': 'Organization',
+      name: post.author,
+      url: baseUrl,
     },
-    image: post.ogImage || "/og-image.webp",
-    url: url,
-    description: post.summary || "",
-    keywords: post.tags?.join(", ") || "",
+    publisher: {
+      '@type': 'Organization',
+      name: 'The Tech Wolves',
+      url: baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/wolf.png`,
+      },
+    },
+    datePublished: post.date,
+    dateModified: post.modified || post.date,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': fullUrl },
+    url: fullUrl,
+    image: {
+      '@type': 'ImageObject',
+      url: `${baseUrl}${post.ogImage}`,
+      alt: post.title,
+    },
+    articleSection: 'Technology',
+    keywords: post.tags.join(', '),
+    isAccessibleForFree: true,
+    license: 'https://thetechwolves.com/terms',
   };
-};
 
+  // Add FAQ structured data if FAQs are present
+  const faqs = extractFAQ(post.content);
+  if (faqs.length > 0) {
+    const faqPage = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(faq => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    };
+    
+    return [article, faqPage];
+  }
+
+  // Add HowTo structured data if steps are present
+  const steps = extractHowToSteps(post.content);
+  if (steps.length > 0) {
+    const howTo = {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: post.title,
+      description: post.summary,
+      step: steps.map((step, index) => ({
+        '@type': 'HowToStep',
+        position: index + 1,
+        name: step.name,
+        text: step.text,
+      })),
+    };
+    
+    return [article, howTo];
+  }
+
+  return [article];
+}

@@ -1,112 +1,151 @@
-
 "use client";
-import  emailjs  from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import React, { useRef, useState, ChangeEvent, FormEvent } from "react";
-import { toast } from 'sonner';
+import { toast } from "sonner";
+import { ArrowUpRight, Loader2 } from "lucide-react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
-import { cn } from '../lib/utils';
 import { Textarea } from "./ui/textarea";
+import { cn } from "../lib/utils";
 
 export default function ContactForm() {
-    const formRef = useRef<HTMLFormElement>(null);
-
+  const formRef = useRef<HTMLFormElement>(null);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
     message: "",
   });
-
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   if (!form.firstName || !form.email || !form.message) {
-    toast.error("Please fill in all required fields.");
-    return;
-  }
-
-  setLoading(true);
+    if (!form.firstName || !form.email || !form.message) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+    setLoading(true);
 
     emailjs
       .sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
         formRef.current!,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_ID as string
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_ID as string,
       )
       .then(
         () => {
           setLoading(false);
-          toast.success('Message sent successfully!');
+          setForm({ firstName: "", lastName: "", email: "", message: "" });
+          toast.success("Message sent — we'll be in touch shortly.");
         },
         (error) => {
           setLoading(false);
-          toast.error('Failed to send message. Please try again.');
+          toast.error("Failed to send. Please try again.");
           console.error(error);
-        }
+        },
       );
   };
+
   return (
-    <div className="w-full md:w-1/2">
-        <form ref={formRef} onSubmit={handleSubmit} className="w-full">
-          <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-4">
-            <LabelInputContainer>
-              <Label htmlFor="firstname">First name *</Label>
-              <Input id="firstname" placeholder="Tyler" name="firstName" 
-    value={form.firstName} type="text"  onChange={handleChange}/>
-            </LabelInputContainer>
-            <LabelInputContainer>
-              <Label htmlFor="lastname">Last name</Label>
-              <Input id="lastname" placeholder="Durden" name="lastName" 
-    value={form.lastName} type="text" onChange={handleChange}/>
-            </LabelInputContainer>
-          </div>
-
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">Email Address *</Label>
-            <Input id="email" placeholder="projectmayhem@fc.com"
-            name="email" 
-    value={form.email}
-            type="email" onChange={handleChange}/>
-          </LabelInputContainer>
-
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="message">Message *</Label>
-            <Textarea id="message" placeholder="Start the conversation — we’re listening!"
-
-            name="message" 
-    value={form.message}
-            rows={6} onChange={handleChange} />
-          </LabelInputContainer>
-
-
-          <button
-            type="submit"
-            className="group/btn relative block h-10 w-full cursor-pointer rounded-md bg-gradient-to-br bg-teal-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
-          >
-             {loading ? "Sending..." : "Send Message"}
-          </button>
-        </form>
+    <form ref={formRef} onSubmit={handleSubmit} className="w-full">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <Field>
+          <Label htmlFor="firstname" className="text-xs uppercase tracking-[0.15em] text-white/55">
+            First name <span className="text-emerald-400">*</span>
+          </Label>
+          <Input
+            id="firstname"
+            name="firstName"
+            type="text"
+            placeholder="Ada"
+            value={form.firstName}
+            onChange={handleChange}
+            autoComplete="given-name"
+          />
+        </Field>
+        <Field>
+          <Label htmlFor="lastname" className="text-xs uppercase tracking-[0.15em] text-white/55">
+            Last name
+          </Label>
+          <Input
+            id="lastname"
+            name="lastName"
+            type="text"
+            placeholder="Lovelace"
+            value={form.lastName}
+            onChange={handleChange}
+            autoComplete="family-name"
+          />
+        </Field>
       </div>
-  )
+
+      <Field className="mt-4">
+        <Label htmlFor="email" className="text-xs uppercase tracking-[0.15em] text-white/55">
+          Email <span className="text-emerald-400">*</span>
+        </Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@company.com"
+          value={form.email}
+          onChange={handleChange}
+          autoComplete="email"
+        />
+      </Field>
+
+      <Field className="mt-4">
+        <Label htmlFor="message" className="text-xs uppercase tracking-[0.15em] text-white/55">
+          Message <span className="text-emerald-400">*</span>
+        </Label>
+        <Textarea
+          id="message"
+          name="message"
+          rows={6}
+          placeholder="Tell us about your project — scope, timeline, stack."
+          value={form.message}
+          onChange={handleChange}
+        />
+      </Field>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="tw-focus group relative mt-6 inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-white px-5 py-3 text-sm font-medium text-[#050505] transition-shadow duration-300 hover:shadow-[0_0_40px_-8px_rgba(52,211,153,0.55)] disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_50%_120%,rgba(52,211,153,0.5),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
+        {loading ? (
+          <>
+            <Loader2 className="relative h-4 w-4 animate-spin" />
+            <span className="relative">Sending</span>
+          </>
+        ) : (
+          <>
+            <span className="relative">Send message</span>
+            <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </>
+        )}
+      </button>
+    </form>
+  );
 }
 
-const LabelInputContainer = ({
+function Field({
   children,
   className,
 }: {
   children: React.ReactNode;
   className?: string;
-}) => {
-  return (
-    <div className={cn("flex w-full flex-col space-y-2", className)}>
-      {children}
-    </div>
-  );
-};
+}) {
+  return <div className={cn("flex w-full flex-col gap-2", className)}>{children}</div>;
+}

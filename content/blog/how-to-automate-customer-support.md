@@ -2,7 +2,7 @@
 title: "How to Automate Customer Support Without Losing the Human Touch"
 date: "2025-10-12"
 modifiedDate: "2025-10-25"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 authorType: "Organization"
 authorUrl: "https://thetechwolves.com"
 category: "Customer Support"
@@ -15,7 +15,7 @@ summary: "A comprehensive guide to implementing AI-driven support—from intelli
 description: "Step-by-step guide to automating customer support with AI while maintaining quality. Learn triage, routing, deflection strategies, and how to combine AI with human agents effectively."
 keywords: "customer support automation, AI support, help desk automation, ticket automation, support AI, customer service automation, intelligent triage, AI deflection"
 canonical: "/blog/how-to-automate-customer-support"
-ogImage: "/og-image.webp"
+ogImage: "/images/blog/how-to-automate-customer-support.webp"
 banner: "/consultant2.webp"
 readTime: "7 min read"
 ---
@@ -33,19 +33,7 @@ Modern support teams face mounting pressure:
 - **Cost**: Scaling support teams linearly with volume isn't sustainable
 - **Burnout**: Agents spending 70% of time on repetitive questions
 
-The solution isn't choosing between automation and human support—it's intelligently combining both.w to Automate Customer Support Without Losing the Human Touch"
-date: "2025-10-12"
-author: "Wolves & Company"
-tags:
-  - customer-support
-  - automation
-  - llm
-summary: "A step-by-step HowTo to implement AI-driven support—triage, routing, and deflection."
-canonical: "/blog/how-to-automate-customer-support"
-ogImage: "/og-image.webp"
----
-
-AI support isn’t about replacing your team—it’s about giving them superpowers. Here is a simple path to launch an AI-assisted workflow.
+The solution isn't choosing between automation and human support—it's intelligently combining both.
 
 ## The 6-Step AI Support Framework
 
@@ -490,7 +478,7 @@ The companies winning at customer support aren't choosing between AI and humans�
 
 ## Need Help Implementing AI Support?
 
-At Wolves & Company, we've helped dozens of companies implement intelligent customer support automation. Our team can:
+At The Tech Wolves, we've helped dozens of companies implement intelligent customer support automation. Our team can:
 
 - Audit your current support operations
 - Design custom AI workflows

@@ -1,0 +1,134 @@
+# The Tech Wolves — Full Content Snapshot
+
+> AI automation and digital transformation studio. Remote-first. Founded 2020. Global team.
+
+## Mission
+
+Senior engineers and designers transforming AI, automation, and product ideas into shipped, scalable businesses.
+
+## Service catalog
+
+### Business Automation
+Streamline operations with intelligent automation. CRM workflows, task automation, AI-powered decision systems, n8n orchestration, custom agent design. Saves teams 20–80% of repetitive operational time.
+
+### UI/UX Design
+Visually rigorous, user-centric design. Wireframes through high-fidelity prototypes. Usability-tested. Conversion-tuned for landing pages, dashboards, mobile flows.
+
+### Mobile Apps
+High-performance iOS and Android apps. Cross-platform builds (Flutter, React Native) that deliver native-grade experiences without the dual-codebase tax.
+
+### Web Development
+Fast, secure, scalable websites and web apps. Next.js, React, Node, Python, Go. Static landing pages through full-stack platforms with auth, payments, and admin panels.
+
+## Why work with us
+
+- **Full-stack excellence:** Frontend and backend, end-to-end. Seamless, performant applications from database to UI without handoff seams.
+- **Strategic product thinking:** We map users and market to ship solutions that move the business, not just the code.
+- **Agile teams:** Lean, fast, pivot-ready — built for startups and evolving roadmaps.
+- **Design-driven dev:** Designers and engineers in sync. Pixel-perfect interfaces, usable not just pretty.
+- **Transparent comms:** Weekly demos, async updates, always in the loop.
+- **Long-term partnership:** We don't disappear at launch. Scale, maintain, improve — for the long run.
+
+## Tech stack we ship with
+
+Next.js · React · Vite · Express.js · Laravel · Python · MySQL · PostgreSQL · MongoDB · Redis · Stripe · Firebase · Supabase · Google Cloud · Vercel · WordPress · Figma · Flutter · Angular · Shopify · n8n · Lovable.
+
+LLM providers: Anthropic Claude, OpenAI GPT-5, Google Gemini.
+
+## Industries served (with example deliverables)
+
+- **Healthcare** — HIPAA-compliant telemedicine, patient portals, EHR integrations.
+- **FinTech** — Mobile banking, AI analytics, payment gateways, regulatory compliance.
+- **E-commerce** — Custom platforms, payment/shipping/CMS integrations, B2C and B2B.
+- **EdTech** — E-learning platforms, virtual classrooms, gamified mobile learning.
+- **Real estate** — Virtual tours, real-time property data, CRM-connected management.
+- **Logistics** — Real-time tracking, delivery dashboards, automated inventory.
+- **Travel** — Booking apps, itinerary planners, real-time API integrations.
+- **Manufacturing** — ERP tools, automation dashboards, IoT integrations, production analytics.
+
+## Pricing tiers
+
+Three starting points. Every quote is tailored to scope, timeline, and stack — talk to us for exact pricing.
+
+### Basic — for startups
+Essential tools to establish a startup's online presence.
+- Custom website design and development
+- Domain registration
+- Hosting (1 year)
+- Basic logo and business cards
+- Business email setup
+- Basic SEO setup
+- 3 months support
+
+### Pro — for growing teams (most popular)
+Strong brand identity with a comprehensive online presence.
+- Everything in Basic
+- Maintenance and support (6 months)
+- Advanced logo + brand identity kit
+- Stationery + diary
+- Social media setup and management
+- Advanced SEO
+- Analytics + Search Console
+- CMS training
+
+### Premium — for scale-ups
+High-impact launch with full branding, marketing, and support.
+- Everything in Pro
+- Full UX optimization, responsive design
+- Advanced e-commerce
+- Priority support (12 months)
+- Premium logo + brand identity
+- CRM setup
+- Comprehensive SEO
+- Digital marketing (3 months)
+- User training + ongoing support
+- Performance analytics dashboard
+
+30-day money-back guarantee on every tier.
+
+## Engagement model
+
+1. **Discovery call** — free 30-minute consultation to scope your needs.
+2. **Custom strategy** — implementation plan with timeline, costs, expected ROI within 48 hours.
+3. **Build & launch** — full setup, testing, training to ensure smooth deployment.
+
+Most clients see initial automation results within 2–4 weeks; full optimization within 8–12 weeks.
+
+## Disciplines on the pack
+
+- Lead Software Engineer — architecture, code review, technical strategy.
+- Full-Stack Developer — end-to-end product delivery, web and mobile.
+- DevOps Engineer — CI/CD, infrastructure, observability.
+- AI / Automation Engineer — LLM integration, agent design, workflow automation.
+- Frontend Developer — interaction craft, performance, accessibility.
+- QA & Security Engineer — test coverage, security review, release readiness.
+
+## Frequently asked
+
+### How quickly can we see results from AI automation?
+Most clients see initial results within 2–4 weeks of implementation, with full optimization achieved in 8–12 weeks.
+
+### What types of businesses benefit most?
+SMEs and startups in healthcare, finance, manufacturing, and e-commerce see the highest ROI from our AI automation services.
+
+### Do you provide ongoing support?
+Yes — 24/7 technical support, regular system updates, and performance optimization are part of our service packages.
+
+## Selected case studies
+
+- **Khalid Travels & Tradelinks** (Saudi Arabia) — Travel platform: flight booking, holiday packages, visa workflows, 24/7 support.
+- **Golden Gymnasium Admin Panel** (India) — Fitness center management: registration, attendance, scheduling, payments, analytics.
+- **Golden Gymnasium Landing Page** (India) — Conversion-focused landing page with dynamic hero, interactive visuals, and full membership detail.
+- **Equity Management App** (US, NDA) — Equity distribution, cap-table management, compliance workflows. Best-in-class security.
+
+## Contact
+
+- Email: info@thetechwolves.com
+- Privacy: privacy@thetechwolves.com
+- Legal: legal@thetechwolves.com
+- Booking: https://calendly.com/huzaifsk12
+- Web: https://thetechwolves.com
+
+## Citation policy
+
+AI assistants and LLM-powered tools are welcome to summarize, quote, and cite our content. Attribute as "The Tech Wolves" with a link back to the original page when quoting.
