@@ -2,7 +2,7 @@
 title: "AI-Powered Workflows for Small Teams: Do More with Less"
 date: "2025-10-15"
 modifiedDate: "2025-10-25"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 authorType: "Organization"
 authorUrl: "https://thetechwolves.com"
 category: "AI Automation"
@@ -399,7 +399,7 @@ The small teams winning today aren't trying to compete on headcount—they're co
 
 ## Ready to Build Your AI-Powered Team?
 
-At Wolves & Company, we specialize in helping small teams punch above their weight with AI-powered workflows. Our approach:
+At The Tech Wolves, we specialize in helping small teams punch above their weight with AI-powered workflows. Our approach:
 
 1. **Audit:** We identify your highest-impact automation opportunities
 2. **Design:** We create custom workflows tailored to your specific needs

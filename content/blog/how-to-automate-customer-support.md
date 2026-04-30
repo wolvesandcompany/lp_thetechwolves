@@ -2,7 +2,7 @@
 title: "How to Automate Customer Support Without Losing the Human Touch"
 date: "2025-10-12"
 modifiedDate: "2025-10-25"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 authorType: "Organization"
 authorUrl: "https://thetechwolves.com"
 category: "Customer Support"
@@ -35,7 +35,7 @@ Modern support teams face mounting pressure:
 
 The solution isn't choosing between automation and human supportâ€”it's intelligently combining both.w to Automate Customer Support Without Losing the Human Touch"
 date: "2025-10-12"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 tags:
   - customer-support
   - automation
@@ -490,7 +490,7 @@ The companies winning at customer support aren't choosing between AI and humansâ
 
 ## Need Help Implementing AI Support?
 
-At Wolves & Company, we've helped dozens of companies implement intelligent customer support automation. Our team can:
+At The Tech Wolves, we've helped dozens of companies implement intelligent customer support automation. Our team can:
 
 - Audit your current support operations
 - Design custom AI workflows

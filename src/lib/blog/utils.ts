@@ -68,7 +68,7 @@ export function getBlogPost(slug: string): BlogPost | null {
       slug,
       title: data.title || 'Untitled',
       date: data.date || new Date().toISOString(),
-      author: data.author || 'Wolves & Company',
+      author: data.author || 'The Tech Wolves',
       tags: data.tags || [],
       summary: data.summary || '',
       canonical: data.canonical || `/blog/${slug}`,
@@ -136,7 +136,7 @@ export function extractHowToSteps(content: string): Array<{ name: string; text: 
 
 // Generate JSON-LD structured data for blog posts (SEO optimization)
 export function generateBlogJsonLd(post: BlogPost, url: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://wolvesandcompany.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com';
   const fullUrl = `${baseUrl}${url}`;
   
   const article = {
@@ -151,7 +151,7 @@ export function generateBlogJsonLd(post: BlogPost, url: string) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Wolves & Company',
+      name: 'The Tech Wolves',
       url: baseUrl,
       logo: {
         '@type': 'ImageObject',

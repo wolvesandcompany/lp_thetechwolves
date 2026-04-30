@@ -2,7 +2,7 @@
 title: "Building an AI Chatbot That Actually Helps Your Customers (Not Annoys Them)"
 date: "2025-10-18"
 modifiedDate: "2025-10-25"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 authorType: "Organization"
 authorUrl: "https://thetechwolves.com"
 category: "AI & Customer Support"
@@ -694,7 +694,7 @@ The businesses winning with AI chatbots aren't just deploying technology—they'
 
 ## Ready to Build Your Helpful AI Chatbot?
 
-At Wolves & Company, we've helped dozens of businesses build AI chatbots that customers actually like using. We can help you:
+At The Tech Wolves, we've helped dozens of businesses build AI chatbots that customers actually like using. We can help you:
 
 - Audit your support needs and design the right chatbot strategy
 - Build custom chatbots integrated with your systems

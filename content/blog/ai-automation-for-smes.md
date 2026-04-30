@@ -1,7 +1,7 @@
 ---
 title: "AI Automation for SMEs: A Practical Guide"
 date: "2024-10-08"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 tags: ["AI", "Automation", "SME", "Business Process", "Digital Transformation"]
 summary: "Discover how small and medium enterprises can leverage AI automation to streamline operations, reduce costs, and accelerate growth through practical implementation strategies."
 canonical: "/blog/ai-automation-for-smes"
@@ -117,10 +117,10 @@ Implementing AI automation successfully requires careful planning and execution.
 
 Consider partnering with experienced automation specialists who understand SME challenges and opportunities. Professional guidance can accelerate implementation, avoid common pitfalls, and ensure solutions align with business objectives.
 
-[Wolves & Company](/services) specializes in helping SMEs implement practical AI automation solutions that deliver measurable business value. Our team combines technical expertise with deep understanding of small business operations to create custom automation strategies.
+[The Tech Wolves](/services) specializes in helping SMEs implement practical AI automation solutions that deliver measurable business value. Our team combines technical expertise with deep understanding of small business operations to create custom automation strategies.
 
 Ready to explore AI automation for your business? [Contact our team](/contact) for a free consultation and discover how automation can transform your operations while maintaining the personal touch that makes your business unique.
 
 ---
 
-*This article was written by the team at Wolves & Company, a digital transformation consultancy specializing in practical AI solutions for small and medium enterprises. For more insights on business automation and digital transformation, explore our [services](/services) or [get in touch](/contact) with our team.*
+*This article was written by the team at The Tech Wolves, a digital transformation consultancy specializing in practical AI solutions for small and medium enterprises. For more insights on business automation and digital transformation, explore our [services](/services) or [get in touch](/contact) with our team.*

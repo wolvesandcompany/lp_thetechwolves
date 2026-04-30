@@ -70,12 +70,12 @@ export default function AboutUs() {
   const teamSchema = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    name: 'Our Team - Wolves & Company',
+    name: 'Our Team - The Tech Wolves',
     description: 'Meet our expert team of AI automation specialists and digital transformation professionals',
-    url: 'https://wolvesandcompany.com/team',
+    url: 'https://thetechwolves.com/team',
     mainEntity: {
       '@type': 'Organization',
-      name: 'Wolves & Company',
+      name: 'The Tech Wolves',
       description: 'Remote-first AI automation and digital transformation company',
       foundingDate: '2020',
       numberOfEmployees: '10-50',
@@ -86,7 +86,7 @@ export default function AboutUs() {
         jobTitle: member.role,
         worksFor: {
           '@type': 'Organization',
-          name: 'Wolves & Company'
+          name: 'The Tech Wolves'
         }
       })),
       hasOfferCatalog: {
@@ -133,7 +133,7 @@ export default function AboutUs() {
           Building Software Without Borders
         </h1>
         <p className="text-gray-600 text-lg mb-8">
-          At Wolves & Company, we are a remote-first development company. Our expert team
+          At The Tech Wolves, we are a remote-first development company. Our expert team
           is globally connected and passionate about building transformative digital solutions.</p>
         
         {/* Key Takeaways Section for AI/LLM Optimization */}

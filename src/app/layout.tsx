@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = generateMetadata({
-  title: "Wolves & Company - AI Automation & Digital Transformation Solutions",
+  title: "The Tech Wolves - AI Automation & Digital Transformation Solutions",
   description: "Transform your business with AI automation, custom software development, and digital solutions. Specialized in SME growth, process optimization, and cutting-edge technology implementation.",
   keywords: [
     "Web Development",
@@ -61,24 +61,24 @@ export default function RootLayout({
           content="YOUR_GOOGLE_SITE_VERIFICATION_TOKEN"
         />
         <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_TOKEN" />
-        <link rel="canonical" href="https://wolvesandcompany.in/" />
-        <meta name="author" content="WAC Team" />
-        <meta name="copyright" content="WAC Team" />
+        <link rel="canonical" href="https://thetechwolves.com/" />
+        <meta name="author" content="The Tech Wolves" />
+        <meta name="copyright" content="The Tech Wolves" />
         <meta name="distribution" content="global" />
         <meta name="HandheldFriendly" content="True" />
         <meta name="MobileOptimized" content="320" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="WAC" />
+        <meta property="og:site_name" content="The Tech Wolves" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content="https://wolvesandcompany.in/" />
+        <meta property="og:url" content="https://thetechwolves.com/" />
         <meta
           property="og:image:alt"
-          content="WAC Open Graph Image - Web & App Development, UI/UX Design, Automation, Custom Software"
+          content="The Tech Wolves Open Graph Image - Web & App Development, UI/UX Design, Automation, Custom Software"
         />
-        <meta name="twitter:site" content="@wolvesandcompany" />
-        <meta name="twitter:creator" content="@wolvesandcompany" />
+        <meta name="twitter:site" content="@thetechwolves" />
+        <meta name="twitter:creator" content="@thetechwolves" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

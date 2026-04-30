@@ -101,9 +101,9 @@ export default function CaseStudy() {
   const caseStudySchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Case Studies - Wolves & Company',
+    name: 'Case Studies - The Tech Wolves',
     description: 'Portfolio of successful AI automation and digital transformation projects',
-    url: 'https://wolvesandcompany.com/case-study',
+    url: 'https://thetechwolves.com/case-study',
     mainEntity: {
       '@type': 'ItemList',
       name: 'Client Success Stories',
@@ -114,7 +114,7 @@ export default function CaseStudy() {
         description: project.description.substring(0, 200) + '...',
         creator: {
           '@type': 'Organization',
-          name: 'Wolves & Company'
+          name: 'The Tech Wolves'
         },
         dateCreated: '2024',
         genre: project.categories.join(', '),
@@ -123,8 +123,8 @@ export default function CaseStudy() {
     },
     provider: {
       '@type': 'Organization',
-      name: 'Wolves & Company',
-      url: 'https://wolvesandcompany.com'
+      name: 'The Tech Wolves',
+      url: 'https://thetechwolves.com'
     }
   };
 

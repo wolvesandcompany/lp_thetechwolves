@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 
 // Base SEO configuration for the entire site
 export const baseSiteConfig = {
-  name: 'Wolves & Company',
+  name: 'The Tech Wolves',
   description: 'AI automation and digital transformation solutions for SMEs. Expert custom software development, process optimization, and business growth strategies.',
-  url: 'https://wolvesandcompany.com',
+  url: 'https://thetechwolves.com',
   ogImage: '/og-image.webp',
   links: {
-    twitter: 'https://twitter.com/wolvesandcompany',
-    linkedin: 'https://linkedin.com/company/wolvesandcompany',
+    twitter: 'https://twitter.com/thetechwolves',
+    linkedin: 'https://linkedin.com/company/thetechwolves',
   },
   keywords: [
     'AI automation',
@@ -95,7 +95,7 @@ export function generateMetadata({
       title: fullTitle,
       description,
       images: [imageUrl],
-      creator: '@wolvesandcompany',
+      creator: '@thetechwolves',
     },
     robots: {
       index: true,
@@ -135,7 +135,7 @@ export function generateOrganizationSchema() {
     ],
     founder: {
       '@type': 'Person',
-      name: 'Wolves & Company Team',
+      name: 'The Tech Wolves Team',
     },
     foundingDate: '2020',
     numberOfEmployees: '10-50',

@@ -18,7 +18,7 @@ if (!fs.existsSync(BLOG_DIR)) {
 const getPostTemplate = (title, slug, summary) => `---
 title: "${title}"
 date: "${new Date().toISOString().split('T')[0]}"
-author: "Wolves & Company"
+author: "The Tech Wolves"
 tags: ["Business", "Technology"]
 summary: "${summary}"
 canonical: "/blog/${slug}"
@@ -100,7 +100,7 @@ async function createNewPost() {
   const question = (query) => new Promise((resolve) => rl.question(query, resolve));
 
   try {
-    console.log('🐺 Wolves & Company Blog Post Generator\n');
+    console.log('🐺 The Tech Wolves Blog Post Generator\n');
     
     const title = await question('Enter the blog post title: ');
     if (!title.trim()) {
@@ -163,7 +163,7 @@ if (process.argv.length > 2) {
   switch (command) {
     case '--help':
     case '-h':
-      console.log('🐺 Wolves & Company Blog Post Generator');
+      console.log('🐺 The Tech Wolves Blog Post Generator');
       console.log('\nUsage:');
       console.log('  npm run create:post          Interactive mode');
       console.log('  npm run create:post --help   Show this help');

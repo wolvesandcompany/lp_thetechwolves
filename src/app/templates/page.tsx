@@ -223,9 +223,9 @@ export default function TemplatesShowcase() {
   const templatesSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Website Templates - Wolves & Company',
+    name: 'Website Templates - The Tech Wolves',
     description: 'Professional website templates for various industries',
-    url: 'https://wolvesandcompany.com/templates',
+    url: 'https://thetechwolves.com/templates',
     mainEntity: {
       '@type': 'ItemList',
       name: 'Premium Website Templates',
@@ -246,7 +246,7 @@ export default function TemplatesShowcase() {
         },
         creator: {
           '@type': 'Organization',
-          name: 'Wolves & Company'
+          name: 'The Tech Wolves'
         },
         keywords: template.keywords.join(', ')
       }))

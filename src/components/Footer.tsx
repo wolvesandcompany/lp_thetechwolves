@@ -9,7 +9,7 @@ export function Footer() {
         {/* Column 1: Branding / Copyright */}
         <div>
           <p className="text-sm">
-            &copy; {new Date().getFullYear()} WAC. All rights reserved.
+            &copy; {new Date().getFullYear()} The Tech Wolves. All rights reserved.
           </p>
         </div>
 
@@ -103,8 +103,8 @@ export function Footer() {
           <h4 className="text-lg font-medium text-white mb-3">Contact</h4>
           <p className="text-sm">
             📧{" "}
-            <a href="mailto:hello@isad.digital" className="hover:underline">
-              info@wolvesandcompany.in
+            <a href="mailto:info@thetechwolves.com" className="hover:underline">
+              info@thetechwolves.com
             </a>
           </p>
           <p className="text-sm mt-2">📍 Remote & Global</p>

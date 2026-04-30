@@ -6,91 +6,91 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
-    <loc>https://wolvesandcompany.com/</loc>
+    <loc>https://thetechwolves.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/services</loc>
+    <loc>https://thetechwolves.com/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/contact</loc>
+    <loc>https://thetechwolves.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/team</loc>
+    <loc>https://thetechwolves.com/team</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/templates</loc>
+    <loc>https://thetechwolves.com/templates</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/case-study</loc>
+    <loc>https://thetechwolves.com/case-study</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/blog</loc>
+    <loc>https://thetechwolves.com/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/privacy</loc>
+    <loc>https://thetechwolves.com/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/terms</loc>
+    <loc>https://thetechwolves.com/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/cookies</loc>
+    <loc>https://thetechwolves.com/cookies</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/blog/ai-automation-for-smes</loc>
+    <loc>https://thetechwolves.com/blog/ai-automation-for-smes</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2024-10-08</lastmod>
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/blog/ai-powered-workflows-for-small-teams</loc>
+    <loc>https://thetechwolves.com/blog/ai-powered-workflows-for-small-teams</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2025-10-15</lastmod>
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/blog/building-ai-chatbot-for-your-business</loc>
+    <loc>https://thetechwolves.com/blog/building-ai-chatbot-for-your-business</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2025-10-18</lastmod>
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/blog/how-to-automate-customer-support</loc>
+    <loc>https://thetechwolves.com/blog/how-to-automate-customer-support</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2025-10-12</lastmod>
   </url>
   <url>
-    <loc>https://wolvesandcompany.com/blog/manual-to-ai-transformation-90-days</loc>
+    <loc>https://thetechwolves.com/blog/manual-to-ai-transformation-90-days</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2025-10-20</lastmod>

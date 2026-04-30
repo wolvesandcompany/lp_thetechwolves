@@ -5,7 +5,7 @@ import { StructuredData } from '@/components/StructuredData';
 // Generate static metadata for SEO optimization
 export const metadata: Metadata = generateMetadata({
   title: 'Cookie Policy - Website Cookies & Tracking Information',
-  description: 'Learn about how Wolves & Company uses cookies and tracking technologies. Cookie policy explaining data collection, usage, and your control options.',
+  description: 'Learn about how The Tech Wolves uses cookies and tracking technologies. Cookie policy explaining data collection, usage, and your control options.',
   path: '/cookies',
   keywords: [
     'cookie policy',

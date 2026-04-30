@@ -28,7 +28,7 @@ export function SEO({
   tags = [],
   structuredData,
 }: SEOProps) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://wolvesandcompany.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com';
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : undefined;
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
 
@@ -52,7 +52,7 @@ export function SEO({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullOgImage} />
-      <meta property="og:site_name" content="Wolves & Company" />
+      <meta property="og:site_name" content="The Tech Wolves" />
       
       {/* Article-specific Open Graph tags */}
       {ogType === 'article' && publishedTime && (

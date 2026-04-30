@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://wolvesandcompany.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com';
   
   return {
-    title: `${post.title} | Wolves & Company Blog`,
+    title: `${post.title} | The Tech Wolves Blog`,
     description: post.summary,
     alternates: {
       canonical: `${baseUrl}${post.canonical}`,
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       title: post.title,
       description: post.summary,
       url: `${baseUrl}${post.canonical}`,
-      siteName: 'Wolves & Company',
+      siteName: 'The Tech Wolves',
       images: [
         {
           url: post.ogImage.startsWith('http') ? post.ogImage : `${baseUrl}${post.ogImage}`,
@@ -184,7 +184,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="flex items-center gap-4">
                 <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">Share:</span>
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://wolvesandcompany.com'}${post.canonical}`)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com'}${post.canonical}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-teal-50 dark:hover:bg-teal-950/50 text-neutral-700 dark:text-neutral-300 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg transition-all duration-300 text-sm font-medium"
@@ -195,7 +195,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   Twitter
                 </a>
                 <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://wolvesandcompany.com'}${post.canonical}`)}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com'}${post.canonical}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-teal-50 dark:hover:bg-teal-950/50 text-neutral-700 dark:text-neutral-300 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg transition-all duration-300 text-sm font-medium"

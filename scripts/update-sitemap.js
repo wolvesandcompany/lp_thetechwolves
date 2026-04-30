@@ -5,7 +5,7 @@ const matter = require('gray-matter');
 // Sitemap update script to include blog routes
 // This runs at build time to ensure search engines can discover all blog content
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://wolvesandcompany.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com';
 const BLOG_DIR = path.join(process.cwd(), 'content/blog');
 const OUTPUT_PATH = path.join(process.cwd(), 'public/sitemap.xml');
 

@@ -6,7 +6,7 @@ const matter = require('gray-matter');
 // RSS feed generation script for blog posts
 // This runs at build time to create static RSS feed for SEO
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://wolvesandcompany.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com';
 const BLOG_DIR = path.join(process.cwd(), 'content/blog');
 const OUTPUT_PATH = path.join(process.cwd(), 'public/rss.xml');
 
@@ -15,14 +15,14 @@ function generateRSSFeed() {
 
   // Create RSS feed configuration
   const feed = new RSS({
-    title: 'Wolves & Company Blog',
+    title: 'The Tech Wolves Blog',
     description: 'Expert insights on AI automation, digital transformation, and business process optimization for SMEs and startups.',
     feed_url: `${SITE_URL}/rss.xml`,
     site_url: SITE_URL,
     image_url: `${SITE_URL}/wolf.png`,
-    managingEditor: 'team@wolvesandcompany.com (Wolves & Company)',
-    webMaster: 'team@wolvesandcompany.com (Wolves & Company)',
-    copyright: `© ${new Date().getFullYear()} Wolves & Company`,
+    managingEditor: 'team@thetechwolves.com (The Tech Wolves)',
+    webMaster: 'team@thetechwolves.com (The Tech Wolves)',
+    copyright: `© ${new Date().getFullYear()} The Tech Wolves`,
     language: 'en-US',
     categories: ['Technology', 'AI', 'Automation', 'Business', 'Digital Transformation'],
     pubDate: new Date().toUTCString(),
@@ -50,7 +50,7 @@ function generateRSSFeed() {
           slug,
           title: data.title || 'Untitled',
           date: data.date || new Date().toISOString(),
-          author: data.author || 'Wolves & Company',
+          author: data.author || 'The Tech Wolves',
           summary: data.summary || '',
           tags: data.tags || [],
           content: content.substring(0, 500) + '...', // Truncate content for RSS

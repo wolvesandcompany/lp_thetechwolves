@@ -238,7 +238,7 @@ export const NavbarLogo = () => {
     >
       <Image src="/wolf.png" alt="logo" width={30} height={30} priority />
       <span className="font-bold text-3xl text-teal-950 dark:text-white">
-        WAC
+        The Tech Wolves
       </span>
     </a>
   );
