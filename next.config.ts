@@ -5,6 +5,9 @@ import bundleAnalyzer from "@next/bundle-analyzer";
 const nextConfig = {
   reactStrictMode: true,
 
+  // ✅ Output configuration for static export
+  output: 'standalone', // Use 'export' for fully static sites, 'standalone' for server features
+
   // ✅ TypeScript & ESLint settings
   typescript: {
     ignoreBuildErrors: true,
@@ -37,6 +40,16 @@ const nextConfig = {
 
   // ✅ Webpack customizations
   webpack: (config, { dev, isServer }) => {
+    // Important: Don't bundle fs, path, etc. on client side
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        crypto: false,
+      };
+    }
+
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: "all",

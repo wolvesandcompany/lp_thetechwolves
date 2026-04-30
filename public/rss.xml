@@ -9,10 +9,10 @@
             <link>https://wolvesandcompany.com</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 10 Oct 2025 06:01:58 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 30 Apr 2026 11:20:16 GMT</lastBuildDate>
         <atom:link href="https://wolvesandcompany.com/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Fri, 10 Oct 2025 06:01:58 GMT</pubDate>
-        <copyright><![CDATA[© 2025 Wolves & Company]]></copyright>
+        <pubDate>Thu, 30 Apr 2026 11:20:16 GMT</pubDate>
+        <copyright><![CDATA[© 2026 Wolves & Company]]></copyright>
         <language><![CDATA[en-US]]></language>
         <managingEditor><![CDATA[team@wolvesandcompany.com (Wolves & Company)]]></managingEditor>
         <webMaster><![CDATA[team@wolvesandcompany.com (Wolves & Company)]]></webMaster>
@@ -22,6 +22,58 @@
         <category><![CDATA[Automation]]></category>
         <category><![CDATA[Business]]></category>
         <category><![CDATA[Digital Transformation]]></category>
+        <item>
+            <title><![CDATA[From Manual to AI: Transforming Your Business Processes in 90 Days]]></title>
+            <description><![CDATA[A practical 90-day roadmap to transform manual business processes with AI automation, including week-by-week action plans, real results, and lessons learned.]]></description>
+            <link>https://wolvesandcompany.com/blog/manual-to-ai-transformation-90-days</link>
+            <guid isPermaLink="false">https://wolvesandcompany.com/blog/manual-to-ai-transformation-90-days</guid>
+            <category><![CDATA[digital-transformation]]></category>
+            <category><![CDATA[ai]]></category>
+            <category><![CDATA[automation]]></category>
+            <category><![CDATA[business-strategy]]></category>
+            <dc:creator><![CDATA[Wolves & Company]]></dc:creator>
+            <pubDate>Mon, 20 Oct 2025 00:00:00 GMT</pubDate>
+            <enclosure url="https://wolvesandcompany.com/og-image.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[Building an AI Chatbot That Actually Helps Your Customers (Not Annoys Them)]]></title>
+            <description><![CDATA[Learn how to build intelligent, helpful AI chatbots that customers actually want to use—from design principles to implementation strategies and real-world examples.]]></description>
+            <link>https://wolvesandcompany.com/blog/building-ai-chatbot-for-your-business</link>
+            <guid isPermaLink="false">https://wolvesandcompany.com/blog/building-ai-chatbot-for-your-business</guid>
+            <category><![CDATA[ai]]></category>
+            <category><![CDATA[chatbot]]></category>
+            <category><![CDATA[customer-experience]]></category>
+            <category><![CDATA[llm]]></category>
+            <dc:creator><![CDATA[Wolves & Company]]></dc:creator>
+            <pubDate>Sat, 18 Oct 2025 00:00:00 GMT</pubDate>
+            <enclosure url="https://wolvesandcompany.com/og-image.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[AI-Powered Workflows for Small Teams: Do More with Less]]></title>
+            <description><![CDATA[Discover how small teams can leverage AI-powered workflows to compete with enterprises, boost productivity by 10x, and achieve more with limited resources.]]></description>
+            <link>https://wolvesandcompany.com/blog/ai-powered-workflows-for-small-teams</link>
+            <guid isPermaLink="false">https://wolvesandcompany.com/blog/ai-powered-workflows-for-small-teams</guid>
+            <category><![CDATA[ai]]></category>
+            <category><![CDATA[productivity]]></category>
+            <category><![CDATA[small-business]]></category>
+            <category><![CDATA[workflows]]></category>
+            <dc:creator><![CDATA[Wolves & Company]]></dc:creator>
+            <pubDate>Wed, 15 Oct 2025 00:00:00 GMT</pubDate>
+            <enclosure url="https://wolvesandcompany.com/og-image.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[How to Automate Customer Support Without Losing the Human Touch]]></title>
+            <description><![CDATA[A comprehensive guide to implementing AI-driven support—from intelligent triage to seamless routing and deflection strategies that enhance, not replace, your support team.]]></description>
+            <link>https://wolvesandcompany.com/blog/how-to-automate-customer-support</link>
+            <guid isPermaLink="false">https://wolvesandcompany.com/blog/how-to-automate-customer-support</guid>
+            <category><![CDATA[customer-support]]></category>
+            <category><![CDATA[automation]]></category>
+            <category><![CDATA[llm]]></category>
+            <category><![CDATA[ai]]></category>
+            <dc:creator><![CDATA[Wolves & Company]]></dc:creator>
+            <pubDate>Sun, 12 Oct 2025 00:00:00 GMT</pubDate>
+            <enclosure url="https://wolvesandcompany.com/og-image.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[AI Automation for SMEs: A Practical Guide]]></title>
             <description><![CDATA[Discover how small and medium enterprises can leverage AI automation to streamline operations, reduce costs, and accelerate growth through practical implementation strategies.]]></description>

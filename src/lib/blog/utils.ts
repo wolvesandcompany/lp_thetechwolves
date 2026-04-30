@@ -82,6 +82,7 @@ export function getBlogPost(slug: string): BlogPost | null {
   }
 }
 
+
 // Get all blog posts with pagination support for blog listing page
 export function getAllBlogPosts(limit?: number): BlogPost[] {
   try {
@@ -97,6 +98,9 @@ export function getAllBlogPosts(limit?: number): BlogPost[] {
     return [];
   }
 }
+
+// Alias for compatibility with sitemap.ts and rss.xml/route.ts
+export const getAllPosts = getAllBlogPosts;
 
 // Extract FAQ sections from markdown content for structured data
 export function extractFAQ(content: string): Array<{ question: string; answer: string }> {
