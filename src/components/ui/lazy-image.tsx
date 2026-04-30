@@ -76,7 +76,7 @@ export function LazyImage({
           sizes={sizes}
         />
       ) : (
-        <div className="bg-gray-200 animate-pulse" style={{ width, height }} />
+        <div className="bg-neutral-800 animate-pulse" style={{ width, height }} />
       )}
     </div>
   );

@@ -15,7 +15,7 @@ summary: "Learn how to build intelligent, helpful AI chatbots that customers act
 description: "A comprehensive guide to building AI chatbots powered by LLMs that genuinely help customers. Learn design principles, implementation strategies, and avoid common mistakes that frustrate users."
 keywords: "AI chatbot, customer support automation, LLM chatbot, conversational AI, chatbot design, GPT chatbot, customer service AI, intelligent chatbot"
 canonical: "/blog/building-ai-chatbot-for-your-business"
-ogImage: "/og-image.webp"
+ogImage: "/images/blog/building-ai-chatbot-for-your-business.webp"
 banner: "/healthtech.webp"
 readTime: "8 min read"
 ---

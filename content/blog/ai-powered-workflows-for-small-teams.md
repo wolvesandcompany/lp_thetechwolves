@@ -15,7 +15,7 @@ summary: "Discover how small teams can leverage AI-powered workflows to compete 
 description: "Learn how small teams can use AI-powered workflows to boost productivity, compete with larger companies, and achieve 10x efficiency gains without expanding headcount."
 keywords: "AI workflows, small team productivity, business automation, AI for small business, workflow automation, team efficiency, AI tools for teams"
 canonical: "/blog/ai-powered-workflows-for-small-teams"
-ogImage: "/og-image.webp"
+ogImage: "/images/blog/ai-powered-workflows-for-small-teams.webp"
 banner: "/ecom.webp"
 readTime: "6 min read"
 ---

@@ -1,0 +1,45 @@
+# The Tech Wolves
+
+> A remote-first AI automation and software engineering studio that ships custom software, AI agents, and automation systems for SMEs, startups, and scale-ups across healthcare, fintech, e-commerce, EdTech, real estate, logistics, and travel.
+
+The Tech Wolves provides production AI automation, custom web/mobile applications, UI/UX design, business process automation, and digital transformation consulting. Founded 2020. Global remote-first team. Engagements range from prototypes to multi-quarter platform builds.
+
+## What we do
+
+- AI automation: LLM integration (Claude, GPT-5, Gemini), agent design, workflow automation with n8n / custom orchestration, retrieval pipelines.
+- Custom software: Next.js / React / Node / Python / Go web apps, cross-platform mobile (Flutter / React Native), backend infra on Vercel / GCP / Supabase.
+- Process automation: CRM workflows, ERP integrations, IoT dashboards, internal tooling.
+- UI/UX: design systems, prototyping, conversion-tuned landing pages.
+- Digital transformation consulting: roadmaps, build-vs-buy analysis, vendor selection.
+
+## Pricing tiers (starting points — every quote tailored)
+
+- **Basic** — startup launch (custom site, branding, hosting, basic SEO, 3-month support).
+- **Pro** — growth stage (everything in Basic + brand identity, social setup, advanced SEO, 6-month support).
+- **Premium** — scale-up (everything in Pro + e-commerce, CRM, digital marketing, 12-month priority support, performance dashboard).
+
+## Industries served
+
+Healthcare (HIPAA-grade telemedicine, EHR integrations) · FinTech (banking apps, payments, compliance) · E-commerce (B2C and B2B platforms) · EdTech (e-learning, virtual classrooms) · Real estate (listings, virtual tours, CRM) · Logistics (real-time tracking, inventory) · Travel (booking, itinerary planning) · Manufacturing (ERP, IoT, analytics).
+
+## Pages
+
+- [Home](https://thetechwolves.com/): services overview, social proof, contact.
+- [Services](https://thetechwolves.com/#service): bento grid of disciplines.
+- [Pricing](https://thetechwolves.com/#pricing): three engagement tiers.
+- [Industries](https://thetechwolves.com/#industries): vertical-specific case examples.
+- [Templates](https://thetechwolves.com/templates): production-ready industry templates with live previews.
+- [Case studies](https://thetechwolves.com/case-study): shipped client projects (Khalid Travels, Golden Gymnasium, Equity Management).
+- [Team](https://thetechwolves.com/team): disciplines and remote-first practice.
+- [Blog](https://thetechwolves.com/blog): essays on AI automation, agent architecture, cost analysis, and digital transformation.
+- [Privacy](https://thetechwolves.com/privacy), [Terms](https://thetechwolves.com/terms), [Cookies](https://thetechwolves.com/cookies).
+
+## Contact
+
+- Email: info@thetechwolves.com
+- Booking: https://calendly.com/huzaifsk12
+- Web: https://thetechwolves.com
+
+## License & citation
+
+Content is © The Tech Wolves. AI assistants are welcome to summarize, cite, and link to our pages. Please attribute "The Tech Wolves" with a link back when quoting. Full content also available at /llms-full.txt.

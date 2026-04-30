@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 
 const STACK_ITEMS: { name: string; icon: string }[] = [
@@ -26,139 +25,86 @@ const STACK_ITEMS: { name: string; icon: string }[] = [
   { name: "Lovable", icon: "/icons/lovable.svg" },
 ];
 
-// Marquee component
-function Marquee({
-  children,
+function Row({
+  items,
+  duration,
   reverse = false,
-  duration = 30,
 }: {
-  children: React.ReactNode;
+  items: typeof STACK_ITEMS;
+  duration: number;
   reverse?: boolean;
-  duration?: number;
 }) {
   return (
-    <div className="overflow-hidden w-full relative py-2">
-      {/* Left fade */}
-      <div className="pointer-events-none absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-white dark:from-neutral-950 to-transparent z-10" />
-
-      {/* Right fade */}
-      <div className="pointer-events-none absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-white dark:from-neutral-950 to-transparent z-10" />
-
+    <div
+      className="relative w-full overflow-hidden"
+      style={{
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+        maskImage:
+          "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+      }}
+    >
       <div
-        className="flex gap-8 items-center"
+        className="flex w-max items-center gap-10 motion-reduce:!animate-none"
         style={{
-          animation: `${
-            reverse ? "marquee-reverse" : "marquee"
-          } ${duration}s linear infinite`,
+          animation: `${reverse ? "tw-tech-rev" : "tw-tech-fwd"} ${duration}s linear infinite`,
         }}
       >
-        {children}
-        {children}
+        {[...items, ...items].map((it, i) => (
+          <div
+            key={`${it.name}-${i}`}
+            className="tw-glass tw-light-leak group flex h-16 w-[150px] shrink-0 items-center justify-center rounded-2xl px-5"
+          >
+            <Image
+              src={it.icon}
+              alt={`${it.name} logo`}
+              width={150}
+              height={40}
+              className="max-h-9 w-auto object-contain opacity-50 transition-all duration-500 [filter:grayscale(1)_brightness(0)_invert(1)] group-hover:opacity-100 group-hover:[filter:none]"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
 
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
-        }
-        @keyframes marquee-reverse {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
+      <style>{`
+        @keyframes tw-tech-fwd { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes tw-tech-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
       `}</style>
     </div>
   );
 }
 
 export default function TechStack() {
-  // Split the stack into 3 roughly equal groups for visual variety
-  const chunkSize = Math.ceil(STACK_ITEMS.length / 3);
+  const chunk = Math.ceil(STACK_ITEMS.length / 3);
   const rows = [
-    STACK_ITEMS.slice(0, chunkSize),
-    STACK_ITEMS.slice(chunkSize, chunkSize * 2),
-    STACK_ITEMS.slice(chunkSize * 2),
+    STACK_ITEMS.slice(0, chunk),
+    STACK_ITEMS.slice(chunk, chunk * 2),
+    STACK_ITEMS.slice(chunk * 2),
   ];
 
   return (
     <section
       id="tech-stack"
-      className="w-full py-24 sm:py-20 md:py-32 lg:py-40 bg-white dark:bg-neutral-950"
+      className="tw-noise relative w-full overflow-hidden bg-[#050505] py-24 md:py-32"
     >
-      <div className="max-w-6xl mx-auto px-2 sm:px-4">
-        <div className="text-center mb-10 sm:mb-10 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white">
-            Tech Stack
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-12 max-w-2xl">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400/90">
+            Tech stack
+          </p>
+          <h2 className="text-3xl font-medium tracking-[-0.04em] text-white md:text-4xl">
+            <span className="tw-display-gradient">Tools we ship with.</span>
           </h2>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
-            Tools and platforms we use to build fast, scalable experiences.
+          <p className="mt-4 max-w-[65ch] text-base leading-[1.6] text-white/65">
+            Modern, battle-tested. Picked for speed of iteration and longevity.
           </p>
         </div>
-        <div className="flex flex-col gap-4 sm:gap-6">
-          <Marquee duration={30}>
-            {rows[0].map((item) => (
-              <div
-                key={item.name}
-                className="flex flex-col items-center justify-center min-w-[110px] sm:min-w-[140px] md:min-w-[160px] px-2 sm:px-4 md:px-6"
-              >
-                <div className="relative h-8 sm:h-10 md:h-12 w-full flex items-center justify-center">
-                  <Image
-                    src={item.icon}
-                    alt={`${item.name} logo`}
-                    width={160}
-                    height={48}
-                    className="object-contain max-h-8 sm:max-h-10 md:max-h-12 w-auto opacity-90 dark:opacity-100"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            ))}
-          </Marquee>
-          <Marquee reverse duration={30}>
-            {rows[1].map((item) => (
-              <div
-                key={item.name}
-                className="flex flex-col items-center justify-center min-w-[110px] sm:min-w-[140px] md:min-w-[160px] px-2 sm:px-4 md:px-6"
-              >
-                <div className="relative h-8 sm:h-10 md:h-12 w-full flex items-center justify-center">
-                  <Image
-                    src={item.icon}
-                    alt={`${item.name} logo`}
-                    width={160}
-                    height={48}
-                    className="object-contain max-h-8 sm:max-h-10 md:max-h-12 w-auto opacity-90 dark:opacity-100"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            ))}
-          </Marquee>
-          <Marquee duration={30}>
-            {rows[2].map((item) => (
-              <div
-                key={item.name}
-                className="flex flex-col items-center justify-center min-w-[110px] sm:min-w-[140px] md:min-w-[160px] px-2 sm:px-4 md:px-6"
-              >
-                <div className="relative h-8 sm:h-10 md:h-12 w-full flex items-center justify-center">
-                  <Image
-                    src={item.icon}
-                    alt={`${item.name} logo`}
-                    width={160}
-                    height={48}
-                    className="object-contain max-h-8 sm:max-h-10 md:max-h-12 w-auto opacity-90 dark:opacity-100"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            ))}
-          </Marquee>
+
+        <div className="flex flex-col gap-6">
+          <Row items={rows[0]} duration={32} />
+          <Row items={rows[1]} duration={40} reverse />
+          <Row items={rows[2]} duration={28} />
         </div>
       </div>
     </section>

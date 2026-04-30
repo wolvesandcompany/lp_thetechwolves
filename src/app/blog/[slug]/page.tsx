@@ -1,260 +1,229 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { getBlogPost, getBlogSlugs, generateBlogJsonLd } from '@/lib/blog/utils';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-import { BackgroundBeams } from '@/components/ui/background-beams';
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Calendar, Clock, User, ArrowRight, Linkedin, Twitter } from "lucide-react";
+import { getBlogPost, getBlogSlugs, generateBlogJsonLd } from "@/lib/blog/utils";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { SiteNavbar } from "@/components/SiteNavbar";
+import { Footer } from "@/components/Footer";
 
 interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
-// Generate static paths for all blog posts (SSG optimization)
 export async function generateStaticParams() {
   const slugs = getBlogSlugs();
-  return slugs.map((slug) => ({
-    slug,
-  }));
+  return slugs.map((slug) => ({ slug }));
 }
 
-// Generate dynamic metadata for each blog post (SEO optimization)
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPost(slug);
-  
+
   if (!post) {
     return {
-      title: 'Post Not Found',
-      description: 'The requested blog post could not be found.',
+      title: "Post Not Found",
+      description: "The requested blog post could not be found.",
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com';
-  
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://thetechwolves.com";
+
   return {
     title: `${post.title} | The Tech Wolves Blog`,
     description: post.summary,
-    alternates: {
-      canonical: `${baseUrl}${post.canonical}`,
-    },
+    alternates: { canonical: `${baseUrl}${post.canonical}` },
     openGraph: {
       title: post.title,
       description: post.summary,
       url: `${baseUrl}${post.canonical}`,
-      siteName: 'The Tech Wolves',
+      siteName: "The Tech Wolves",
       images: [
         {
-          url: post.ogImage.startsWith('http') ? post.ogImage : `${baseUrl}${post.ogImage}`,
+          url: post.ogImage.startsWith("http") ? post.ogImage : `${baseUrl}${post.ogImage}`,
           width: 1200,
           height: 630,
           alt: post.title,
         },
       ],
-      locale: 'en_US',
-      type: 'article',
+      locale: "en_US",
+      type: "article",
       publishedTime: post.date,
       authors: [post.author],
       tags: post.tags,
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: post.title,
       description: post.summary,
-      images: [post.ogImage.startsWith('http') ? post.ogImage : `${baseUrl}${post.ogImage}`],
+      images: [post.ogImage.startsWith("http") ? post.ogImage : `${baseUrl}${post.ogImage}`],
     },
     keywords: post.tags,
   };
 }
 
-// Individual blog post page component
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getBlogPost(slug);
 
-  // Handle 404 for non-existent posts
-  if (!post) {
-    notFound();
-  }
+  if (!post) notFound();
 
-  // Generate structured data for SEO and AI/LLM understanding
   const structuredData = generateBlogJsonLd(post, `/blog/${slug}`);
-  
-  const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://thetechwolves.com";
+  const formattedDate = new Date(post.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   return (
     <>
-      {/* Structured Data JSON-LD for SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      
-      <article className="min-h-screen bg-white dark:bg-neutral-950 relative">
-        {/* Background effects matching the main theme */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-1/4 w-[40rem] h-[40rem] bg-teal-300/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-40 right-1/4 w-[30rem] h-[30rem] bg-teal-400/10 rounded-full blur-3xl" />
-        </div>
-        
-        {/* Background beams for visual enhancement */}
-        <BackgroundBeams className="opacity-20" />
-        
-        <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8 max-w-4xl relative z-10">
-          {/* Article header */}
-          <header className="mb-8 pt-20">
-            {/* Breadcrumb navigation for SEO */}
-            <nav className="mb-8 text-sm text-neutral-600 dark:text-neutral-400">
-              <a href="/" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">Home</a>
-              <span className="mx-2 text-teal-500">•</span>
-              <a href="/blog" className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300">Blog</a>
-              <span className="mx-2 text-teal-500">•</span>
-              <span className="text-neutral-900 dark:text-white font-medium">{post.title}</span>
-            </nav>
 
-            {/* Article title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400">
+      <main className="tw-noise relative min-h-screen overflow-hidden bg-[#050505] text-white">
+        <SiteNavbar />
+
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-32 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-emerald-500/[0.05] blur-[140px]"
+        />
+
+        <article className="relative z-10 mx-auto max-w-3xl px-6 pb-24 pt-40">
+          <nav className="mb-10 flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-white/45">
+            <Link href="/" className="tw-focus transition-colors hover:text-white">
+              Home
+            </Link>
+            <span className="text-white/25">/</span>
+            <Link href="/blog" className="tw-focus transition-colors hover:text-white">
+              Blog
+            </Link>
+            <span className="text-white/25">/</span>
+            <span className="line-clamp-1 normal-case tracking-normal text-white/65">
               {post.title}
-            </h1>
+            </span>
+          </nav>
 
-            {/* Article meta information */}
-            <div className="flex flex-wrap items-center gap-6 text-neutral-600 dark:text-neutral-400 mb-8 pb-6 border-b border-neutral-200 dark:border-neutral-800">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-teal-500/10 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <time dateTime={post.date} className="font-medium">{formattedDate}</time>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-teal-500/10 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <span className="font-medium">{post.author}</span>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-teal-500/10 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <span className="font-medium">{post.readingTime} min read</span>
-              </div>
-            </div>
+          <h1 className="text-3xl font-medium leading-[1.1] tracking-[-0.04em] md:text-5xl">
+            <span className="tw-display-gradient">{post.title}</span>
+          </h1>
 
-            {/* Tags */}
-            {post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-3 mb-10">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-2 bg-teal-50 dark:bg-teal-950/50 text-teal-700 dark:text-teal-300 text-sm rounded-full font-medium border border-teal-200 dark:border-teal-800 hover:bg-teal-100 dark:hover:bg-teal-900/50 transition-colors duration-300"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
+          <div className="tw-glass tw-light-leak mt-8 rounded-2xl p-5 md:p-6">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-emerald-400/90">
+              TL;DR
+            </p>
+            <p className="mt-2 max-w-[65ch] text-base leading-[1.6] text-white/80 md:text-lg">
+              {post.summary}
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-y border-white/[0.06] py-5 text-sm text-white/55">
+            <span className="inline-flex items-center gap-2">
+              <Calendar className="h-3.5 w-3.5 text-emerald-400" />
+              <time dateTime={post.date}>Published {formattedDate}</time>
+            </span>
+            {post.modified && post.modified !== post.date && (
+              <span className="inline-flex items-center gap-2">
+                <Calendar className="h-3.5 w-3.5 text-emerald-400" />
+                <time dateTime={post.modified}>
+                  Updated {new Date(post.modified).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                </time>
+              </span>
             )}
-          </header>
+            <span className="inline-flex items-center gap-2">
+              <User className="h-3.5 w-3.5 text-emerald-400" />
+              {post.author}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Clock className="h-3.5 w-3.5 text-emerald-400" />
+              {post.readingTime} min read · {post.wordCount.toLocaleString()} words
+            </span>
+          </div>
 
-          {/* Article content */}
-          <main className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-neutral-900 dark:prose-headings:text-white prose-p:text-neutral-700 dark:prose-p:text-neutral-300 prose-a:text-teal-600 dark:prose-a:text-teal-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-neutral-900 dark:prose-strong:text-white prose-code:text-teal-600 dark:prose-code:text-teal-400">
+          {post.tags.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-white/[0.04] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div className="prose prose-invert mt-12 max-w-none prose-headings:font-medium prose-headings:tracking-[-0.02em] prose-headings:text-white prose-p:text-white/75 prose-p:leading-[1.7] prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-code:text-emerald-300 prose-pre:bg-white/[0.02] prose-pre:tw-light-leak prose-pre:rounded-xl prose-li:text-white/75">
             <MarkdownRenderer content={post.content} />
-          </main>
+          </div>
 
-          {/* Article footer */}
-          <footer className="mt-16 pt-8 border-t border-neutral-200 dark:border-neutral-800">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-              <div className="text-sm text-neutral-600 dark:text-neutral-400">
-                Published on <span className="font-medium text-neutral-900 dark:text-white">{formattedDate}</span> by <span className="font-medium text-teal-600 dark:text-teal-400">{post.author}</span>
+          <footer className="mt-16 border-t border-white/[0.06] pt-8">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="text-sm text-white/55">
+                Published <span className="text-white">{formattedDate}</span> by{" "}
+                <span className="text-emerald-400">{post.author}</span>
               </div>
-              
-              {/* Social sharing buttons */}
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">Share:</span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs uppercase tracking-[0.15em] text-white/45">Share</span>
                 <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com'}${post.canonical}`)}`}
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${baseUrl}${post.canonical}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-teal-50 dark:hover:bg-teal-950/50 text-neutral-700 dark:text-neutral-300 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg transition-all duration-300 text-sm font-medium"
+                  className="tw-focus tw-glass tw-light-leak inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs text-white/70 transition-colors hover:text-emerald-400"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
+                  <Twitter className="h-3 w-3" />
                   Twitter
                 </a>
                 <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${process.env.NEXT_PUBLIC_SITE_URL || 'https://thetechwolves.com'}${post.canonical}`)}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${baseUrl}${post.canonical}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-teal-50 dark:hover:bg-teal-950/50 text-neutral-700 dark:text-neutral-300 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg transition-all duration-300 text-sm font-medium"
+                  className="tw-focus tw-glass tw-light-leak inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs text-white/70 transition-colors hover:text-emerald-400"
                 >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
+                  <Linkedin className="h-3 w-3" />
                   LinkedIn
                 </a>
               </div>
             </div>
           </footer>
 
-          {/* Call-to-action section */}
-          <section className="mt-16 relative">
-            {/* Background gradient for CTA */}
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-teal-50 dark:from-teal-950/20 dark:via-neutral-950 dark:to-teal-950/20 rounded-3xl"></div>
-            
-            <div className="relative z-10 text-center px-8 py-12 lg:py-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-6">
-                Ready to Transform Your <span className="text-teal-500">Business</span>?
-              </h2>
-              <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Get expert guidance on implementing AI automation and digital transformation solutions.
-                Start your journey to increased efficiency and growth today.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a
-                  href="/contact"
-                  className="group relative inline-flex items-center px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                >
-                  Contact Our Team
-                  <svg
-                    className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+          <section className="mt-16">
+            <div className="tw-glass tw-light-leak relative overflow-hidden rounded-3xl p-10 text-center md:p-14">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(52,211,153,0.08),transparent_60%)]"
+              />
+              <div className="relative">
+                <h2 className="text-2xl font-medium tracking-[-0.04em] md:text-3xl">
+                  <span className="tw-display-gradient">Ready to transform your business?</span>
+                </h2>
+                <p className="mx-auto mt-4 max-w-[55ch] text-sm leading-[1.6] text-white/65">
+                  Get expert guidance on AI automation and digital transformation.
+                </p>
+                <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <Link
+                    href="/#contact"
+                    className="tw-focus group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#050505] transition-shadow duration-300 hover:shadow-[0_0_40px_-8px_rgba(52,211,153,0.55)]"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-                
-                <a
-                  href="/blog"
-                  className="inline-flex items-center px-8 py-4 border-2 border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white font-semibold rounded-full transition-all duration-300"
-                >
-                  More Insights
-                </a>
+                    Contact our team
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </Link>
+                  <Link
+                    href="/blog"
+                    className="tw-focus inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-6 py-3 text-sm font-medium text-white/80 backdrop-blur-md transition-colors hover:border-white/20 hover:text-white"
+                  >
+                    More insights
+                  </Link>
+                </div>
               </div>
             </div>
           </section>
-        </div>
-      </article>
+        </article>
+
+        <Footer />
+      </main>
     </>
   );
 }

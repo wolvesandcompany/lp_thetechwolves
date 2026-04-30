@@ -1,314 +1,190 @@
 "use client";
-import { Metadata } from 'next';
-import { generateMetadata, generateBreadcrumbSchema } from '@/lib/seo';
-import { StructuredData } from '@/components/StructuredData';
 import { ThreeDMarquee } from "@/components/ui/3d-marquee";
 import images from "@/lib/images.json";
 import khalidImg from "../../../public/khalid_lp.webp";
 import equityImg from "../../../public/equity.webp";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowUpRight, MapPin } from "lucide-react";
+import { SiteNavbar } from "@/components/SiteNavbar";
+import { Footer } from "@/components/Footer";
 
-// Generate static metadata for SEO optimization
-const metadata: Metadata = generateMetadata({
-  title: 'Case Studies - Proven Results & Client Success Stories',
-  description: 'Explore our portfolio of successful AI automation, digital transformation, and custom software projects. Real results for SMEs, startups, and enterprise clients worldwide.',
-  path: '/case-study',
-  keywords: [
-    'case studies',
-    'client success stories', 
-    'portfolio',
-    'project results',
-    'AI automation projects',
-    'digital transformation success',
-    'custom software examples',
-    'business growth results',
-    'ROI case studies',
-    'client testimonials'
-  ],
-});
-
-// Country to flag emoji mapping
-const countryFlagMap: Record<string, string> = {
+const COUNTRY_FLAG: Record<string, string> = {
   "Saudi Arabia": "🇸🇦",
   India: "🇮🇳",
   "United States": "🇺🇸",
-  // Add more as needed
 };
 
-export default function CaseStudy() {
-  const projects = [
-    {
-      title: "Khalid Travels & Tradelinks",
-      description:
-        "Khalid Travels & Tradelinks is a leading travel agency based in Saudi Arabia, specializing in global travel solutions. We provide seamless flight bookings, personalized holiday packages, expert visa assistance, and 24/7 customer support. Our commitment is to transform every journey into a memorable and hassle-free experience for our clients.",
-      image: khalidImg,
-      country: "Saudi Arabia",
-      categories: ["Travel", "Tourism", "Hospitality"],
-      link: "#",
-    },
-    {
-      title: "Golden Gymnasium Admin Panel",
-      description:
-        "The Golden Gymnasium Admin Panel is a robust management platform developed for fitness centers in India. It streamlines member registration, attendance tracking, class scheduling, payment processing, and staff coordination. With an intuitive dashboard and advanced analytics, gym administrators can efficiently manage daily operations and boost member engagement.",
-      image: "https://assets.aceternity.com/animated-testimonials.webp",
-      country: "India",
-      categories: ["Fitness", "Admin Panel", "SaaS"],
-      link: "#",
-    },
-    {
-      title: "Golden Gymnasium Landing Page",
-      description:
-        "A visually striking and conversion-focused landing page for Golden Gymnasium, designed to attract new members in India. The page features a dynamic hero section, interactive visuals, compelling calls-to-action, and comprehensive details about services, trainers, and membership plans. Optimized for all devices, it delivers a seamless and engaging user experience.",
-      image: "https://assets.aceternity.com/github-globe.png",
-      country: "India",
-      categories: ["Fitness", "Web Design", "Marketing"],
-      link: "#",
-    },
-    {
-      title: "Equity Management App",
-      description:
-        "A secure and scalable equity management application built for a confidential client in the United States. The platform automates equity distribution, cap table management, and compliance workflows. Due to NDA restrictions, specific details are confidential, but the solution leverages best-in-class security and user experience practices.",
-      image: equityImg,
-      country: "United States",
-      categories: ["Fintech", "Equity Management", "Confidential"],
-      link: "#",
-    },
-    // Add more as needed
-  ];
-
-  const [isLaptop, setIsLaptop] = useState(false);
-
-  // Move useEffect to the top level of the component
-  useEffect(() => {
-    // Only run on client
-    if (typeof window === "undefined") return;
-    const checkScreen = () => {
-      setIsLaptop(window.innerWidth >= 1024);
-    };
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
-
-  // Breadcrumb structured data for SEO
-  const breadcrumbItems = [
-    { name: 'Home', url: '/' },
-    { name: 'Case Studies', url: '/case-study' },
-  ];
-
-  // Case study structured data for portfolio/creative work schema
-  const caseStudySchema = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Case Studies - The Tech Wolves',
-    description: 'Portfolio of successful AI automation and digital transformation projects',
-    url: 'https://thetechwolves.com/case-study',
-    mainEntity: {
-      '@type': 'ItemList',
-      name: 'Client Success Stories',
-      description: 'Real-world examples of business transformation through technology',
-      itemListElement: projects.slice(0, 3).map((project, index) => ({
-        '@type': 'CreativeWork',
-        name: project.title,
-        description: project.description.substring(0, 200) + '...',
-        creator: {
-          '@type': 'Organization',
-          name: 'The Tech Wolves'
-        },
-        dateCreated: '2024',
-        genre: project.categories.join(', '),
-        keywords: project.categories.join(', ').toLowerCase()
-      }))
-    },
-    provider: {
-      '@type': 'Organization',
-      name: 'The Tech Wolves',
-      url: 'https://thetechwolves.com'
-    }
-  };
-
-  return (
-    <>
-      {/* SEO: Structured Data for Portfolio and Breadcrumbs */}
-      <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
-      <StructuredData data={caseStudySchema} />
-      
-      {typeof window !== "undefined" &&
-        (isLaptop ? (
-          <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
-            <h2 className="relative z-20 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-              Projects We’ve{" "}
-              <span className="text-teal-400">Brought to Life</span>
-            </h2>
-            <p className="relative z-20 mt-4 max-w-2xl text-center text-base text-neutral-200 md:text-lg">
-              Here are some of the standout projects we’ve successfully executed
-              for our clients.
-            </p>
-
-            {/* overlay */}
-            <div className="absolute inset-0 z-10 h-auto w-full bg-black/80 dark:bg-black/40" />
-
-            <ThreeDMarquee
-              className="pointer-events-none absolute inset-0 h-full w-full"
-              images={images}
-            />
-          </div>
-        ) : (
-          <div className="h-[70vh] relative flex flex-col items-center justify-center py-16 bg-teal-900">
-            <h2 className="relative z-20 text-center text-3xl font-bold text-white md:text-4xl">
-              Projects We’ve{" "}
-              <span className="text-teal-400">Brought to Life</span>
-            </h2>
-            <p className="relative z-20 mt-4 max-w-2xl text-center text-base text-neutral-200 md:text-lg">
-              Here are some of the standout projects we’ve successfully executed
-              for our clients.
-            </p>
-          </div>
-        ))}
-
-      <div className="min-h-screen bg-white px-4 py-16">
-        <div className="justify-items-center">
-          {projects.map((project, idx) => (
-            <ProjectCard key={idx} {...project} />
-          ))}
-        </div>
-      </div>
-    </>
-  );
-}
-
-// Category color classes (teal only)
-const categoryColorClasses = ["bg-teal-100 text-teal-800"];
-
-const ProjectCard = ({
-  image,
-  country,
-  categories,
-  title,
-  description,
-}: {
-  image: any;
-  country?: string;
-  categories?: string[];
+type Project = {
   title: string;
   description: string;
-}) => {
-  // Use only teal for background
-  const tealBgClass = "bg-teal-900";
+  image: StaticImageData | string;
+  country: string;
+  categories: string[];
+};
 
-  // Check if image is an imported static image (object) or a string URL
-  const isStaticImage = typeof image === "object" && image?.src;
+const PROJECTS: Project[] = [
+  {
+    title: "Khalid Travels & Tradelinks",
+    description:
+      "A leading Saudi-Arabia-based travel agency. We delivered seamless flight booking, personalized holiday packages, expert visa workflows, and 24/7 customer support — every journey, hassle-free.",
+    image: khalidImg,
+    country: "Saudi Arabia",
+    categories: ["Travel", "Tourism", "Hospitality"],
+  },
+  {
+    title: "Golden Gymnasium Admin Panel",
+    description:
+      "A robust management platform for Indian fitness centers. Streamlines member registration, attendance, scheduling, payments, and staff coordination with an intuitive dashboard and analytics.",
+    image: "https://assets.aceternity.com/animated-testimonials.webp",
+    country: "India",
+    categories: ["Fitness", "Admin Panel", "SaaS"],
+  },
+  {
+    title: "Golden Gymnasium Landing Page",
+    description:
+      "A visually striking, conversion-focused landing page. Dynamic hero, interactive visuals, compelling CTAs, and full membership detail. Optimized for every device.",
+    image: "https://assets.aceternity.com/github-globe.png",
+    country: "India",
+    categories: ["Fitness", "Web Design", "Marketing"],
+  },
+  {
+    title: "Equity Management App",
+    description:
+      "A secure, scalable equity management platform for a confidential US client. Automates equity distribution, cap-table management, and compliance flows. NDA-bound — best-in-class security and UX.",
+    image: equityImg,
+    country: "United States",
+    categories: ["Fintech", "Equity Management", "Confidential"],
+  },
+];
 
-  // Helper to get flag emoji for country
-  const getCountryFlag = (countryName?: string) => {
-    if (!countryName) return null;
-    return countryFlagMap[countryName] || "";
-  };
+export default function CaseStudy() {
+  const [isLaptop, setIsLaptop] = useState(false);
+  const reduced = useReducedMotion();
 
-  // Always return teal for category color
-  const getCategoryColor = (_idx: number) => {
-    return categoryColorClasses[0];
-  };
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const check = () => setIsLaptop(window.innerWidth >= 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
-    <div
-      className="
-        flex flex-col md:flex-row
-        bg-white 
-        rounded-3xl 
-        overflow-hidden
-        max-w-6xl w-full
-        border
-        bg-cover
-        my-10
-        md:h-[420px]
-        shadow-sm
-      "
-    >
-      {/* Media Section (Image/Video Mockups) */}
-      <div
-        className={`
-          md:w-1/2 flex items-center justify-center 
-          px-8
-          ${tealBgClass}
-          border-r
-          order-1 md:order-none
-        `}
-        style={{ minHeight: "220px" }}
-      >
-        {/* Image for the project mockup */}
-        {isStaticImage ? (
-          <Image
-            src={image}
-            alt={`${title} mockups`}
-            className="max-w-full h-auto rounded-xl"
-            style={{ height: "auto", width: "100%" }}
-            placeholder="blur"
-          />
-        ) : (
-          <img
-            src={image}
-            alt={`${title} mockups`}
-            className="max-w-full h-auto rounded-xl"
-            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-              const target = e.target as HTMLImageElement;
-              target.onerror = null;
-              target.src =
-                "https://placehold.co/600x400/E0F2F7/00796B?text=Image+Not+Found";
-            }}
-          />
-        )}
-      </div>
+    <main className="tw-noise relative min-h-screen overflow-hidden bg-[#050505] text-white">
+      <SiteNavbar />
 
-      {/* Content Section */}
-      <div
-        className="
-          md:w-1/2 p-8 md:p-12 flex flex-col justify-center
-          order-2 md:order-none
-        "
-      >
-        {/* Tags */}
-        <div className="mb-4 flex flex-wrap gap-2">
-          {country && (
-            <span
-              className="
-                inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium
-                bg-neutral-100 text-neutral-700
-              "
+      {isLaptop ? (
+        <section className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,rgba(5,5,5,0.5),rgba(5,5,5,0.95))]" />
+          <ThreeDMarquee
+            className="pointer-events-none absolute inset-0 h-full w-full"
+            images={images}
+          />
+          <div className="relative z-20 mx-auto max-w-3xl px-6 text-center">
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400/90">
+              Case studies
+            </p>
+            <h1 className="text-4xl font-medium tracking-[-0.04em] md:text-6xl">
+              <span className="tw-display-gradient">Projects we&apos;ve</span>{" "}
+              <span className="tw-shimmer">brought to life.</span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-[65ch] text-base leading-[1.6] text-white/75 md:text-lg">
+              Standout work, shipped for clients across travel, fitness, finance, and beyond.
+            </p>
+          </div>
+        </section>
+      ) : (
+        <section className="relative flex min-h-[60vh] flex-col items-center justify-center bg-[#050505] px-6 pb-16 pt-40 text-center">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400/90">
+            Case studies
+          </p>
+          <h1 className="text-3xl font-medium tracking-[-0.04em] md:text-5xl">
+            <span className="tw-display-gradient">Projects we&apos;ve</span>{" "}
+            <span className="tw-shimmer">brought to life.</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-[65ch] text-base leading-[1.6] text-white/70">
+            Standout work, shipped for clients across travel, fitness, finance, and beyond.
+          </p>
+        </section>
+      )}
+
+      <section className="relative z-10 mx-auto w-full max-w-6xl px-6 py-24">
+        <div className="space-y-6">
+          {PROJECTS.map((p, i) => (
+            <motion.article
+              key={p.title}
+              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 30 }}
+              whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ type: "spring", stiffness: 120, damping: 20, mass: 0.8, delay: reduced ? 0 : i * 0.06 }}
+              className="tw-glass tw-light-leak relative grid grid-cols-1 overflow-hidden rounded-3xl md:grid-cols-2"
             >
-              <span>{getCountryFlag(country)}</span>
-              <span>{country}</span>
-            </span>
-          )}
+              <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[360px]">
+                {typeof p.image === "object" ? (
+                  <Image
+                    src={p.image}
+                    alt={`${p.title} mockup`}
+                    fill
+                    sizes="(max-width:768px) 100vw, 50vw"
+                    className="object-cover"
+                    placeholder="blur"
+                  />
+                ) : (
+                  <Image
+                    src={p.image}
+                    alt={`${p.title} mockup`}
+                    fill
+                    sizes="(max-width:768px) 100vw, 50vw"
+                    className="object-cover"
+                    unoptimized
+                  />
+                )}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-r from-transparent to-[#050505]/30"
+                />
+              </div>
+
+              <div className="flex flex-col justify-center gap-4 p-8 md:p-10">
+                <div className="flex items-center gap-2 text-xs text-white/55">
+                  <MapPin className="h-3.5 w-3.5 text-emerald-400" />
+                  <span>{COUNTRY_FLAG[p.country]} {p.country}</span>
+                </div>
+                <h2 className="text-2xl font-medium tracking-[-0.02em] text-white md:text-3xl">
+                  {p.title}
+                </h2>
+                <p className="max-w-[55ch] text-sm leading-[1.6] text-white/65 md:text-base">
+                  {p.description}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {p.categories.map((c) => (
+                    <span
+                      key={c}
+                      className="rounded-full bg-white/[0.04] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.article>
+          ))}
         </div>
 
-        {/* Title */}
-        <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-tight mb-3">
-          {title}
-        </h2>
+        <div className="mt-20 flex justify-center">
+          <a
+            href="/#contact"
+            className="tw-focus group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-[#050505] transition-shadow duration-300 hover:shadow-[0_0_40px_-8px_rgba(52,211,153,0.55)]"
+          >
+            Start a project
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </a>
+        </div>
+      </section>
 
-        {/* Description */}
-        <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-          {description}
-        </p>
-
-        {/* Categories */}
-        {categories && categories.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {categories.map((cat, idx) => (
-              <span
-                key={cat}
-                className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(
-                  idx
-                )}`}
-              >
-                {cat}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
+      <Footer />
+    </main>
   );
-};
+}

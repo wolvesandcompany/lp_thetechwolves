@@ -1,121 +1,106 @@
-// import React from "react";
-// import { CardSpotlight } from "./ui/card-spotlight";
+"use client";
+import { motion, useReducedMotion } from "motion/react";
+import { Layers, Compass, Zap, PenTool, MessageSquare, Infinity as InfinityIcon, type LucideIcon } from "lucide-react";
+import { SpotlightCard } from "./ui/spotlight-card";
 
+type Item = {
+  title: string;
+  body: string;
+  Icon: LucideIcon;
+  span: "lg:col-span-2" | "lg:col-span-1";
+};
 
-// export default function WhyUs() {
-//   const reasons = [
-//     {
-//       title: "Expertise Across Stack",
-//       description:
-//         "From UI/UX to scalable backend systems, we bring deep technical knowledge and modern best practices to every layer of your product.",
-//       color: "#6366f1", // Indigo
-//     },
-//     {
-//       title: "Client-Centric Approach",
-//       description:
-//         "We align our process with your business goals, ensuring clear communication, transparency, and solutions that make an impact.",
-//       color: "#10b981", // Emerald
-//     },
-//     {
-//       title: "Rapid Delivery",
-//       description:
-//         "Our agile workflow and reusable components enable fast iterations and quicker time to market—without sacrificing quality.",
-//       color: "#f59e0b", // Amber
-//     },
-//     {
-//       title: "Custom-Built Solutions",
-//       description:
-//         "We don’t believe in one-size-fits-all. Every product we build is tailored specifically to your unique challenges and users.",
-//       color: "#ec4899", // Pink
-//     },
-//   ];
-
-//   return (
-//     <section id="why-us" className="w-full py-24 md:py-56 bg-white text-black">
-//       <div className="max-w-6xl mx-auto px-4">
-//         <div className="text-center mb-16">
-//           <h2 className="text-4xl font-bold mb-4">Why Choose Us</h2>
-//           <p className="text-neutral-400 max-w-2xl mx-auto">
-//             We blend creativity, strategy, and technology to build outstanding digital experiences tailored to your goals.
-//           </p>
-//         </div>
-//         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-//           {reasons.map((reason, index) => (
-//             <CardSpotlight
-//               key={index}
-//               color={reason.color}
-
-//               className="h-full"
-//             >
-//               <div className="relative z-10">
-//                 <h3 className="text-2xl font-semibold mb-4">
-//                   {reason.title}
-//                 </h3>
-//                 <p className="text-teal-900">{reason.description}</p>
-//               </div>
-//             </CardSpotlight>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-
-import React from "react";
-import { HoverEffect } from "./ui/card-hover-effect";
-
-export default function WhyUs() {
-  const reasons = [
+const ITEMS: Item[] = [
   {
-    title: "Full-Stack Excellence",
-    description:
-      "We excel at both frontend and backend development, delivering seamless, performant applications from database to UI.",
-    // link: "#",
+    title: "Full-stack excellence",
+    body:
+      "Frontend and backend, end-to-end. Seamless, performant applications from database to UI without handoff seams.",
+    Icon: Layers,
+    span: "lg:col-span-2",
   },
   {
-    title: "Strategic Product Thinking",
-    description:
-      "Beyond code, we think deeply about your users and market to craft solutions that actually move your business forward.",
-    // link: "#",
+    title: "Strategic product thinking",
+    body: "Beyond code. We map users and market to ship solutions that move the business.",
+    Icon: Compass,
+    span: "lg:col-span-1",
   },
   {
-    title: "Agile & Adaptable Teams",
-    description:
-      "We move fast, stay lean, and pivot when needed—perfect for startups or evolving product roadmaps.",
-    // link: "#",
+    title: "Agile teams",
+    body: "Lean. Fast. Pivot-ready — built for startups and evolving roadmaps.",
+    Icon: Zap,
+    span: "lg:col-span-1",
   },
   {
-    title: "Design-Driven Development",
-    description:
-      "Great design isn’t just aesthetic—it’s usability. Our designers and developers work in sync to deliver pixel-perfect interfaces.",
-    // link: "#",
+    title: "Design-driven dev",
+    body: "Designers and engineers in sync. Pixel-perfect interfaces, usable not just pretty.",
+    Icon: PenTool,
+    span: "lg:col-span-2",
   },
   {
-    title: "Transparent Communication",
-    description:
-      "Weekly demos, async updates, and a collaborative workflow ensure you’re always in the loop and never guessing.",
-    // link: "#",
+    title: "Transparent comms",
+    body: "Weekly demos. Async updates. Always in the loop.",
+    Icon: MessageSquare,
+    span: "lg:col-span-1",
   },
   {
-    title: "Long-Term Partnership",
-    description:
-      "We don’t disappear after launch. We're in it for the long run—ready to scale, maintain, and improve your product as you grow.",
-    // link: "#",
+    title: "Long-term partnership",
+    body: "We don't disappear at launch. Scale, maintain, improve — for the long run.",
+    Icon: InfinityIcon,
+    span: "lg:col-span-2",
   },
 ];
 
+const ENTRANCE = { type: "spring" as const, stiffness: 120, damping: 20, mass: 0.8 };
+
+export default function WhyUs() {
+  const reduced = useReducedMotion();
 
   return (
-    <section id="why-us" className="w-full py-24 md:py-40 bg-white text-black">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-4">Why Choose Us</h2>
-          <p className="text-neutral-600 md:text-lg  mx-auto">
-            We blend creativity, strategy, and technology to build outstanding digital experiences tailored to your goals.
+    <section id="why-us" className="tw-noise relative w-full overflow-hidden bg-[#050505] py-32 md:py-40 text-white">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-emerald-500/[0.04] blur-[140px]"
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <motion.header
+          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
+          whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={ENTRANCE}
+          className="mb-14 max-w-2xl"
+        >
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400/90">Why us</p>
+          <h2 className="text-3xl font-medium tracking-[-0.04em] md:text-5xl">
+            <span className="tw-display-gradient">Reasons we&apos;re different.</span>
+          </h2>
+          <p className="mt-4 max-w-[65ch] text-base leading-[1.6] text-white/70 md:text-lg">
+            Creativity, strategy, technology — composed for outcomes, not deliverables.
           </p>
+        </motion.header>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {ITEMS.map((it, i) => (
+            <motion.div
+              key={it.title}
+              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
+              whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ ...ENTRANCE, delay: reduced ? 0 : i * 0.06 }}
+              className={it.span}
+            >
+              <SpotlightCard className="h-full min-h-[200px] p-7">
+                <div className="flex h-full flex-col">
+                  <div className="tw-glass tw-light-leak inline-flex h-10 w-10 items-center justify-center rounded-xl">
+                    <it.Icon className="h-5 w-5 text-emerald-400" strokeWidth={1.6} />
+                  </div>
+                  <h3 className="mt-6 text-lg font-medium tracking-[-0.02em] md:text-xl">{it.title}</h3>
+                  <p className="mt-2 max-w-[55ch] text-sm leading-[1.6] text-white/65">{it.body}</p>
+                </div>
+              </SpotlightCard>
+            </motion.div>
+          ))}
         </div>
-        <HoverEffect items={reasons} className="gap-6" />
       </div>
     </section>
   );

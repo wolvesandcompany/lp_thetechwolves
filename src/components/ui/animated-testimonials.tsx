@@ -114,13 +114,13 @@ export const AnimatedTestimonials = ({
               ease: "easeInOut",
             }}
           >
-            <h3 className="text-2xl font-bold text-teal-900 dark:text-white">
+            <h3 className="text-2xl font-bold text-white dark:text-white">
               {testimonials[active].name}
             </h3>
-            <p className="text-sm text-teal-700 dark:text-neutral-500">
+            <p className="text-sm text-emerald-400">
               {testimonials[active].designation}
             </p>
-            <motion.p className="mt-8 text-lg text-teal-700 dark:text-neutral-300">
+            <motion.p className="mt-8 text-lg text-neutral-300">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -149,15 +149,15 @@ export const AnimatedTestimonials = ({
           <div className="flex gap-4 pt-12 md:pt-0 justify-center md:justify-start">
             <button
               onClick={handlePrev}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-neutral-800 dark:bg-neutral-800"
             >
-              <MoveLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
+              <MoveLeft className="h-5 w-5 text-white transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
             </button>
             <button
               onClick={handleNext}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-neutral-800 dark:bg-neutral-800"
             >
-              <MoveRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
+              <MoveRight className="h-5 w-5 text-white transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
             </button>
           </div>
         </div>

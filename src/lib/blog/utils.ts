@@ -7,6 +7,7 @@ export interface BlogPost {
   slug: string;
   title: string;
   date: string;
+  modified?: string;
   author: string;
   tags: string[];
   summary: string;
@@ -14,6 +15,7 @@ export interface BlogPost {
   ogImage: string;
   content: string;
   readingTime: number;
+  wordCount: number;
 }
 
 // Get the blog content directory path
@@ -64,10 +66,13 @@ export function getBlogPost(slug: string): BlogPost | null {
       }
     }
 
+    const wordCount = content.split(/\s+/).filter(Boolean).length;
+
     return {
       slug,
       title: data.title || 'Untitled',
       date: data.date || new Date().toISOString(),
+      modified: data.modified || data.modifiedDate || data.date,
       author: data.author || 'The Tech Wolves',
       tags: data.tags || [],
       summary: data.summary || '',
@@ -75,6 +80,7 @@ export function getBlogPost(slug: string): BlogPost | null {
       ogImage: data.ogImage || '/og-image.webp',
       content,
       readingTime: calculateReadingTime(content),
+      wordCount,
     };
   } catch (error) {
     console.error(`Error reading blog post ${slug}:`, error);
@@ -141,9 +147,13 @@ export function generateBlogJsonLd(post: BlogPost, url: string) {
   
   const article = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'TechArticle',
     headline: post.title,
     description: post.summary,
+    abstract: post.summary,
+    inLanguage: 'en-US',
+    wordCount: post.wordCount,
+    timeRequired: `PT${post.readingTime}M`,
     author: {
       '@type': 'Organization',
       name: post.author,
@@ -159,8 +169,8 @@ export function generateBlogJsonLd(post: BlogPost, url: string) {
       },
     },
     datePublished: post.date,
-    dateModified: post.date,
-    mainEntityOfPage: fullUrl,
+    dateModified: post.modified || post.date,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': fullUrl },
     url: fullUrl,
     image: {
       '@type': 'ImageObject',
@@ -169,6 +179,8 @@ export function generateBlogJsonLd(post: BlogPost, url: string) {
     },
     articleSection: 'Technology',
     keywords: post.tags.join(', '),
+    isAccessibleForFree: true,
+    license: 'https://thetechwolves.com/terms',
   };
 
   // Add FAQ structured data if FAQs are present

@@ -1,79 +1,100 @@
-import { WobbleCard } from "./ui/wobble-card";
+"use client";
+import { motion, useReducedMotion } from "motion/react";
+import { Bot, Palette, Smartphone, Code2, type LucideIcon } from "lucide-react";
+import { SpotlightCard } from "./ui/spotlight-card";
+
+type Item = {
+  title: string;
+  body: string;
+  Icon: LucideIcon;
+  span: "lg:col-span-2" | "lg:col-span-1";
+};
+
+const ITEMS: Item[] = [
+  {
+    title: "Business Automation",
+    body:
+      "Streamline operations with intelligent automation. CRM workflows, task automation, and AI-powered decision systems that save time and scale faster.",
+    Icon: Bot,
+    span: "lg:col-span-2",
+  },
+  {
+    title: "UI/UX Design",
+    body:
+      "Visually rigorous, user-centric design. From wireframes to high-fidelity prototypes — intuitive, engaging, conversion-tuned.",
+    Icon: Palette,
+    span: "lg:col-span-1",
+  },
+  {
+    title: "Mobile Apps",
+    body:
+      "High-performance iOS and Android. Cross-platform builds that deliver native-grade experiences without the dual-codebase tax.",
+    Icon: Smartphone,
+    span: "lg:col-span-1",
+  },
+  {
+    title: "Web Development",
+    body:
+      "Fast, secure, scalable websites built on modern stacks. Static landing pages to full-stack applications.",
+    Icon: Code2,
+    span: "lg:col-span-2",
+  },
+];
+
+const ENTRANCE = { type: "spring" as const, stiffness: 120, damping: 20, mass: 0.8 };
 
 export default function Service() {
+  const reduced = useReducedMotion();
+
   return (
-    <section
-      id="service"
-      className="w-full h-full flex items-center justify-center bg-white py-36"
-    >
-      <div className="flex flex-col items-center justify-center w-full max-w-7xl px-4 space-y-8">
-        {/* Section Title */}
-        <div className="text-center py-10">
-          <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-black">
-            Our Services
-          </h1>
-          <p className="mt-2 text-neutral-600 text-base md:text-lg">
-            We offer full-stack digital solutions designed to elevate your
-            business and empower your product.
+    <section id="service" className="tw-noise relative w-full overflow-hidden bg-[#050505] py-32 md:py-40">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-[radial-gradient(ellipse_at_top,rgba(52,211,153,0.06),transparent_60%)]"
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <motion.header
+          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
+          whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={ENTRANCE}
+          className="mb-14 max-w-2xl"
+        >
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400/90">Services</p>
+          <h2 className="text-3xl font-medium tracking-[-0.04em] text-white md:text-5xl">
+            <span className="tw-display-gradient">What we build.</span>
+          </h2>
+          <p className="mt-4 max-w-[65ch] text-base leading-[1.6] text-white/70 md:text-lg">
+            Full-stack capabilities, end-to-end. Pick a discipline — or all of them.
           </p>
-        </div>
+        </motion.header>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
-          {/* ✅ Business Automation - Larger (2 columns on large screens) */}
-          <WobbleCard containerClassName="col-span-1 lg:col-span-2 bg-teal-700 min-h-[500px] lg:min-h-[300px]">
-            <div className="max-w-sm">
-              <h2 className="max-w-sm text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                Business Automation
-              </h2>
-              <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
-                Streamline your operations with intelligent automation
-                solutions. Whether it's CRM workflows, task automation, or
-                AI-powered decision systems, we help businesses save time and
-                scale faster.
-              </p>
-            </div>
-          </WobbleCard>
-
-          {/* ✅ UI/UX Design - Smaller (1 column on large screens) */}
-          <WobbleCard containerClassName="col-span-1 bg-teal-500 min-h-[500px] lg:min-h-[300px]">
-            <div className="max-w-xs">
-              <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                UI/UX Design
-              </h2>
-              <p className="mt-4 text-left text-base/6 text-neutral-200">
-                We craft visually stunning and user-centric designs. From
-                wireframes to high-fidelity prototypes, we ensure your product
-                is intuitive, engaging, and optimized for conversion.
-              </p>
-            </div>
-          </WobbleCard>
-
-          {/* ✅ Mobile App Development */}
-          <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-teal-500">
-            <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              Mobile App Development
-            </h2>
-            <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
-              Launch high-performance mobile apps on iOS and Android. We
-              specialize in cross-platform solutions that deliver seamless
-              experiences and native-like performance.
-            </p>
-          </WobbleCard>
-
-          {/* ✅ Web Development */}
-          <WobbleCard containerClassName="col-span-1 lg:col-span-2 bg-teal-700 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
-            <div className="max-w-sm">
-              <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                Web Development
-              </h2>
-              <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-200">
-                We build fast, secure, and scalable websites using the latest
-                web technologies. From static landing pages to full-stack
-                applications, we turn your vision into reality.
-              </p>
-            </div>
-          </WobbleCard>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {ITEMS.map((it, i) => (
+            <motion.div
+              key={it.title}
+              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
+              whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ ...ENTRANCE, delay: reduced ? 0 : i * 0.06 }}
+              className={it.span}
+            >
+              <SpotlightCard className="group h-full min-h-[260px] p-7">
+                <div className="flex h-full flex-col">
+                  <div className="tw-glass tw-light-leak inline-flex h-10 w-10 items-center justify-center rounded-xl">
+                    <it.Icon className="h-5 w-5 text-emerald-400" strokeWidth={1.6} />
+                  </div>
+                  <h3 className="mt-6 text-xl font-medium tracking-[-0.02em] text-white md:text-2xl">
+                    {it.title}
+                  </h3>
+                  <p className="mt-3 max-w-[55ch] text-sm leading-[1.6] text-white/65 md:text-base">
+                    {it.body}
+                  </p>
+                </div>
+              </SpotlightCard>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/next";
 import { PerformanceMonitor } from "@/components/ui/performance-monitor";
+import { CustomCursor } from "@/components/CustomCursor";
 import { generateMetadata } from "@/lib/seo";
 import "./globals.css";
 
@@ -54,7 +55,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" prefix="og: http://ogp.me/ns#">
+    <html lang="en" className="dark" prefix="og: http://ogp.me/ns#">
       <head>
         <meta
           name="google-site-verification"
@@ -62,6 +63,9 @@ export default function RootLayout({
         />
         <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_TOKEN" />
         <link rel="canonical" href="https://thetechwolves.com/" />
+        <link rel="alternate" type="text/plain" title="llms.txt (AI summary)" href="/llms.txt" />
+        <link rel="alternate" type="text/plain" title="llms-full.txt (AI full content)" href="/llms-full.txt" />
+        <link rel="alternate" type="application/rss+xml" title="The Tech Wolves Blog RSS" href="/rss.xml" />
         <meta name="author" content="The Tech Wolves" />
         <meta name="copyright" content="The Tech Wolves" />
         <meta name="distribution" content="global" />
@@ -79,17 +83,12 @@ export default function RootLayout({
         />
         <meta name="twitter:site" content="@thetechwolves" />
         <meta name="twitter:creator" content="@thetechwolves" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div id="root"></div>
+        <CustomCursor />
         <PerformanceMonitor />
         <Analytics />
         <Toaster richColors position="bottom-right" />

@@ -15,7 +15,7 @@ summary: "A practical 90-day roadmap to transform manual business processes with
 description: "Step-by-step 90-day roadmap to transform manual business processes with AI. Week-by-week action plans, implementation strategies, and real-world transformation examples."
 keywords: "digital transformation, AI transformation, business process automation, 90 day plan, AI implementation, process automation roadmap, business transformation"
 canonical: "/blog/manual-to-ai-transformation-90-days"
-ogImage: "/og-image.webp"
+ogImage: "/images/blog/manual-to-ai-transformation-90-days.webp"
 banner: "/fintech.webp"
 readTime: "9 min read"
 ---

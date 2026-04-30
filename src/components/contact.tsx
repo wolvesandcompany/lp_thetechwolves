@@ -1,41 +1,71 @@
 "use client";
-import { motion } from "motion/react";
-import { Cover } from "./ui/cover";
-
+import { motion, useReducedMotion } from "motion/react";
 import Globe from "./globe";
 import ContactForm from "./contact-form";
 
-export function ContactUs() {
-  return (
-    <div
-      id="contact"
-      className="flex items-center justify-center py-20 md:py-40 min-h-screen bg-white dark:bg-black w-full"
-    >
-      <div className="w-full max-w-7xl px-4 md:px-32 mx-auto">
-        {/* Title & Subtitle */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="mb-36 text-center"
-        >
-          <h2 className="text-xl md:text-5xl font-bold text-black dark:text-white">
-            We Build Globally. Let&apos;s{" "}
-            <Cover className="cursor-pointer">Scale</Cover> Together.
-          </h2>
-          <p className="text-base md:text-lg text-neutral-700 dark:text-neutral-200 max-w-2xl mx-auto mt-3">
-            Whether you&apos;re looking to expand your reach, accelerate your
-            growth, or collaborate with a global-first team — we&apos;re here to
-            make it happen. Our impact spans continents, and so can yours.
-          </p>
-        </motion.div>
+const ENTRANCE = { type: "spring" as const, stiffness: 120, damping: 20, mass: 0.8 };
 
-        {/* Content Row */}
-        <div className="flex flex-col-reverse md:flex-row items-center md:items-start gap-12 md:gap-20">
-          <ContactForm />
-          <Globe />
+export function ContactUs() {
+  const reduced = useReducedMotion();
+
+  return (
+    <section
+      id="contact"
+      className="tw-noise relative flex w-full items-center justify-center overflow-hidden bg-[#050505] py-32 md:py-40"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 top-1/4 h-[500px] w-[500px] rounded-full bg-emerald-500/[0.05] blur-[140px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-cyan-500/[0.04] blur-[120px]"
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
+        <motion.header
+          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
+          whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={ENTRANCE}
+          className="mb-16 max-w-3xl"
+        >
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400/90">
+            Get in touch
+          </p>
+          <h2 className="text-3xl font-medium tracking-[-0.04em] text-white md:text-5xl">
+            <span className="tw-display-gradient">We build globally.</span>
+            <br />
+            <span className="tw-shimmer">Let&apos;s scale together.</span>
+          </h2>
+          <p className="mt-4 max-w-[65ch] text-base leading-[1.6] text-white/70 md:text-lg">
+            Expand your reach, accelerate your growth, or collaborate with a global-first team — our
+            impact spans continents, and so can yours.
+          </p>
+        </motion.header>
+
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
+          <motion.div
+            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
+            whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-10% 0px" }}
+            transition={{ ...ENTRANCE, delay: reduced ? 0 : 0.06 }}
+            className="tw-glass tw-light-leak relative overflow-hidden rounded-2xl p-7"
+          >
+            <ContactForm />
+          </motion.div>
+
+          <motion.div
+            initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
+            whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-10% 0px" }}
+            transition={{ ...ENTRANCE, delay: reduced ? 0 : 0.12 }}
+            className="flex items-center justify-center"
+          >
+            <Globe />
+          </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,253 +1,182 @@
 "use client";
-import { motion } from "motion/react";
-import { cn } from "@/lib/utils";
+import { motion, useReducedMotion } from "motion/react";
+import { Check, ArrowUpRight, Sparkles } from "lucide-react";
+import { SpotlightCard } from "./ui/spotlight-card";
 
 interface PricingPlan {
+  id: string;
   name: string;
+  tagline: string;
   description: string;
-  price: string;
-  period: string;
   features: string[];
-  isPopular?: boolean;
-  buttonText: string;
-  buttonVariant: "primary" | "secondary";
+  cta: string;
+  popular?: boolean;
 }
 
-const pricingPlans: PricingPlan[] = [
+const PLANS: PricingPlan[] = [
   {
+    id: "basic",
     name: "Basic",
-    description:
-      "This package is ideal for startups that need essential tools to establish their online presence.",
-    price: "$2,999",
-    period: "one-time",
+    tagline: "For startups",
+    description: "Essential tools to establish a startup's online presence.",
     features: [
-      "Custom Website Design and Development",
-      "Domain Name Registration",
-      "Website Hosting (1 year)",
-      "Basic Company Logo Design",
-      "Business Cards Design",
-      "Business Email Setup",
-      "Basic SEO Setup",
-      "3 Months Support",
+      "Custom website design and development",
+      "Domain registration",
+      "Hosting (1 year)",
+      "Basic logo and business cards",
+      "Business email setup",
+      "Basic SEO setup",
+      "3 months support",
     ],
-    buttonText: "Contact Us",
-    buttonVariant: "secondary",
+    cta: "Get a quote",
   },
   {
+    id: "pro",
     name: "Pro",
-    description:
-      "This package is designed for startups looking to build a strong brand identity and have a more comprehensive online presence.",
-    price: "$5,999",
-    period: "one-time",
+    tagline: "For growing teams",
+    description: "Strong brand identity with a comprehensive online presence.",
     features: [
-      "All features of the Basic plan",
-      "Website Maintenance and Support (6 months)",
-      "Advanced Company Logo Design",
-      "Complete Brand Identity Kit",
-      "Company Diary and Stationery",
-      "Social Media Setup & Management",
-      "Advanced Search Engine Optimization (SEO)",
-      "Google Analytics & Search Console Setup",
-      "Content Management System Training",
+      "Everything in Basic",
+      "Maintenance and support (6 months)",
+      "Advanced logo + brand identity kit",
+      "Stationery + diary",
+      "Social media setup and management",
+      "Advanced SEO",
+      "Analytics + Search Console",
+      "CMS training",
     ],
-    isPopular: true,
-    buttonText: "Contact Us",
-    buttonVariant: "primary",
+    cta: "Talk to sales",
+    popular: true,
   },
   {
+    id: "premium",
     name: "Premium",
-    description:
-      "This package is tailored for startups aiming for a high-impact launch with comprehensive branding, marketing, and support.",
-    price: "$9,999",
-    period: "one-time",
+    tagline: "For scale-ups",
+    description: "High-impact launch with full branding, marketing, and support.",
     features: [
-      "All features of the Pro plan",
-      "Full UX Optimization and Responsive Design",
-      "Advanced E-commerce Functionality",
-      "Website Maintenance and Priority Support (12 months)",
-      "Premium Company Logo Design",
-      "Complete Brand Identity Kit",
-      "Company Diary and Stationery",
-      "Customer Relationship Management Setup",
-      "Social Media Setup and Management",
-      "Comprehensive Search Engine Optimization (SEO)",
-      "Digital Marketing Services (3 months)",
-      "Training and Support (User Training, Ongoing Support)",
-      "Performance Analytics Dashboard",
+      "Everything in Pro",
+      "Full UX optimization, responsive design",
+      "Advanced e-commerce",
+      "Priority support (12 months)",
+      "Premium logo + brand identity",
+      "CRM setup",
+      "Comprehensive SEO",
+      "Digital marketing (3 months)",
+      "User training + ongoing support",
+      "Performance analytics dashboard",
     ],
-    buttonText: "Contact Us",
-    buttonVariant: "secondary",
+    cta: "Book a call",
   },
 ];
 
+const ENTRANCE = { type: "spring" as const, stiffness: 120, damping: 20, mass: 0.8 };
+
 export default function Pricing() {
-  // Handler for "Contact Us" button click
-  const handleContactClick = (
-    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
-  ) => {
-    e.preventDefault();
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    } else {
-      // fallback: just change the hash
-      window.location.hash = "#contact";
-    }
+  const reduced = useReducedMotion();
+
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section
-      id="pricing"
-      className="relative w-full h-full flex items-center justify-center bg-gradient-to-b from-white to-gray-50 dark:from-neutral-900 dark:to-neutral-950 py-36"
-    >
-      {/* Decorative glowing blobs */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-20 left-1/2 w-[40rem] h-[40rem] -translate-x-1/2 bg-teal-300/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-1/3 w-[30rem] h-[30rem] bg-purple-300/20 rounded-full blur-3xl" />
-      </div>
+    <section id="pricing" className="tw-noise relative w-full overflow-hidden bg-[#050505] py-32 md:py-40">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-emerald-500/[0.05] blur-[140px]"
+      />
 
-      <div className="flex flex-col items-center justify-center w-full max-w-7xl px-4 space-y-8">
-        {/* Section Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center py-10"
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <motion.header
+          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20 }}
+          whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={ENTRANCE}
+          className="mb-14 max-w-2xl"
         >
-          <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white">
-            Choose Your Plan
-          </h1>
-          <p className="mt-2 text-neutral-600 dark:text-neutral-300 text-base md:text-lg max-w-3xl mx-auto">
-            Select the perfect package for your startup&apos;s digital
-            transformation journey. All plans include our commitment to quality
-            and ongoing support.
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400/90">
+            Plans
           </p>
-        </motion.div>
+          <h2 className="text-3xl font-medium tracking-[-0.04em] text-white md:text-5xl">
+            <span className="tw-display-gradient">Engagements that scale with you.</span>
+          </h2>
+          <p className="mt-4 max-w-[65ch] text-base leading-[1.6] text-white/70 md:text-lg">
+            Three starting points. Every quote is tailored to scope, timeline, and stack —
+            talk to us for exact pricing.
+          </p>
+        </motion.header>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-          {pricingPlans.map((plan, index) => (
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:items-stretch">
+          {PLANS.map((plan, i) => (
             <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0, delay: 0 }}
-              whileHover={{
-                y: -18,
-                scale: 1.04,
-                boxShadow:
-                  "0 12px 40px 0 rgba(16, 185, 129, 0.18), 0 2px 8px 0 rgba(0,0,0,0.08)",
-                filter: "brightness(1.03)",
-              }}
-              whileTap={{ scale: 0.98 }}
-              className={cn(
-                "relative group rounded-2xl transition-all duration-300 overflow-visible",
-                plan.isPopular
-                  ? "border-2 border-transparent bg-white/90 shadow-2xl scale-105 bg-gradient-to-br from-teal-50 to-white"
-                  : "border border-gray-200 bg-white dark:bg-neutral-800 shadow-lg hover:shadow-2xl"
-              )}
+              key={plan.id}
+              initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
+              whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ ...ENTRANCE, delay: reduced ? 0 : i * 0.06 }}
+              className={`relative flex ${plan.popular ? "md:pt-4" : ""}`}
             >
-              {/* Popular Badge (always visible) */}
-              {plan.isPopular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                  <div className="bg-gradient-to-r from-teal-500 to-emerald-400 text-white px-6 py-1.5 rounded-full text-xs font-semibold shadow-md">
-                    ⭐ Most Popular
-                  </div>
+              {plan.popular && (
+                <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex justify-center">
+                  <span className="tw-glass tw-light-leak inline-flex items-center gap-1.5 rounded-full bg-[#050505]/80 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-emerald-300">
+                    <Sparkles className="h-3 w-3" />
+                    Most popular
+                  </span>
                 </div>
               )}
+              <SpotlightCard
+                className={`relative flex h-full w-full flex-col p-8 ${
+                  plan.popular ? "ring-1 ring-emerald-400/40" : ""
+                }`}
+              >
 
-              {/* Card Content */}
-              <div className="p-8 h-full flex flex-col">
-                {/* Plan Header */}
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-black dark:text-white mb-2">
+                <div className="flex flex-col">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-emerald-400/80">
+                    {plan.tagline}
+                  </p>
+                  <h3 className="mt-2 text-2xl font-medium tracking-[-0.02em] text-white">
                     {plan.name}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  <p className="mt-3 text-sm leading-[1.6] text-white/60">
                     {plan.description}
                   </p>
                 </div>
 
-                {/* Features */}
-                <div className="flex-1 mb-8">
-                  <ul className="space-y-4">
-                    {plan.features.map((feature, featureIndex) => (
-                      <motion.li
-                        key={featureIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.5,
-                          delay: index * 0.2 + featureIndex * 0.1,
-                        }}
-                        className="flex items-start"
-                      >
-                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-teal-500 to-emerald-400 flex items-center justify-center mr-3 mt-0.5 shadow-sm">
-                          <svg
-                            className="w-3.5 h-3.5 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                          {feature}
-                        </span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
+                <div className="my-7 h-px w-full bg-white/[0.06]" />
 
-                {/* CTA Button */}
-                <motion.button
+                <ul className="flex-1 space-y-3">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5">
+                      <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-400/15">
+                        <Check className="h-2.5 w-2.5 text-emerald-300" strokeWidth={3} />
+                      </span>
+                      <span className="text-sm leading-[1.55] text-white/75">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
                   type="button"
-                  whileHover={{
-                    scale: 1.07,
-                    boxShadow: "0 4px 24px 0 rgba(16, 185, 129, 0.22)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className={cn(
-                    "w-full py-3 px-6 rounded-full font-semibold transition-all duration-200 shadow-md",
-                    plan.buttonVariant === "primary"
-                      ? "bg-gradient-to-r from-teal-500 to-emerald-400 text-white hover:shadow-lg hover:shadow-teal-500/30"
-                      : "bg-white text-teal-600 border-2 border-teal-400 hover:bg-teal-500 hover:text-white"
-                  )}
-                  onClick={handleContactClick}
+                  onClick={scrollToContact}
+                  className={`tw-focus mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-all duration-300 ${
+                    plan.popular
+                      ? "bg-white text-[#050505] hover:shadow-[0_0_40px_-8px_rgba(52,211,153,0.55)]"
+                      : "border border-white/10 bg-white/[0.02] text-white/80 hover:border-white/20 hover:text-white"
+                  }`}
                 >
-                  {plan.buttonText}
-                </motion.button>
-              </div>
+                  {plan.cta}
+                  <ArrowUpRight className="h-4 w-4" />
+                </button>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>
 
-        {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            All plans include a{" "}
-            <span className="font-semibold text-teal-600">
-              30-day money-back guarantee
-            </span>
-            . Need a custom solution?{" "}
-            <a
-              href="#contact"
-              className="text-teal-500 font-semibold underline underline-offset-2 cursor-pointer hover:text-teal-600"
-              onClick={handleContactClick}
-            >
-              Contact us for a personalized quote.
-            </a>
-          </p>
-        </motion.div>
+        <p className="mt-10 text-center text-xs text-white/45">
+          Need something custom?{" "}
+          <a href="#contact" className="tw-focus text-emerald-400 underline-offset-4 hover:underline">
+            Talk to us.
+          </a>
+        </p>
       </div>
     </section>
   );
