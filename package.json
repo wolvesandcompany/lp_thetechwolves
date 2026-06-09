@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm run build:blog && next build",
+    "build": "npm run build:blog && next build --webpack",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "analyze": "node scripts/optimize-images-working.js",
     "optimize-images": "node scripts/optimize-images-working.js && node scripts/move-optimized-to-public.js",
-    "build:optimized": "npm run optimize-images && next build",
+    "build:optimized": "npm run optimize-images && next build --webpack",
     "blog:dev": "next dev --turbopack",
     "build:blog": "node scripts/generate-rss.js",
     "create:post": "node scripts/create-post.js"
