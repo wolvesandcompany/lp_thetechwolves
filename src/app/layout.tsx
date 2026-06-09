@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 import { PerformanceMonitor } from "@/components/ui/performance-monitor";
 import { CustomCursor } from "@/components/CustomCursor";
 import { generateMetadata } from "@/lib/seo";
