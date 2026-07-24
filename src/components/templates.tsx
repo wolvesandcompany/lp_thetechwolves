@@ -2,67 +2,29 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import { Eye, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SpotlightCard } from "./ui/spotlight-card";
+import { TemplatePreview } from "./TemplatePreview";
+import {
+  IN_HOUSE_TEMPLATES,
+  TEMPLATE_FILTERS,
+  templateHref,
+} from "@/lib/templates-data";
+import { track } from "@/lib/analytics";
 
-const TEMPLATES = [
-  {
-    name: "Business Consultant",
-    url: "https://business-consultant-template.vercel.app/",
-    image: "/business.webp",
-    description: "Professional template for consultants, agencies, freelancers.",
-    category: "Business",
-  },
-  {
-    name: "Dental Clinic",
-    url: "https://dental-website-template.vercel.app/",
-    image: "/dentist.webp",
-    description: "Clean, friendly template for dental and healthcare clinics.",
-    category: "Healthcare",
-  },
-  {
-    name: "Eco Stride",
-    url: "https://eco-stride-template.vercel.app/",
-    image: "/eco.webp",
-    description: "Vibrant template for sustainability startups and green brands.",
-    category: "Eco",
-  },
-  {
-    name: "HealthTech",
-    url: "https://healthtech-template.vercel.app/",
-    image: "/healthtech.webp",
-    description: "Cutting-edge template for healthtech and digital health products.",
-    category: "Tech",
-  },
-  {
-    name: "Aura Interior",
-    url: "https://aura-interior-nine.vercel.app/",
-    image: "/interior.webp",
-    description: "Stylish template for interior designers and creative studios.",
-    category: "Creative",
-  },
-  {
-    name: "Home Services",
-    url: "https://homehub-pro-template.vercel.app/",
-    image: "/homeserv.webp",
-    description: "Conversion-focused template for home service businesses.",
-    category: "Services",
-  },
-];
-
-const CATEGORIES = ["All", "Business", "Healthcare", "Eco", "Tech", "Creative", "Services"];
+// Homepage showcase: first six in-house templates, filterable by pillar.
+const FEATURED = IN_HOUSE_TEMPLATES.slice(0, 6);
 
 const ENTRANCE = { type: "spring" as const, stiffness: 120, damping: 20, mass: 0.8 };
 const SPRING_INT = { type: "spring" as const, stiffness: 300, damping: 30 };
 
 export default function ExploreTemplates() {
   const reduced = useReducedMotion();
-  const [active, setActive] = useState("All");
+  const [active, setActive] = useState<(typeof TEMPLATE_FILTERS)[number]>("All");
 
   const filtered =
-    active === "All" ? TEMPLATES : TEMPLATES.filter((t) => t.category === active);
+    active === "All" ? FEATURED : FEATURED.filter((t) => t.pillar === active);
 
   return (
     <section
@@ -89,12 +51,14 @@ export default function ExploreTemplates() {
             <span className="tw-display-gradient">Production-ready foundations.</span>
           </h2>
           <p className="mt-4 max-w-[65ch] text-base leading-[1.6] text-white/70 md:text-lg">
-            Pre-built templates for industries we know cold. Fully responsive, conversion-tuned.
+            Hand-built templates across every service we ship — websites, SaaS
+            products, and automations. Fully responsive, conversion-tuned, and
+            yours to customize.
           </p>
         </motion.header>
 
         <div className="mb-10 flex flex-wrap gap-2">
-          {CATEGORIES.map((c) => (
+          {TEMPLATE_FILTERS.map((c) => (
             <button
               key={c}
               type="button"
@@ -119,10 +83,11 @@ export default function ExploreTemplates() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((tpl, i) => (
             <motion.a
-              key={tpl.name}
-              href={tpl.url}
+              key={tpl.slug}
+              href={templateHref(tpl.slug)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track.templateView(tpl.slug)}
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
               whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-10% 0px" }}
@@ -131,23 +96,16 @@ export default function ExploreTemplates() {
             >
               <SpotlightCard className="group h-full overflow-hidden">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
-                  <Image
-                    src={tpl.image}
-                    alt={`${tpl.name} preview`}
-                    fill
-                    sizes="(max-width:768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    loading="lazy"
-                  />
+                  <TemplatePreview t={tpl} />
                   <div
                     aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/30 to-transparent opacity-90"
+                    className="absolute inset-0 bg-gradient-to-t from-[#050505]/70 via-transparent to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-40"
                   />
                   <div className="absolute inset-x-4 bottom-4 flex items-center justify-between">
-                    <span className="rounded-full bg-white/[0.06] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300 backdrop-blur-md">
-                      {tpl.category}
+                    <span className="rounded-full bg-black/40 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300 backdrop-blur-md">
+                      {tpl.pillar}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-xs text-white/70 transition-colors duration-200 group-hover:text-white">
+                    <span className="inline-flex items-center gap-1 text-xs text-white/80 transition-colors duration-200 group-hover:text-white">
                       <Eye className="h-3.5 w-3.5" />
                       Live preview
                     </span>
@@ -156,9 +114,9 @@ export default function ExploreTemplates() {
 
                 <div className="p-6">
                   <h3 className="text-lg font-medium tracking-[-0.02em] text-white">
-                    {tpl.name}
+                    {tpl.niche}
                   </h3>
-                  <p className="mt-2 text-sm leading-[1.6] text-white/60">{tpl.description}</p>
+                  <p className="mt-2 text-sm leading-[1.6] text-white/60">{tpl.blurb}</p>
                 </div>
               </SpotlightCard>
             </motion.a>

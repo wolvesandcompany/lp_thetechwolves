@@ -125,7 +125,7 @@ const BlogPageClient: React.FC<BlogPageClientProps> = ({ posts }) => {
         <div className="tw-glass tw-light-leak relative overflow-hidden rounded-3xl p-10 text-center md:p-14">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(52,211,153,0.08),transparent_60%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(var(--ds-accent-rgb)_/_0.08),transparent_60%)]"
           />
           <div className="relative">
             <h2 className="text-2xl font-medium tracking-[-0.04em] md:text-4xl">

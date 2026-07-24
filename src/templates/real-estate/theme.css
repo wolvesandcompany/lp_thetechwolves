@@ -1,0 +1,44 @@
+/* Real Estate template — scoped light luxury theme tokens.
+   Scoped under .tpl-real-estate so it never leaks into the main site.
+   Elegant, minimal, high-trust: navy + teal on a soft slate background. */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap");
+
+.tpl-real-estate {
+  --tpl-bg: #f8fafc;
+  --tpl-surface: #ffffff;
+  --tpl-fg: #0f172a;
+  --tpl-fg-muted: #64748b;
+  --tpl-primary: #0f172a;
+  --tpl-secondary: #0e7490;
+  --tpl-accent: #0369a1;
+  --tpl-border: rgba(15, 23, 42, 0.1);
+
+  background-color: var(--tpl-bg);
+  color: var(--tpl-fg);
+  font-family: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Headings use the display serif for a luxury feel. */
+.tpl-real-estate h1,
+.tpl-real-estate h2,
+.tpl-real-estate h3,
+.tpl-real-estate .tpl-serif {
+  font-family: "Cinzel", ui-serif, Georgia, serif;
+}
+
+/* Soft ambient glow blobs used behind sections. */
+.tpl-real-estate .tpl-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl-real-estate * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

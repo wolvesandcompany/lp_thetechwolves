@@ -1,0 +1,44 @@
+/* Beauty Salon / Spa template — scoped light theme tokens.
+   Scoped under .tpl-beauty-spa so it never leaks into the main site.
+   Soft, elegant, luxurious, calming: blush background + rose/violet accents. */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
+
+.tpl-beauty-spa {
+  --tpl-bg: #FCF7FA;
+  --tpl-surface: #FFFFFF;
+  --tpl-fg: #2A1A24;
+  --tpl-fg-muted: #8A7A82;
+  --tpl-primary: #DB2777;
+  --tpl-secondary: #EC4899;
+  --tpl-accent: #8B5CF6;
+  --tpl-border: rgba(150, 100, 130, 0.14);
+
+  background-color: var(--tpl-bg);
+  color: var(--tpl-fg);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Elegant serif for headings. */
+.tpl-beauty-spa h1,
+.tpl-beauty-spa h2,
+.tpl-beauty-spa h3,
+.tpl-beauty-spa .tpl-serif {
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+}
+
+/* Soft ambient glow blobs used behind sections. */
+.tpl-beauty-spa .tpl-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl-beauty-spa * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
