@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { WHATSAPP_NUMBER } from './whatsapp';
 
 // Base SEO configuration for the entire site
 export const baseSiteConfig = {
@@ -124,14 +125,26 @@ export function generateOrganizationSchema() {
       '@type': 'PostalAddress',
       addressCountry: 'Global',
     },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'customer service',
-      availableLanguage: 'English',
-    },
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        telephone: `+${WHATSAPP_NUMBER}`,
+        url: `https://wa.me/${WHATSAPP_NUMBER}`,
+        contactOption: 'WhatsApp',
+        availableLanguage: ['English', 'Hindi'],
+      },
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        email: 'info@thetechwolves.com',
+        availableLanguage: 'English',
+      },
+    ],
     sameAs: [
       baseSiteConfig.links.twitter,
       baseSiteConfig.links.linkedin,
+      `https://wa.me/${WHATSAPP_NUMBER}`,
     ],
     founder: {
       '@type': 'Person',

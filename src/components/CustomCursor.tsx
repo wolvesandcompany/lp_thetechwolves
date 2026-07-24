@@ -117,10 +117,12 @@ export function CustomCursor() {
         style={{ x: dotX, y: dotY }}
       >
         <div
-          className="-translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.7)]"
+          className="-translate-x-1/2 -translate-y-1/2 rounded-full"
           style={{
             width: pressed ? 4 : 6,
             height: pressed ? 4 : 6,
+            background: "rgb(var(--ds-accent-rgb))",
+            boxShadow: "0 0 12px rgb(var(--ds-accent-rgb) / 0.7)",
             transition: "width 0.15s ease, height 0.15s ease",
           }}
         />
@@ -135,10 +137,17 @@ export function CustomCursor() {
           animate={{
             width: hover ? 56 : pressed ? 22 : 32,
             height: hover ? 56 : pressed ? 22 : 32,
-            backgroundColor: hover ? "rgba(52,211,153,0.12)" : "rgba(255,255,255,0)",
-            borderColor: hover ? "rgba(52,211,153,0.7)" : "rgba(255,255,255,0.35)",
           }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          style={{
+            backgroundColor: hover
+              ? "rgb(var(--ds-accent-rgb) / 0.12)"
+              : "rgba(255,255,255,0)",
+            borderColor: hover
+              ? "rgb(var(--ds-accent-rgb) / 0.7)"
+              : "rgba(255,255,255,0.35)",
+            transition: "background-color 0.2s ease, border-color 0.2s ease",
+          }}
           className="-translate-x-1/2 -translate-y-1/2 rounded-full border backdrop-blur-md"
         />
       </motion.div>
@@ -152,8 +161,13 @@ export function CustomCursor() {
             animate={{ opacity: 0, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-none fixed z-[9997] block h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/40 [box-shadow:0_0_30px_-5px_rgba(52,211,153,0.6)_inset]"
-            style={{ left: r.x, top: r.y }}
+            className="pointer-events-none fixed z-[9997] block h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border"
+            style={{
+              left: r.x,
+              top: r.y,
+              borderColor: "rgb(var(--ds-accent-rgb) / 0.4)",
+              boxShadow: "inset 0 0 30px -5px rgb(var(--ds-accent-rgb) / 0.6)",
+            }}
           />
         ))}
       </AnimatePresence>

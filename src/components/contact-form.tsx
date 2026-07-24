@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import React, { useRef, useState, ChangeEvent, FormEvent } from "react";
 import { toast } from "sonner";
 import { ArrowUpRight, Loader2 } from "lucide-react";
+import { track } from "@/lib/analytics";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -43,6 +44,7 @@ export default function ContactForm() {
         () => {
           setLoading(false);
           setForm({ firstName: "", lastName: "", email: "", message: "" });
+          track.contactSubmit();
           toast.success("Message sent — we'll be in touch shortly.");
         },
         (error) => {
@@ -122,7 +124,7 @@ export default function ContactForm() {
       >
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_50%_120%,rgba(52,211,153,0.5),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_50%_120%,rgb(var(--ds-accent-rgb)_/_0.5),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         />
         {loading ? (
           <>

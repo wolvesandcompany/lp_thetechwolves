@@ -1,24 +1,67 @@
+"use client";
+
 import dynamic from 'next/dynamic';
+import { useEffect, useRef, useState } from "react";
+import { useDesignSystem } from "./DesignSystemProvider";
 
 const World = dynamic(() => import("./ui/globe").then((m) => m.World), {
   ssr: false,
 });
 
+/** #rrggbb -> "rgba(r,g,b,a)" for three-globe color props */
+function hexToRgba(hex: string, a: number): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+// Defer the heavy three.js / three-globe bundle until the globe is near the
+// viewport. Most visitors never reach the bottom-of-page contact section, so
+// this keeps three.js (and its d3-geo / h3-js deps) out of the initial load.
+function useNearViewport<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [near, setNear] = useState(false);
+  useEffect(() => {
+    if (near || !ref.current) return;
+    const el = ref.current;
+    // Fallback for environments without IntersectionObserver — just show it.
+    if (typeof IntersectionObserver === "undefined") {
+      setNear(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setNear(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "400px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [near]);
+  return { ref, near };
+}
+
 export default function Globe() {
+  const { accent } = useDesignSystem();
   const globeConfig = {
     pointSize: 4,
-    globeColor: "#062a23",
+    globeColor: "#0a1210",
     showAtmosphere: true,
-    atmosphereColor: "#34D399",
+    atmosphereColor: accent,
     atmosphereAltitude: 0.12,
-    emissive: "#0a3a30",
+    emissive: "#0a1210",
     emissiveIntensity: 0.15,
     shininess: 0.9,
-    polygonColor: "rgba(110, 231, 183, 0.7)",
-    ambientLight: "#34D399",
+    polygonColor: hexToRgba(accent, 0.7),
+    ambientLight: accent,
     directionalLeftLight: "#ffffff",
     directionalTopLight: "#ffffff",
-    pointLight: "#34D399",
+    pointLight: accent,
     arcTime: 1000,
     arcLength: 0.9,
     rings: 1,
@@ -27,7 +70,7 @@ export default function Globe() {
     autoRotate: true,
     autoRotateSpeed: 0.5,
   };
-  const colors = ["#34D399", "#10B981", "#6EE7B7"];
+  const colors = [accent, accent, accent];
   const sampleArcs = [
     {
       order: 1,
@@ -391,10 +434,12 @@ export default function Globe() {
     },
   ];
   
+  const { ref, near } = useNearViewport<HTMLDivElement>();
+
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[520px]">
+    <div ref={ref} className="relative mx-auto aspect-square w-full max-w-[520px]">
       <div className="absolute inset-0 z-10">
-        <World data={sampleArcs} globeConfig={globeConfig} />
+        {near && <World data={sampleArcs} globeConfig={globeConfig} />}
       </div>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-b from-transparent to-[#050505]" />
     </div>

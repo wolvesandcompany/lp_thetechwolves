@@ -79,7 +79,7 @@ export function Hero() {
           >
             <span
               aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgba(52,211,153,0.5),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_120%,rgb(var(--ds-accent-rgb)_/_0.5),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             />
             <span className="relative">Explore services</span>
             <ArrowUpRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

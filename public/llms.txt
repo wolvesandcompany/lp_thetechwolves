@@ -25,7 +25,10 @@ Healthcare (HIPAA-grade telemedicine, EHR integrations) · FinTech (banking apps
 ## Pages
 
 - [Home](https://thetechwolves.com/): services overview, social proof, contact.
-- [Services](https://thetechwolves.com/#service): bento grid of disciplines.
+- [Services hub](https://thetechwolves.com/services): all service pages. Dedicated pages: [AI Automation Agency](https://thetechwolves.com/services/ai-automation-agency), [Business Process Automation](https://thetechwolves.com/services/business-process-automation), [Custom Software Development](https://thetechwolves.com/services/custom-software-development), [Web Development](https://thetechwolves.com/services/web-development-company), [Mobile App Development](https://thetechwolves.com/services/mobile-app-development), [UI/UX Design](https://thetechwolves.com/services/ui-ux-design-agency), [n8n Automation Agency](https://thetechwolves.com/services/n8n-automation-agency), [AI Chatbot Development](https://thetechwolves.com/services/ai-chatbot-development), [CRM Automation](https://thetechwolves.com/services/crm-automation).
+- [Industries hub](https://thetechwolves.com/industries): [Healthcare](https://thetechwolves.com/industries/healthcare-software-development), [FinTech](https://thetechwolves.com/industries/fintech-software-development), [E-commerce](https://thetechwolves.com/industries/ecommerce-automation), [Real Estate](https://thetechwolves.com/industries/real-estate-software-development), [Logistics](https://thetechwolves.com/industries/logistics-automation), [Fitness](https://thetechwolves.com/industries/fitness-app-development).
+- [AI Automation Cost Calculator](https://thetechwolves.com/tools/ai-automation-cost-calculator): free instant estimate for automating support, admin, reporting, CRM, or custom workflows.
+- [Services (homepage section)](https://thetechwolves.com/#service): bento grid of disciplines.
 - [Pricing](https://thetechwolves.com/#pricing): three engagement tiers.
 - [Industries](https://thetechwolves.com/#industries): vertical-specific case examples.
 - [Templates](https://thetechwolves.com/templates): production-ready industry templates with live previews.
@@ -36,8 +39,9 @@ Healthcare (HIPAA-grade telemedicine, EHR integrations) · FinTech (banking apps
 
 ## Contact
 
+- WhatsApp (fastest — replies within minutes): +91 98928 00726 · https://wa.me/919892800726
 - Email: info@thetechwolves.com
-- Booking: https://calendly.com/huzaifsk12
+- Booking (free 30-min strategy call): https://calendly.com/huzaifsk12
 - Web: https://thetechwolves.com
 
 ## License & citation

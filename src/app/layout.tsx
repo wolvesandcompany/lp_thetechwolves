@@ -4,9 +4,14 @@ import Script from "next/script";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { PerformanceMonitor } from "@/components/ui/performance-monitor";
-import { CustomCursor } from "@/components/CustomCursor";
+import { CursorGate } from "@/components/CursorGate";
+import { DesignSystemProvider } from "@/components/DesignSystemProvider";
+import { DesignSystemSwitcher } from "@/components/DesignSystemSwitcher";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { ScrollDepthTracker } from "@/components/ScrollDepthTracker";
 import { generateMetadata } from "@/lib/seo";
 import "./globals.css";
+import "./design-systems.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,11 +63,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" prefix="og: http://ogp.me/ns#">
       <head>
-        <meta
-          name="google-site-verification"
-          content="YOUR_GOOGLE_SITE_VERIFICATION_TOKEN"
-        />
-        <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_TOKEN" />
         <link rel="canonical" href="https://thetechwolves.com/" />
         <link rel="alternate" type="text/plain" title="llms.txt (AI summary)" href="/llms.txt" />
         <link rel="alternate" type="text/plain" title="llms-full.txt (AI full content)" href="/llms-full.txt" />
@@ -99,11 +99,16 @@ gtag('js', new Date());
 gtag('config', 'G-KTX1NHREPK');`}
         </Script>
         <div id="root"></div>
-        <CustomCursor />
-        <PerformanceMonitor />
-        <Analytics />
-        <Toaster richColors position="bottom-right" />
-        {children}
+        <DesignSystemProvider>
+          <CursorGate />
+          <PerformanceMonitor />
+          <Analytics />
+          <Toaster richColors position="bottom-right" />
+          {children}
+          <WhatsAppButton />
+          <DesignSystemSwitcher />
+          <ScrollDepthTracker />
+        </DesignSystemProvider>
       </body>
     </html>
   );
