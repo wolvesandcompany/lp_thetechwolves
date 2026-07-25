@@ -26,6 +26,8 @@ export type Service = {
   pricingSignal: string;
   faqs: ServiceFAQ[];
   related: string[];
+  /** industry-page slugs this service is most relevant to (cross-linking) */
+  relatedIndustries?: string[];
   keywords: string[];
   /** contextual WhatsApp prefill for this service */
   waMessage: string;
@@ -77,6 +79,7 @@ export const SERVICES: Service[] = [
       { question: "How fast can we start?", answer: "We usually ship a working first automation within days of a discovery call, so you see value before committing to the full build." },
     ],
     related: ["business-process-automation", "n8n-automation-agency", "ai-chatbot-development"],
+    relatedIndustries: ["ecommerce-automation", "logistics-automation", "healthcare-software-development"],
     keywords: ["ai automation agency", "ai automation for small business", "ai agents for business", "business ai automation"],
     waMessage: "Hi Tech Wolves 👋 I'd like to explore AI automation for my business —",
   },
@@ -125,6 +128,7 @@ export const SERVICES: Service[] = [
       { question: "What if our process is messy?", answer: "That's normal, and it's exactly where the value is. We fix the process first, then automate the clean version." },
     ],
     related: ["ai-automation-agency", "crm-automation", "n8n-automation-agency"],
+    relatedIndustries: ["logistics-automation", "healthcare-software-development", "ecommerce-automation"],
     keywords: ["business process automation", "workflow automation", "business process automation examples", "process automation agency"],
     waMessage: "Hi Tech Wolves 👋 We want to automate a business process —",
   },
@@ -173,6 +177,7 @@ export const SERVICES: Service[] = [
       { question: "How do you keep costs predictable?", answer: "We scope tightly, ship a prototype early, and build in increments so you see progress and can adjust before spend grows." },
     ],
     related: ["web-development-company", "mobile-app-development", "business-process-automation"],
+    relatedIndustries: ["healthcare-software-development", "fintech-software-development", "real-estate-software-development"],
     keywords: ["custom software development", "custom software vs saas", "custom software company", "bespoke software development"],
     waMessage: "Hi Tech Wolves 👋 I need custom software for my business —",
   },
@@ -221,6 +226,7 @@ export const SERVICES: Service[] = [
       { question: "Can our team edit it?", answer: "Yes — we can wire a headless CMS so non-developers manage content safely." },
     ],
     related: ["ui-ux-design-agency", "custom-software-development", "mobile-app-development"],
+    relatedIndustries: ["ecommerce-automation", "real-estate-software-development", "fitness-app-development"],
     keywords: ["web development company", "web development agency", "next.js development company", "conversion web design"],
     waMessage: "Hi Tech Wolves 👋 I'm looking to build/rebuild a website —",
   },
@@ -269,6 +275,7 @@ export const SERVICES: Service[] = [
       { question: "Do you handle the backend too?", answer: "Yes — auth, payments, real-time, notifications, and analytics are part of the build." },
     ],
     related: ["custom-software-development", "web-development-company", "ui-ux-design-agency"],
+    relatedIndustries: ["fitness-app-development", "healthcare-software-development", "real-estate-software-development"],
     keywords: ["mobile app development", "flutter app development", "react native development", "app development company"],
     waMessage: "Hi Tech Wolves 👋 I have a mobile app idea —",
   },
@@ -317,6 +324,7 @@ export const SERVICES: Service[] = [
       { question: "Is accessibility included?", answer: "Yes — we design to WCAG contrast, focus, and keyboard standards by default." },
     ],
     related: ["web-development-company", "mobile-app-development", "custom-software-development"],
+    relatedIndustries: ["fintech-software-development", "ecommerce-automation", "fitness-app-development"],
     keywords: ["ui ux design agency", "product design agency", "design system agency", "conversion ux design"],
     waMessage: "Hi Tech Wolves 👋 I need UI/UX design help —",
   },
@@ -365,6 +373,7 @@ export const SERVICES: Service[] = [
       { question: "Can it use AI?", answer: "Absolutely — n8n has first-class LLM and agent steps; we build AI directly into the workflows." },
     ],
     related: ["ai-automation-agency", "business-process-automation", "crm-automation"],
+    relatedIndustries: ["logistics-automation", "ecommerce-automation", "fintech-software-development"],
     keywords: ["n8n automation agency", "n8n consultant", "n8n development", "zapier alternative agency"],
     waMessage: "Hi Tech Wolves 👋 I want to build automations with n8n —",
   },
@@ -413,6 +422,7 @@ export const SERVICES: Service[] = [
       { question: "Where can it live?", answer: "Website, app, WhatsApp, or inside your helpdesk — wherever your customers already are." },
     ],
     related: ["ai-automation-agency", "crm-automation", "business-process-automation"],
+    relatedIndustries: ["ecommerce-automation", "healthcare-software-development", "real-estate-software-development"],
     keywords: ["ai chatbot development", "ai chatbot for business", "custom chatbot development", "rag chatbot agency"],
     waMessage: "Hi Tech Wolves 👋 I want an AI chatbot for my business —",
   },
@@ -461,6 +471,7 @@ export const SERVICES: Service[] = [
       { question: "Will it keep our data clean?", answer: "Yes — auto-enrichment, de-duplication, and validation keep the CRM trustworthy without manual upkeep." },
     ],
     related: ["business-process-automation", "ai-automation-agency", "n8n-automation-agency"],
+    relatedIndustries: ["real-estate-software-development", "fintech-software-development", "logistics-automation"],
     keywords: ["crm automation", "crm workflow automation", "lead automation", "sales automation agency"],
     waMessage: "Hi Tech Wolves 👋 I want to automate my CRM and pipeline —",
   },

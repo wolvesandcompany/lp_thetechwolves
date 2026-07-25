@@ -7,6 +7,7 @@ import {
   generateBreadcrumbSchema,
   generateFAQSchema,
   baseSiteConfig,
+  AREA_SERVED,
 } from "@/lib/seo";
 import { INDUSTRIES, getIndustry } from "@/lib/industries-data";
 
@@ -50,7 +51,7 @@ export default async function Page({
       name: baseSiteConfig.name,
       url: baseSiteConfig.url,
     },
-    areaServed: "Worldwide",
+    areaServed: AREA_SERVED,
     url: `${baseSiteConfig.url}/industries/${industry.slug}`,
   };
 

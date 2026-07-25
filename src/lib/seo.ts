@@ -112,6 +112,14 @@ export function generateMetadata({
   };
 }
 
+// Primary markets we sell into — surfaced in schema so search/AI engines
+// associate the brand with these regions (US, Canada, Europe).
+export const AREA_SERVED = [
+  { '@type': 'Country', name: 'United States' },
+  { '@type': 'Country', name: 'Canada' },
+  { '@type': 'Place', name: 'Europe' },
+];
+
 // JSON-LD structured data generators
 export function generateOrganizationSchema() {
   return {
@@ -125,6 +133,7 @@ export function generateOrganizationSchema() {
       '@type': 'PostalAddress',
       addressCountry: 'Global',
     },
+    areaServed: AREA_SERVED,
     contactPoint: [
       {
         '@type': 'ContactPoint',
@@ -137,7 +146,7 @@ export function generateOrganizationSchema() {
       {
         '@type': 'ContactPoint',
         contactType: 'customer service',
-        email: 'info@thetechwolves.com',
+        email: 'hello@thetechwolves.com',
         availableLanguage: 'English',
       },
     ],
@@ -202,6 +211,7 @@ export function generateServiceSchema(services: Array<{
       url: baseSiteConfig.url,
     },
     serviceType: 'Technology Consulting',
+    areaServed: AREA_SERVED,
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Digital Transformation Services',

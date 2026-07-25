@@ -10,6 +10,7 @@ import { WhatsAppGlyph } from "./WhatsAppButton";
 import { whatsappLink } from "@/lib/whatsapp";
 import { track } from "@/lib/analytics";
 import { getService, type Service } from "@/lib/services-data";
+import { getIndustry } from "@/lib/industries-data";
 
 const CALENDLY = "https://calendly.com/huzaifsk12";
 const ENTRANCE = { type: "spring" as const, stiffness: 120, damping: 20, mass: 0.8 };
@@ -68,6 +69,9 @@ export function ServicePage({ service }: { service: Service }) {
   const [open, setOpen] = useState<number | null>(0);
   const related = service.related
     .map((slug) => getService(slug))
+    .filter((s): s is Service => Boolean(s));
+  const relatedIndustries = (service.relatedIndustries ?? [])
+    .map((slug) => getIndustry(slug))
     .filter((s): s is Service => Boolean(s));
 
   return (
@@ -269,6 +273,52 @@ export function ServicePage({ service }: { service: Service }) {
           <div className="mt-8 flex justify-center">
             <CTAButtons service={service} />
           </div>
+        </Section>
+
+        {/* For your industry (service → industry cross-linking) */}
+        {relatedIndustries.length > 0 && (
+          <Section>
+            <h2 className="text-xl font-medium tracking-[-0.02em]">
+              For your industry
+            </h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              {relatedIndustries.map((r) => (
+                <Link
+                  key={r.slug}
+                  href={`/industries/${r.slug}`}
+                  className="tw-focus group tw-glass flex items-center justify-between rounded-2xl border border-white/10 p-5 transition-colors hover:border-white/25"
+                >
+                  <span className="text-sm font-medium text-white">
+                    {r.eyebrow}
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 text-white/40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-emerald-400" />
+                </Link>
+              ))}
+            </div>
+          </Section>
+        )}
+
+        {/* Cost calculator lead magnet (internal linking) */}
+        <Section className="tw-glass tw-light-leak flex flex-col items-start justify-between gap-5 rounded-3xl border border-white/10 p-8 sm:flex-row sm:items-center">
+          <div>
+            <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-emerald-400/90">
+              Free tool
+            </p>
+            <h2 className="text-xl font-medium tracking-[-0.02em] text-white md:text-2xl">
+              Estimate what automation would cost you
+            </h2>
+            <p className="mt-2 max-w-[52ch] text-[15px] leading-[1.7] text-white/60">
+              Get a ballpark on build cost and payback in under a minute — no
+              email required.
+            </p>
+          </div>
+          <Link
+            href="/tools/ai-automation-cost-calculator"
+            className="tw-focus group inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-6 py-3.5 text-sm font-medium text-white/85 backdrop-blur-md transition-colors hover:border-white/30 hover:text-white"
+          >
+            Open cost calculator
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
         </Section>
 
         {/* Related services (internal linking) */}
