@@ -9,13 +9,13 @@
             <link>https://thetechwolves.com</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 09 Jun 2026 14:09:09 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 25 Jul 2026 11:49:33 GMT</lastBuildDate>
         <atom:link href="https://thetechwolves.com/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 09 Jun 2026 14:09:09 GMT</pubDate>
+        <pubDate>Sat, 25 Jul 2026 11:49:33 GMT</pubDate>
         <copyright><![CDATA[© 2026 The Tech Wolves]]></copyright>
         <language><![CDATA[en-US]]></language>
-        <managingEditor><![CDATA[team@thetechwolves.com (The Tech Wolves)]]></managingEditor>
-        <webMaster><![CDATA[team@thetechwolves.com (The Tech Wolves)]]></webMaster>
+        <managingEditor><![CDATA[hello@thetechwolves.com (The Tech Wolves)]]></managingEditor>
+        <webMaster><![CDATA[hello@thetechwolves.com (The Tech Wolves)]]></webMaster>
         <ttl>60</ttl>
         <category><![CDATA[Technology]]></category>
         <category><![CDATA[AI]]></category>
