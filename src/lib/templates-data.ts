@@ -176,6 +176,24 @@ export const IN_HOUSE_TEMPLATES: TemplateMeta[] = [
     },
     gradient: { from: "#1E293B", to: "#B45309" },
   },
+  {
+    slug: "clinic",
+    brand: "Havenwell Clinic",
+    niche: "Medical Clinic",
+    pillar: "Websites",
+    blurb:
+      "Calm, trustworthy multi-specialty clinic site with a filterable 'Meet the Doctors' profile grid.",
+    dark: false,
+    colors: {
+      bg: "#F6FAFB",
+      surface: "#FFFFFF",
+      fg: "#0F2A33",
+      muted: "#5B7480",
+      primary: "#0E7490",
+      accent: "#059669",
+    },
+    gradient: { from: "#0E7490", to: "#2563EB" },
+  },
 ];
 
 export const TEMPLATE_FILTERS: ("All" | Pillar)[] = [
