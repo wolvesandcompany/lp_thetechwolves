@@ -194,6 +194,24 @@ export const IN_HOUSE_TEMPLATES: TemplateMeta[] = [
     },
     gradient: { from: "#0E7490", to: "#2563EB" },
   },
+  {
+    slug: "doctor-profile",
+    brand: "Calder Dermatology",
+    niche: "Doctor / Private Practice",
+    pillar: "Websites",
+    blurb:
+      "Warm, personal solo physician site with an interactive career-journey timeline and appointment booking.",
+    dark: false,
+    colors: {
+      bg: "#FAF7F1",
+      surface: "#FFFFFF",
+      fg: "#2B2621",
+      muted: "#7C7266",
+      primary: "#45604F",
+      accent: "#BE8A3D",
+    },
+    gradient: { from: "#45604F", to: "#BE8A3D" },
+  },
 ];
 
 export const TEMPLATE_FILTERS: ("All" | Pillar)[] = [

@@ -9,6 +9,7 @@
  */
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import {
   HeartPulse,
@@ -21,15 +22,7 @@ import {
   BadgeCheck,
 } from "lucide-react";
 import { EXPO_OUT } from "../kit/motion";
-
-type Doctor = {
-  name: string;
-  initials: string;
-  credentials: string;
-  specialty: string;
-  years: number;
-  bio: string;
-};
+import { DOCTORS } from "./doctors-data";
 
 type Specialty = { id: string; label: string; icon: typeof HeartPulse };
 
@@ -40,81 +33,6 @@ const SPECIALTIES: Specialty[] = [
   { id: "orthopedics", label: "Orthopedics", icon: Bone },
   { id: "neurology", label: "Neurology", icon: Brain },
   { id: "general", label: "General Practice", icon: Stethoscope },
-];
-
-const DOCTORS: (Doctor & { specialtyId: string })[] = [
-  {
-    name: "Dr. Elena Marsh",
-    initials: "EM",
-    credentials: "MD, FACC",
-    specialty: "Cardiology",
-    specialtyId: "cardiology",
-    years: 18,
-    bio: "Interventional cardiologist focused on preventive heart health and minimally invasive procedures.",
-  },
-  {
-    name: "Dr. Naomi Osei",
-    initials: "NO",
-    credentials: "MD, FAAP",
-    specialty: "Pediatrics",
-    specialtyId: "pediatrics",
-    years: 12,
-    bio: "Board-certified pediatrician who treats every child like her own — gentle, thorough, unhurried.",
-  },
-  {
-    name: "Dr. Marcus Reyes",
-    initials: "MR",
-    credentials: "MD, FAAOS",
-    specialty: "Orthopedics",
-    specialtyId: "orthopedics",
-    years: 21,
-    bio: "Sports-medicine orthopedic surgeon specializing in joint preservation and rapid return-to-activity plans.",
-  },
-  {
-    name: "Dr. Priya Chandran",
-    initials: "PC",
-    credentials: "MD, PhD",
-    specialty: "Neurology",
-    specialtyId: "neurology",
-    years: 15,
-    bio: "Neurologist researching migraine and movement disorders, with a calm, patient-first bedside manner.",
-  },
-  {
-    name: "Dr. Thomas Weller",
-    initials: "TW",
-    credentials: "MD",
-    specialty: "General Practice",
-    specialtyId: "general",
-    years: 25,
-    bio: "Family medicine physician and clinic co-founder — your first call for anything, any age.",
-  },
-  {
-    name: "Dr. Aiko Tanaka",
-    initials: "AT",
-    credentials: "MD, FACC",
-    specialty: "Cardiology",
-    specialtyId: "cardiology",
-    years: 9,
-    bio: "Cardiologist focused on women's heart health and long-term risk reduction plans.",
-  },
-  {
-    name: "Dr. Daniel Okafor",
-    initials: "DO",
-    credentials: "MD, FAAP",
-    specialty: "Pediatrics",
-    specialtyId: "pediatrics",
-    years: 14,
-    bio: "Pediatrician with a special interest in adolescent medicine and childhood nutrition.",
-  },
-  {
-    name: "Dr. Sofia Bianchi",
-    initials: "SB",
-    credentials: "MD",
-    specialty: "General Practice",
-    specialtyId: "general",
-    years: 10,
-    bio: "Internal medicine physician who takes the time to actually explain what's going on.",
-  },
 ];
 
 export function DoctorProfiles() {
@@ -172,7 +90,10 @@ export function DoctorProfiles() {
             transition={{ duration: 0.45, ease: EXPO_OUT, delay: reduced ? 0 : i * 0.05 }}
             className="group relative h-72 [perspective:1200px]"
           >
-            <div className="relative h-full w-full overflow-hidden rounded-3xl border border-[var(--tpl-border)] bg-[var(--tpl-surface)] shadow-[0_20px_50px_-35px_rgba(15,60,75,0.4)] transition-transform duration-300 group-hover:-translate-y-1 group-focus-within:-translate-y-1">
+            <Link
+              href={`/templates/clinic/doctors/${d.slug}`}
+              className="relative block h-full w-full overflow-hidden rounded-3xl border border-[var(--tpl-border)] bg-[var(--tpl-surface)] shadow-[0_20px_50px_-35px_rgba(15,60,75,0.4)] outline-none transition-transform duration-300 focus-visible:ring-2 focus-visible:ring-[var(--tpl-primary)] group-hover:-translate-y-1 group-focus-within:-translate-y-1"
+            >
               {/* Base card */}
               <div className="flex h-full flex-col items-center justify-center gap-3 p-7 text-center">
                 <span className="grid h-20 w-20 place-items-center rounded-full bg-gradient-to-br from-[var(--tpl-primary)]/15 to-[var(--tpl-secondary)]/15 text-2xl font-bold tracking-tight text-[var(--tpl-primary)]">
@@ -188,23 +109,19 @@ export function DoctorProfiles() {
 
               {/* Hover-reveal bio overlay */}
               <div
-                tabIndex={0}
-                aria-label={`${d.name} bio`}
-                className="absolute inset-0 flex translate-y-full flex-col justify-center gap-3 bg-gradient-to-br from-[var(--tpl-primary)] to-[var(--tpl-secondary)] p-7 text-left text-white transition-transform duration-300 ease-out focus:outline-none group-hover:translate-y-0 group-focus-within:translate-y-0"
+                aria-hidden
+                className="absolute inset-0 flex translate-y-full flex-col justify-center gap-3 bg-gradient-to-br from-[var(--tpl-primary)] to-[var(--tpl-secondary)] p-7 text-left text-white transition-transform duration-300 ease-out group-hover:translate-y-0 group-focus-within:translate-y-0"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.15em] text-white/70">
                   {d.specialty}
                 </p>
                 <h4 className="tpl-heading text-xl font-semibold">{d.name}</h4>
                 <p className="text-sm text-white/90">{d.bio}</p>
-                <a
-                  href="#booking"
-                  className="mt-1 inline-flex w-fit cursor-pointer items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--tpl-primary)] transition-transform hover:scale-[1.03]"
-                >
-                  Book with {d.name.split(" ")[1]} <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
+                <span className="mt-1 inline-flex w-fit items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--tpl-primary)] transition-transform group-hover:scale-[1.03]">
+                  View profile <ArrowUpRight className="h-3.5 w-3.5" />
+                </span>
               </div>
-            </div>
+            </Link>
           </motion.li>
         ))}
       </motion.ul>
