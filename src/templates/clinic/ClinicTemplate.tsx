@@ -6,6 +6,7 @@
  * Manrope headings + Inter body. Framer Motion via the shared /kit primitives.
  */
 
+import { useState } from "react";
 import { useReducedMotion } from "motion/react";
 import {
   Cross,
@@ -28,6 +29,7 @@ import {
 } from "lucide-react";
 import { FadeUp, Stagger, Reveal, Pressable, CountUp } from "../kit/motion";
 import { DoctorProfiles } from "./doctor-profiles";
+import { clinicWaLink } from "./whatsapp";
 import "./theme.css";
 
 const NAV = ["Departments", "Doctors", "Patient Stories", "Book"];
@@ -257,59 +259,8 @@ export function ClinicTemplate() {
               </div>
             </div>
 
-            {/* Right: styled booking form */}
-            <form className="grid gap-5 p-10 sm:p-12" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid gap-2">
-                <label htmlFor="bk-name" className="text-sm font-medium text-[var(--tpl-fg)]">Full name</label>
-                <input
-                  id="bk-name"
-                  type="text"
-                  placeholder="Jordan Alvarez"
-                  className="rounded-xl border border-[var(--tpl-border)] bg-[var(--tpl-bg)] px-4 py-3 text-sm text-[var(--tpl-fg)] outline-none transition-colors placeholder:text-[var(--tpl-fg-muted)]/70 focus:border-[var(--tpl-primary)]"
-                />
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div className="grid gap-2">
-                  <label htmlFor="bk-date" className="flex items-center gap-1.5 text-sm font-medium text-[var(--tpl-fg)]">
-                    <Calendar className="h-3.5 w-3.5 text-[var(--tpl-primary)]" /> Date
-                  </label>
-                  <input
-                    id="bk-date"
-                    type="date"
-                    className="rounded-xl border border-[var(--tpl-border)] bg-[var(--tpl-bg)] px-4 py-3 text-sm text-[var(--tpl-fg)] outline-none transition-colors focus:border-[var(--tpl-primary)]"
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <label htmlFor="bk-time" className="flex items-center gap-1.5 text-sm font-medium text-[var(--tpl-fg)]">
-                    <Clock className="h-3.5 w-3.5 text-[var(--tpl-primary)]" /> Time
-                  </label>
-                  <input
-                    id="bk-time"
-                    type="time"
-                    className="rounded-xl border border-[var(--tpl-border)] bg-[var(--tpl-bg)] px-4 py-3 text-sm text-[var(--tpl-fg)] outline-none transition-colors focus:border-[var(--tpl-primary)]"
-                  />
-                </div>
-              </div>
-              <div className="grid gap-2">
-                <label htmlFor="bk-dept" className="text-sm font-medium text-[var(--tpl-fg)]">Department</label>
-                <select
-                  id="bk-dept"
-                  defaultValue={DEPARTMENT_OPTIONS[0]}
-                  className="cursor-pointer rounded-xl border border-[var(--tpl-border)] bg-[var(--tpl-bg)] px-4 py-3 text-sm text-[var(--tpl-fg)] outline-none transition-colors focus:border-[var(--tpl-primary)]"
-                >
-                  {DEPARTMENT_OPTIONS.map((s) => (
-                    <option key={s} value={s}>{s}</option>
-                  ))}
-                </select>
-              </div>
-              <button
-                type="submit"
-                className="mt-1 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[var(--tpl-primary)] to-[var(--tpl-secondary)] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
-              >
-                Request appointment <ArrowRight className="h-4 w-4" />
-              </button>
-              <p className="text-center text-xs text-[var(--tpl-fg-muted)]">We&apos;ll confirm your slot within 1 business hour.</p>
-            </form>
+            {/* Right: booking form — submits straight to WhatsApp */}
+            <ClinicBookingForm />
           </div>
         </FadeUp>
       </section>
@@ -392,6 +343,85 @@ export function ClinicTemplate() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function ClinicBookingForm() {
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [department, setDepartment] = useState(DEPARTMENT_OPTIONS[0]);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const parts = [`Hi, I'd like to request an appointment.`];
+    if (name) parts.push(`Name: ${name}`);
+    if (date) parts.push(`Preferred date: ${date}`);
+    if (time) parts.push(`Preferred time: ${time}`);
+    parts.push(`Department: ${department}`);
+    window.open(clinicWaLink(parts.join("\n")), "_blank", "noopener,noreferrer");
+  }
+
+  return (
+    <form className="grid gap-5 p-10 sm:p-12" onSubmit={handleSubmit}>
+      <div className="grid gap-2">
+        <label htmlFor="bk-name" className="text-sm font-medium text-[var(--tpl-fg)]">Full name</label>
+        <input
+          id="bk-name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Jordan Alvarez"
+          className="rounded-xl border border-[var(--tpl-border)] bg-[var(--tpl-bg)] px-4 py-3 text-sm text-[var(--tpl-fg)] outline-none transition-colors placeholder:text-[var(--tpl-fg-muted)]/70 focus:border-[var(--tpl-primary)]"
+        />
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-2">
+          <label htmlFor="bk-date" className="flex items-center gap-1.5 text-sm font-medium text-[var(--tpl-fg)]">
+            <Calendar className="h-3.5 w-3.5 text-[var(--tpl-primary)]" /> Date
+          </label>
+          <input
+            id="bk-date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="rounded-xl border border-[var(--tpl-border)] bg-[var(--tpl-bg)] px-4 py-3 text-sm text-[var(--tpl-fg)] outline-none transition-colors focus:border-[var(--tpl-primary)]"
+          />
+        </div>
+        <div className="grid gap-2">
+          <label htmlFor="bk-time" className="flex items-center gap-1.5 text-sm font-medium text-[var(--tpl-fg)]">
+            <Clock className="h-3.5 w-3.5 text-[var(--tpl-primary)]" /> Time
+          </label>
+          <input
+            id="bk-time"
+            type="time"
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            className="rounded-xl border border-[var(--tpl-border)] bg-[var(--tpl-bg)] px-4 py-3 text-sm text-[var(--tpl-fg)] outline-none transition-colors focus:border-[var(--tpl-primary)]"
+          />
+        </div>
+      </div>
+      <div className="grid gap-2">
+        <label htmlFor="bk-dept" className="text-sm font-medium text-[var(--tpl-fg)]">Department</label>
+        <select
+          id="bk-dept"
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
+          className="cursor-pointer rounded-xl border border-[var(--tpl-border)] bg-[var(--tpl-bg)] px-4 py-3 text-sm text-[var(--tpl-fg)] outline-none transition-colors focus:border-[var(--tpl-primary)]"
+        >
+          {DEPARTMENT_OPTIONS.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
+      </div>
+      <button
+        type="submit"
+        className="mt-1 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[var(--tpl-primary)] to-[var(--tpl-secondary)] px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+      >
+        Request appointment on WhatsApp <ArrowRight className="h-4 w-4" />
+      </button>
+      <p className="text-center text-xs text-[var(--tpl-fg-muted)]">Opens WhatsApp with your details filled in — send to confirm.</p>
+    </form>
   );
 }
 

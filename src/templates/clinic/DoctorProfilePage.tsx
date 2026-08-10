@@ -18,9 +18,12 @@ import {
 } from "lucide-react";
 import { FadeUp, Stagger, Reveal, Pressable } from "../kit/motion";
 import type { Doctor } from "./doctors-data";
+import { clinicWaLink } from "./whatsapp";
 import "./theme.css";
 
 export function DoctorProfilePage({ doctor }: { doctor: Doctor }) {
+  const bookLink = clinicWaLink(`Hi, I'd like to book an appointment with ${doctor.name} —`);
+
   return (
     <div className="tpl-clinic relative min-h-screen w-full overflow-x-hidden">
       {/* Nav */}
@@ -32,12 +35,14 @@ export function DoctorProfilePage({ doctor }: { doctor: Doctor }) {
             </span>
             <span className="tpl-heading text-xl">Havenwell <span className="text-[var(--tpl-primary)]">Clinic</span></span>
           </Link>
-          <Link
-            href="/templates/clinic#booking"
+          <a
+            href={bookLink}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-gradient-to-r from-[var(--tpl-primary)] to-[var(--tpl-secondary)] px-5 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
           >
             Book appointment
-          </Link>
+          </a>
         </nav>
       </header>
 
@@ -75,13 +80,15 @@ export function DoctorProfilePage({ doctor }: { doctor: Doctor }) {
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-4 flex flex-col items-center gap-3 sm:flex-row">
-              <Link
-                href="/templates/clinic#booking"
+              <a
+                href={bookLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-gradient-to-r from-[var(--tpl-primary)] to-[var(--tpl-secondary)] px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-[var(--tpl-primary)]/25 transition-transform hover:scale-[1.03]"
               >
                 Book with {doctor.name.split(" ")[1]}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
+              </a>
               <a
                 href="tel:+18005550142"
                 className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[var(--tpl-border)] bg-[var(--tpl-surface)]/80 px-7 py-3 text-sm font-semibold text-[var(--tpl-fg)] backdrop-blur transition-colors hover:bg-[var(--tpl-surface)]"
@@ -148,12 +155,14 @@ export function DoctorProfilePage({ doctor }: { doctor: Doctor }) {
             <p className="mx-auto mt-3 max-w-md text-[var(--tpl-fg-muted)]">
               New patients are typically seen within 3 business days.
             </p>
-            <Link
-              href="/templates/clinic#booking"
+            <a
+              href={bookLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-full bg-gradient-to-r from-[var(--tpl-primary)] to-[var(--tpl-secondary)] px-8 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
             >
               Book appointment <ArrowRight className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
         </FadeUp>
       </div>
