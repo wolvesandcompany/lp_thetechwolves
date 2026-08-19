@@ -9,9 +9,9 @@
             <link>https://thetechwolves.com</link>
         </image>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 25 Jul 2026 11:49:33 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2026 15:03:24 GMT</lastBuildDate>
         <atom:link href="https://thetechwolves.com/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Sat, 25 Jul 2026 11:49:33 GMT</pubDate>
+        <pubDate>Wed, 19 Aug 2026 15:03:24 GMT</pubDate>
         <copyright><![CDATA[© 2026 The Tech Wolves]]></copyright>
         <language><![CDATA[en-US]]></language>
         <managingEditor><![CDATA[hello@thetechwolves.com (The Tech Wolves)]]></managingEditor>
@@ -22,6 +22,22 @@
         <category><![CDATA[Automation]]></category>
         <category><![CDATA[Business]]></category>
         <category><![CDATA[Digital Transformation]]></category>
+        <item>
+            <title><![CDATA[250 AI Shortcut Commands for ChatGPT: The Complete UGC & Creative Prompt Library (2026)]]></title>
+            <description><![CDATA[250 reusable ChatGPT/AI prompt shortcuts across product photography, Meta ads, UGC scripts, billboards, ecommerce, branding, copywriting, client pitching, strategy, and content repurposing. Free downloadable PDF.]]></description>
+            <link>https://thetechwolves.com/blog/250-ai-shortcut-commands-chatgpt-ugc</link>
+            <guid isPermaLink="false">https://thetechwolves.com/blog/250-ai-shortcut-commands-chatgpt-ugc</guid>
+            <category><![CDATA[ChatGPT]]></category>
+            <category><![CDATA[AI Prompts]]></category>
+            <category><![CDATA[UGC]]></category>
+            <category><![CDATA[Content Creation]]></category>
+            <category><![CDATA[Meta Ads]]></category>
+            <category><![CDATA[Ecommerce]]></category>
+            <category><![CDATA[Branding]]></category>
+            <dc:creator><![CDATA[The Tech Wolves]]></dc:creator>
+            <pubDate>Wed, 19 Aug 2026 00:00:00 GMT</pubDate>
+            <enclosure url="https://thetechwolves.com/og-image.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[Claude vs ChatGPT vs Gemini for Business Automation in 2026: An Honest Comparison]]></title>
             <description><![CDATA[An engineering-led, vendor-neutral comparison of Claude 4.x, GPT-5, and Gemini 2.5 Pro across the dimensions that actually matter for business automation: tool use, agent reliability, cost, latency, context, and code quality. Updated April 2026.]]></description>
