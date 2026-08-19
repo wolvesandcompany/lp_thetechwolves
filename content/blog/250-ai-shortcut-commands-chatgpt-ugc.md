@@ -1,26 +1,27 @@
 ---
-title: "250 AI Shortcut Commands for ChatGPT: The Complete UGC & Creative Prompt Library (2026)"
+title: "250+ AI Shortcut Commands for ChatGPT: The Complete UGC & Creative Prompt Library (2026)"
 date: "2026-08-19"
+modified: "2026-08-19"
 author: "The Tech Wolves"
 tags: ["ChatGPT", "AI Prompts", "UGC", "Content Creation", "Meta Ads", "Ecommerce", "Branding"]
-summary: "250 reusable ChatGPT/AI prompt shortcuts across product photography, Meta ads, UGC scripts, billboards, ecommerce, branding, copywriting, client pitching, strategy, and content repurposing. Free downloadable PDF."
+summary: "250+ reusable ChatGPT/AI prompt shortcuts across product photography, Meta ads, UGC scripts, billboards, ecommerce, branding, copywriting, client pitching, strategy, and content repurposing. Free downloadable PDF."
 canonical: "/blog/250-ai-shortcut-commands-chatgpt-ugc"
 ogImage: "/images/blog/250-ai-shortcut-commands-chatgpt-ugc.webp"
 ---
 
-# 250 AI Shortcut Commands for ChatGPT: The Complete UGC & Creative Prompt Library
+# 250+ AI Shortcut Commands for ChatGPT: The Complete UGC & Creative Prompt Library
 
-Most people use ChatGPT one prompt at a time, rewriting the same brief over and over. We built a library of **250 reusable shortcut commands** — short aliases like `/premiumshowcase` or `/metaad` — that plug into one repeatable formula, so you stop reinventing the prompt every time you need a product shot, a Meta ad, a UGC script, or a billboard mockup.
+Most people use ChatGPT one prompt at a time, rewriting the same brief over and over. We built a library of **250+ reusable shortcut commands** — short aliases like `/premiumshowcase` or `/metaad` — that plug into one repeatable formula, so you stop reinventing the prompt every time you need a product shot, a Meta ad, a UGC script, or a billboard mockup.
 
-This is the exact system we use internally at The Tech Wolves for client creative production. It's organized into 10 categories, 25 shortcuts each, covering the full pipeline from product photography to client pitching.
+This is the exact system we use internally at The Tech Wolves for client creative production. It's organized into 10 categories covering the full pipeline from product photography to client pitching.
 
 ## Key Takeaways
 
-- 250 shortcuts across 10 categories: product photography, Meta ads, UGC scripts, billboards/print, ecommerce, branding, copywriting, client pitching, strategy, and content repurposing.
+- 250+ shortcuts across 10 categories: product photography, Meta ads, UGC scripts, billboards/print, ecommerce, branding, copywriting, client pitching, strategy, and content repurposing.
 - These are **reusable prompt aliases**, not hidden or official ChatGPT commands — they work because you pair them with a real creative brief.
 - One copy-paste formula covers every shortcut: `[Upload image] + /shortcut + audience + objective + platform + dimensions + brand rules + verified claim + CTA`.
 - Four non-negotiable rules before you publish anything AI-generated: preserve logos/packaging/legal text, never invent claims, check every output, treat drafts as concepts until brand-approved.
-- [Download the full 250-command PDF](/downloads/250-ai-creative-shortcuts-thetechwolves.pdf) and save your favorites inside one ChatGPT Project with your brand guide attached.
+- [Download the full 250+ command PDF](/downloads/250-ai-creative-shortcuts-thetechwolves.pdf) and save your favorites inside one ChatGPT Project with your brand guide attached.
 
 ## How to use these shortcuts
 
@@ -164,192 +165,196 @@ Tip: save your favourite aliases inside one ChatGPT Project with your brand guid
 | 98 | `/popuplook` | Design a small branded pop-up activation environment. |
 | 99 | `/productvending` | Create a branded vending-machine concept. |
 | 100 | `/guerrillaad` | Develop a legal, safe, attention-grabbing street activation concept. |
+| 101 | `/planewrap` | Mock up the campaign on an airplane fuselage livery. |
+| 102 | `/truckwrap` | Mock up the campaign on a delivery or freight truck. |
+| 103 | `/trainwrap` | Mock up the campaign on a train or metro carriage wrap. |
+| 104 | `/containerbranding` | Apply the campaign to a branded shipping container. |
 
 ## 5. Ecommerce & Marketplace Assets
 
 | No. | Shortcut | What it creates |
 |---|---|---|
-| 101 | `/amazonhero` | Create an Amazon-style white-background main image. |
-| 102 | `/amazoninfographic` | Design a marketplace infographic explaining key benefits. |
-| 103 | `/amazonlifestyle` | Create a compliant lifestyle image showing the product in use. |
-| 104 | `/amazoncomparison` | Build a comparison chart using only verified product information. |
-| 105 | `/amazonfeatures` | Create a feature-callout image for a product listing. |
-| 106 | `/astore` | Plan an Amazon A+ Content image sequence. |
-| 107 | `/flipkarthero` | Create a clean marketplace hero image for Indian ecommerce. |
-| 108 | `/shopifyhero` | Design a wide ecommerce homepage hero banner. |
-| 109 | `/productpage` | Plan the complete visual sequence for a product-detail page. |
-| 110 | `/collectionbanner` | Create a category or collection-page banner. |
-| 111 | `/bundleimage` | Show multiple products together as one clear bundle. |
-| 112 | `/sizeguide` | Turn supplied measurements into a clean size-guide graphic. |
-| 113 | `/howtouse` | Create a step-by-step product usage infographic. |
-| 114 | `/whatsinside` | Display package contents in an organized flat-lay. |
-| 115 | `/ingredients` | Create a clear ingredient or material spotlight image. |
-| 116 | `/dimensions` | Create a dimensional diagram from supplied measurements. |
-| 117 | `/variantgrid` | Show available colours, flavours, or sizes in a clean grid. |
-| 118 | `/packaging360` | Plan front, back, side, and detail views of the package. |
-| 119 | `/subscriptionbox` | Visualize the product as part of a subscription box. |
-| 120 | `/checkoutbanner` | Create a reassuring checkout or cart upsell banner. |
-| 121 | `/crosssell` | Design a "pairs well with" cross-sell visual. |
-| 122 | `/upsell` | Create a premium-upgrade or larger-bundle visual. |
-| 123 | `/wishlistad` | Design a reminder creative for wishlisted products. |
-| 124 | `/backinstock` | Create a back-in-stock announcement visual. |
-| 125 | `/reviewgallery` | Turn authentic reviews into a branded social-proof gallery. |
+| 105 | `/amazonhero` | Create an Amazon-style white-background main image. |
+| 106 | `/amazoninfographic` | Design a marketplace infographic explaining key benefits. |
+| 107 | `/amazonlifestyle` | Create a compliant lifestyle image showing the product in use. |
+| 108 | `/amazoncomparison` | Build a comparison chart using only verified product information. |
+| 109 | `/amazonfeatures` | Create a feature-callout image for a product listing. |
+| 110 | `/astore` | Plan an Amazon A+ Content image sequence. |
+| 111 | `/flipkarthero` | Create a clean marketplace hero image for Indian ecommerce. |
+| 112 | `/shopifyhero` | Design a wide ecommerce homepage hero banner. |
+| 113 | `/productpage` | Plan the complete visual sequence for a product-detail page. |
+| 114 | `/collectionbanner` | Create a category or collection-page banner. |
+| 115 | `/bundleimage` | Show multiple products together as one clear bundle. |
+| 116 | `/sizeguide` | Turn supplied measurements into a clean size-guide graphic. |
+| 117 | `/howtouse` | Create a step-by-step product usage infographic. |
+| 118 | `/whatsinside` | Display package contents in an organized flat-lay. |
+| 119 | `/ingredients` | Create a clear ingredient or material spotlight image. |
+| 120 | `/dimensions` | Create a dimensional diagram from supplied measurements. |
+| 121 | `/variantgrid` | Show available colours, flavours, or sizes in a clean grid. |
+| 122 | `/packaging360` | Plan front, back, side, and detail views of the package. |
+| 123 | `/subscriptionbox` | Visualize the product as part of a subscription box. |
+| 124 | `/checkoutbanner` | Create a reassuring checkout or cart upsell banner. |
+| 125 | `/crosssell` | Design a "pairs well with" cross-sell visual. |
+| 126 | `/upsell` | Create a premium-upgrade or larger-bundle visual. |
+| 127 | `/wishlistad` | Design a reminder creative for wishlisted products. |
+| 128 | `/backinstock` | Create a back-in-stock announcement visual. |
+| 129 | `/reviewgallery` | Turn authentic reviews into a branded social-proof gallery. |
 
 ## 6. Branding, Packaging & Identity
 
 | No. | Shortcut | What it creates |
 |---|---|---|
-| 126 | `/brandmoodboard` | Create a visual direction board from the brand brief. |
-| 127 | `/brandpalette` | Develop a usable colour palette with roles and hex values. |
-| 128 | `/brandfonts` | Recommend a headline/body font pairing and usage rules. |
-| 129 | `/brandstyle` | Define a consistent visual style for social and advertising. |
-| 130 | `/brandvoice` | Create practical brand voice guidelines with examples. |
-| 131 | `/logoconcept` | Generate logo direction concepts for designer exploration. |
-| 132 | `/logomockup` | Place an existing logo into realistic brand applications. |
-| 133 | `/packagingconcept` | Create a packaging design direction around supplied information. |
-| 134 | `/labeldesign` | Design a product-label concept with clear hierarchy. |
-| 135 | `/boxmockup` | Visualize artwork on a realistic product box. |
-| 136 | `/pouchmockup` | Visualize branding on a stand-up pouch. |
-| 137 | `/bottlemockup` | Apply label artwork to a realistic bottle. |
-| 138 | `/tubemockup` | Create a cosmetic or healthcare tube mockup. |
-| 139 | `/jarconcept` | Visualize branding on a jar with premium lighting. |
-| 140 | `/canconcept` | Create a beverage or food-can packaging concept. |
-| 141 | `/sachetconcept` | Design a branded single-use sachet presentation. |
-| 142 | `/shippingbox` | Create a branded ecommerce shipping-box experience. |
-| 143 | `/thankyoucard` | Design an insert card that improves unboxing and retention. |
-| 144 | `/businesscard` | Create a clean business-card direction from the brand identity. |
-| 145 | `/stationery` | Apply the identity to letterhead, envelope, and stationery. |
-| 146 | `/socialkit` | Create a consistent set of profile, cover, and post templates. |
-| 147 | `/iconset` | Develop a coherent set of simple brand icons. |
-| 148 | `/patternsystem` | Create a repeatable brand pattern from identity elements. |
-| 149 | `/brandrefresh` | Modernize an existing visual identity without losing recognition. |
-| 150 | `/brandguide` | Assemble the approved identity into a concise usage guide. |
+| 130 | `/brandmoodboard` | Create a visual direction board from the brand brief. |
+| 131 | `/brandpalette` | Develop a usable colour palette with roles and hex values. |
+| 132 | `/brandfonts` | Recommend a headline/body font pairing and usage rules. |
+| 133 | `/brandstyle` | Define a consistent visual style for social and advertising. |
+| 134 | `/brandvoice` | Create practical brand voice guidelines with examples. |
+| 135 | `/logoconcept` | Generate logo direction concepts for designer exploration. |
+| 136 | `/logomockup` | Place an existing logo into realistic brand applications. |
+| 137 | `/packagingconcept` | Create a packaging design direction around supplied information. |
+| 138 | `/labeldesign` | Design a product-label concept with clear hierarchy. |
+| 139 | `/boxmockup` | Visualize artwork on a realistic product box. |
+| 140 | `/pouchmockup` | Visualize branding on a stand-up pouch. |
+| 141 | `/bottlemockup` | Apply label artwork to a realistic bottle. |
+| 142 | `/tubemockup` | Create a cosmetic or healthcare tube mockup. |
+| 143 | `/jarconcept` | Visualize branding on a jar with premium lighting. |
+| 144 | `/canconcept` | Create a beverage or food-can packaging concept. |
+| 145 | `/sachetconcept` | Design a branded single-use sachet presentation. |
+| 146 | `/shippingbox` | Create a branded ecommerce shipping-box experience. |
+| 147 | `/thankyoucard` | Design an insert card that improves unboxing and retention. |
+| 148 | `/businesscard` | Create a clean business-card direction from the brand identity. |
+| 149 | `/stationery` | Apply the identity to letterhead, envelope, and stationery. |
+| 150 | `/socialkit` | Create a consistent set of profile, cover, and post templates. |
+| 151 | `/iconset` | Develop a coherent set of simple brand icons. |
+| 152 | `/patternsystem` | Create a repeatable brand pattern from identity elements. |
+| 153 | `/brandrefresh` | Modernize an existing visual identity without losing recognition. |
+| 154 | `/brandguide` | Assemble the approved identity into a concise usage guide. |
 
 ## 7. Copywriting & Conversion
 
 | No. | Shortcut | What it creates |
 |---|---|---|
-| 151 | `/valueprop` | Write a clear value proposition for one audience. |
-| 152 | `/headlinebank` | Generate 30 campaign headlines across multiple angles. |
-| 153 | `/taglinebank` | Create concise, memorable tagline options. |
-| 154 | `/benefitcopy` | Translate technical features into customer benefits. |
-| 155 | `/featurecopy` | Write accurate feature descriptions from supplied facts. |
-| 156 | `/productdescription` | Create persuasive ecommerce product copy. |
-| 157 | `/adcopy` | Write primary text, headline, description, and CTA for Meta ads. |
-| 158 | `/shortadcopy` | Generate short mobile-first ad copy variants. |
-| 159 | `/longadcopy` | Write a longer story-led direct-response ad. |
-| 160 | `/captionbank` | Generate 30 social captions in the brand voice. |
-| 161 | `/ctabank` | Create varied calls to action for different funnel stages. |
-| 162 | `/hookrewrite` | Rewrite a weak opening into 15 stronger hooks. |
-| 163 | `/painpoints` | Map customer frustrations into responsible messaging angles. |
-| 164 | `/desires` | Map the audience's desired outcomes into creative angles. |
-| 165 | `/objectioncopy` | Write copy that handles price, trust, effort, and timing objections. |
-| 166 | `/urgencycopy` | Add ethical urgency without false scarcity. |
-| 167 | `/socialproofcopy` | Turn genuine proof into concise conversion copy. |
-| 168 | `/landinghero` | Write the hero section for a campaign landing page. |
-| 169 | `/landingpage` | Draft a full conversion-oriented landing-page structure. |
-| 170 | `/emaillaunch` | Write a short product-launch email sequence. |
-| 171 | `/cartrecovery` | Create abandoned-cart email and message copy. |
-| 172 | `/whatsappoffer` | Write a concise WhatsApp promotional message. |
-| 173 | `/smscopy` | Create compliant short promotional SMS copy. |
-| 174 | `/localizecopy` | Adapt approved copy for another market or language context. |
-| 175 | `/copyaudit` | Review copy for clarity, credibility, compliance, and conversion. |
+| 155 | `/valueprop` | Write a clear value proposition for one audience. |
+| 156 | `/headlinebank` | Generate 30 campaign headlines across multiple angles. |
+| 157 | `/taglinebank` | Create concise, memorable tagline options. |
+| 158 | `/benefitcopy` | Translate technical features into customer benefits. |
+| 159 | `/featurecopy` | Write accurate feature descriptions from supplied facts. |
+| 160 | `/productdescription` | Create persuasive ecommerce product copy. |
+| 161 | `/adcopy` | Write primary text, headline, description, and CTA for Meta ads. |
+| 162 | `/shortadcopy` | Generate short mobile-first ad copy variants. |
+| 163 | `/longadcopy` | Write a longer story-led direct-response ad. |
+| 164 | `/captionbank` | Generate 30 social captions in the brand voice. |
+| 165 | `/ctabank` | Create varied calls to action for different funnel stages. |
+| 166 | `/hookrewrite` | Rewrite a weak opening into 15 stronger hooks. |
+| 167 | `/painpoints` | Map customer frustrations into responsible messaging angles. |
+| 168 | `/desires` | Map the audience's desired outcomes into creative angles. |
+| 169 | `/objectioncopy` | Write copy that handles price, trust, effort, and timing objections. |
+| 170 | `/urgencycopy` | Add ethical urgency without false scarcity. |
+| 171 | `/socialproofcopy` | Turn genuine proof into concise conversion copy. |
+| 172 | `/landinghero` | Write the hero section for a campaign landing page. |
+| 173 | `/landingpage` | Draft a full conversion-oriented landing-page structure. |
+| 174 | `/emaillaunch` | Write a short product-launch email sequence. |
+| 175 | `/cartrecovery` | Create abandoned-cart email and message copy. |
+| 176 | `/whatsappoffer` | Write a concise WhatsApp promotional message. |
+| 177 | `/smscopy` | Create compliant short promotional SMS copy. |
+| 178 | `/localizecopy` | Adapt approved copy for another market or language context. |
+| 179 | `/copyaudit` | Review copy for clarity, credibility, compliance, and conversion. |
 
 ## 8. Client Pitching & Sales
 
 | No. | Shortcut | What it creates |
 |---|---|---|
-| 176 | `/clientaudit` | Audit a prospect's visible content and identify improvement opportunities. |
-| 177 | `/creativeaudit` | Evaluate a brand's ad creatives using a structured scorecard. |
-| 178 | `/competitoraudit` | Compare a prospect's creative presence with named competitors. |
-| 179 | `/pitchangle` | Find the strongest UGC service angle for a specific prospect. |
-| 180 | `/pitchdeck` | Outline a concise UGC proposal deck. |
-| 181 | `/onepager` | Create a one-page overview of your UGC service. |
-| 182 | `/servicepackages` | Build three clear service tiers with deliverables. |
-| 183 | `/pricingmenu` | Create a transparent rate card with add-ons. |
-| 184 | `/customproposal` | Draft a tailored proposal from a client brief. |
-| 185 | `/coldemail` | Write a short personalized outreach email. |
-| 186 | `/coldDM` | Write a natural Instagram or LinkedIn prospecting message. |
-| 187 | `/followup` | Generate a respectful multi-touch follow-up sequence. |
-| 188 | `/loomscript` | Write a 60–90 second personalized audit video script. |
-| 189 | `/discoverycall` | Create discovery questions for a UGC client call. |
-| 190 | `/needsanalysis` | Turn discovery notes into client needs and priorities. |
-| 191 | `/scopeofwork` | Draft a clear UGC scope of work with revisions and usage rights. |
-| 192 | `/deliverables` | Convert an idea into an exact deliverables checklist. |
-| 193 | `/timeline` | Build a practical production timeline with client dependencies. |
-| 194 | `/onboarding` | Create a client onboarding checklist and asset request. |
-| 195 | `/creativebrief` | Turn call notes into a production-ready creative brief. |
-| 196 | `/caseStudy` | Convert real project results into a credible case study. |
-| 197 | `/reporttemplate` | Create a monthly creative performance report structure. |
-| 198 | `/upsellclient` | Suggest relevant add-ons based on current client work. |
-| 199 | `/renewalpitch` | Prepare a retention or monthly-renewal pitch. |
-| 200 | `/referralask` | Write a polite referral request after successful delivery. |
+| 180 | `/clientaudit` | Audit a prospect's visible content and identify improvement opportunities. |
+| 181 | `/creativeaudit` | Evaluate a brand's ad creatives using a structured scorecard. |
+| 182 | `/competitoraudit` | Compare a prospect's creative presence with named competitors. |
+| 183 | `/pitchangle` | Find the strongest UGC service angle for a specific prospect. |
+| 184 | `/pitchdeck` | Outline a concise UGC proposal deck. |
+| 185 | `/onepager` | Create a one-page overview of your UGC service. |
+| 186 | `/servicepackages` | Build three clear service tiers with deliverables. |
+| 187 | `/pricingmenu` | Create a transparent rate card with add-ons. |
+| 188 | `/customproposal` | Draft a tailored proposal from a client brief. |
+| 189 | `/coldemail` | Write a short personalized outreach email. |
+| 190 | `/coldDM` | Write a natural Instagram or LinkedIn prospecting message. |
+| 191 | `/followup` | Generate a respectful multi-touch follow-up sequence. |
+| 192 | `/loomscript` | Write a 60–90 second personalized audit video script. |
+| 193 | `/discoverycall` | Create discovery questions for a UGC client call. |
+| 194 | `/needsanalysis` | Turn discovery notes into client needs and priorities. |
+| 195 | `/scopeofwork` | Draft a clear UGC scope of work with revisions and usage rights. |
+| 196 | `/deliverables` | Convert an idea into an exact deliverables checklist. |
+| 197 | `/timeline` | Build a practical production timeline with client dependencies. |
+| 198 | `/onboarding` | Create a client onboarding checklist and asset request. |
+| 199 | `/creativebrief` | Turn call notes into a production-ready creative brief. |
+| 200 | `/caseStudy` | Convert real project results into a credible case study. |
+| 201 | `/reporttemplate` | Create a monthly creative performance report structure. |
+| 202 | `/upsellclient` | Suggest relevant add-ons based on current client work. |
+| 203 | `/renewalpitch` | Prepare a retention or monthly-renewal pitch. |
+| 204 | `/referralask` | Write a polite referral request after successful delivery. |
 
 ## 9. Strategy, Research & Campaign Planning
 
 | No. | Shortcut | What it creates |
 |---|---|---|
-| 201 | `/brandanalysis` | Analyze brand positioning, audience, promise, and proof. |
-| 202 | `/audiencepersona` | Create evidence-based customer personas from supplied research. |
-| 203 | `/customerjourney` | Map awareness-to-purchase content needs. |
-| 204 | `/competitormap` | Compare competitors by positioning and creative style. |
-| 205 | `/contentgaps` | Identify useful content topics the brand is missing. |
-| 206 | `/reviewmine` | Extract recurring themes from supplied customer reviews. |
-| 207 | `/commentmine` | Analyze supplied social comments for questions and objections. |
-| 208 | `/anglebank` | Generate 30 campaign angles organized by awareness stage. |
-| 209 | `/campaignconcept` | Develop one integrated campaign idea across formats. |
-| 210 | `/campaignplan` | Create a channel-by-channel campaign execution plan. |
-| 211 | `/contentpillars` | Define repeatable social content pillars for the brand. |
-| 212 | `/monthlycalendar` | Build a 30-day content calendar from approved pillars. |
-| 213 | `/funnelplan` | Map creative assets to top, middle, and bottom of funnel. |
-| 214 | `/awarenessads` | Plan creatives for audiences unfamiliar with the problem. |
-| 215 | `/considerationads` | Plan proof and education creatives for evaluating buyers. |
-| 216 | `/conversionads` | Plan offer and objection creatives for ready-to-buy audiences. |
-| 217 | `/retentioncontent` | Plan post-purchase education and loyalty content. |
-| 218 | `/launchstrategy` | Create a phased pre-launch, launch, and post-launch plan. |
-| 219 | `/seasonalplan` | Build a campaign around a relevant seasonal moment. |
-| 220 | `/trendadapt` | Adapt a current trend to the brand without copying creators. |
-| 221 | `/testmatrix` | Create a structured hook × angle × format testing matrix. |
-| 222 | `/kpiFramework` | Choose appropriate metrics for each creative objective. |
-| 223 | `/briefgenerator` | Generate multiple creative briefs from one campaign strategy. |
-| 224 | `/riskcheck` | Flag unsupported claims, sensitive themes, and brand-safety risks. |
-| 225 | `/postmortem` | Analyze campaign results and recommend the next tests. |
+| 205 | `/brandanalysis` | Analyze brand positioning, audience, promise, and proof. |
+| 206 | `/audiencepersona` | Create evidence-based customer personas from supplied research. |
+| 207 | `/customerjourney` | Map awareness-to-purchase content needs. |
+| 208 | `/competitormap` | Compare competitors by positioning and creative style. |
+| 209 | `/contentgaps` | Identify useful content topics the brand is missing. |
+| 210 | `/reviewmine` | Extract recurring themes from supplied customer reviews. |
+| 211 | `/commentmine` | Analyze supplied social comments for questions and objections. |
+| 212 | `/anglebank` | Generate 30 campaign angles organized by awareness stage. |
+| 213 | `/campaignconcept` | Develop one integrated campaign idea across formats. |
+| 214 | `/campaignplan` | Create a channel-by-channel campaign execution plan. |
+| 215 | `/contentpillars` | Define repeatable social content pillars for the brand. |
+| 216 | `/monthlycalendar` | Build a 30-day content calendar from approved pillars. |
+| 217 | `/funnelplan` | Map creative assets to top, middle, and bottom of funnel. |
+| 218 | `/awarenessads` | Plan creatives for audiences unfamiliar with the problem. |
+| 219 | `/considerationads` | Plan proof and education creatives for evaluating buyers. |
+| 220 | `/conversionads` | Plan offer and objection creatives for ready-to-buy audiences. |
+| 221 | `/retentioncontent` | Plan post-purchase education and loyalty content. |
+| 222 | `/launchstrategy` | Create a phased pre-launch, launch, and post-launch plan. |
+| 223 | `/seasonalplan` | Build a campaign around a relevant seasonal moment. |
+| 224 | `/trendadapt` | Adapt a current trend to the brand without copying creators. |
+| 225 | `/testmatrix` | Create a structured hook × angle × format testing matrix. |
+| 226 | `/kpiFramework` | Choose appropriate metrics for each creative objective. |
+| 227 | `/briefgenerator` | Generate multiple creative briefs from one campaign strategy. |
+| 228 | `/riskcheck` | Flag unsupported claims, sensitive themes, and brand-safety risks. |
+| 229 | `/postmortem` | Analyze campaign results and recommend the next tests. |
 
 ## 10. Content Production & Repurposing
 
 | No. | Shortcut | What it creates |
 |---|---|---|
-| 226 | `/productextract` | Isolate the product from its background for reuse. |
-| 227 | `/backgroundswap` | Replace the setting while preserving product identity. |
-| 228 | `/cleanup` | Remove distracting objects and improve composition. |
-| 229 | `/extendframe` | Expand an image for a different aspect ratio. |
-| 230 | `/relight` | Change scene lighting while keeping the product unchanged. |
-| 231 | `/recolour` | Create a specified colour variant while protecting logos and text. |
-| 232 | `/seasonalize` | Adapt an approved asset to a seasonal theme. |
-| 233 | `/localizevisual` | Adapt visual context for another region or audience. |
-| 234 | `/captionimage` | Add concise campaign copy with safe visual spacing. |
-| 235 | `/removeText` | Create a clean text-free version of an approved visual. |
-| 236 | `/resizepack` | Prepare aspect-ratio variants for major social placements. |
-| 237 | `/carouselize` | Turn one long idea into a swipeable carousel structure. |
-| 238 | `/reelize` | Convert a static concept into a short-form video plan. |
-| 239 | `/staticize` | Turn a video script into a set of static ad concepts. |
-| 240 | `/clipplan` | Break a long video into high-value short clips. |
-| 241 | `/brollplan` | Generate a practical B-roll checklist for production. |
-| 242 | `/editmap` | Create an editing map with cuts, overlays, captions, and music cues. |
-| 243 | `/subtitlecopy` | Create concise on-screen captions from a script. |
-| 244 | `/thumbnail` | Design a high-clarity short-form video thumbnail concept. |
-| 245 | `/coverframe` | Create a consistent Reel/TikTok cover system. |
-| 246 | `/contentbatch` | Plan a one-day shoot that produces a month of assets. |
-| 247 | `/assettracker` | Create a naming and tracking system for creative deliverables. |
-| 248 | `/qaChecklist` | Build a pre-delivery creative quality checklist. |
-| 249 | `/revisionplan` | Turn client feedback into a precise revision checklist. |
-| 250 | `/portfolioselect` | Choose and organize strongest approved work for a portfolio. |
+| 230 | `/productextract` | Isolate the product from its background for reuse. |
+| 231 | `/backgroundswap` | Replace the setting while preserving product identity. |
+| 232 | `/cleanup` | Remove distracting objects and improve composition. |
+| 233 | `/extendframe` | Expand an image for a different aspect ratio. |
+| 234 | `/relight` | Change scene lighting while keeping the product unchanged. |
+| 235 | `/recolour` | Create a specified colour variant while protecting logos and text. |
+| 236 | `/seasonalize` | Adapt an approved asset to a seasonal theme. |
+| 237 | `/localizevisual` | Adapt visual context for another region or audience. |
+| 238 | `/captionimage` | Add concise campaign copy with safe visual spacing. |
+| 239 | `/removeText` | Create a clean text-free version of an approved visual. |
+| 240 | `/resizepack` | Prepare aspect-ratio variants for major social placements. |
+| 241 | `/carouselize` | Turn one long idea into a swipeable carousel structure. |
+| 242 | `/reelize` | Convert a static concept into a short-form video plan. |
+| 243 | `/staticize` | Turn a video script into a set of static ad concepts. |
+| 244 | `/clipplan` | Break a long video into high-value short clips. |
+| 245 | `/brollplan` | Generate a practical B-roll checklist for production. |
+| 246 | `/editmap` | Create an editing map with cuts, overlays, captions, and music cues. |
+| 247 | `/subtitlecopy` | Create concise on-screen captions from a script. |
+| 248 | `/thumbnail` | Design a high-clarity short-form video thumbnail concept. |
+| 249 | `/coverframe` | Create a consistent Reel/TikTok cover system. |
+| 250 | `/contentbatch` | Plan a one-day shoot that produces a month of assets. |
+| 251 | `/assettracker` | Create a naming and tracking system for creative deliverables. |
+| 252 | `/qaChecklist` | Build a pre-delivery creative quality checklist. |
+| 253 | `/revisionplan` | Turn client feedback into a precise revision checklist. |
+| 254 | `/portfolioselect` | Choose and organize strongest approved work for a portfolio. |
 
 ## Get the full PDF
 
-We've packaged all 250 shortcuts into one free, print-friendly PDF — organized by category, ready to paste into a ChatGPT Project alongside your brand guide.
+We've packaged all 250+ shortcuts into one free, print-friendly PDF — organized by category, ready to paste into a ChatGPT Project alongside your brand guide.
 
-**[Download the 250 AI Creative Shortcuts PDF](/downloads/250-ai-creative-shortcuts-thetechwolves.pdf)**
+**[Download the 250+ AI Creative Shortcuts PDF](/downloads/250-ai-creative-shortcuts-thetechwolves.pdf)**
 
 ## Frequently Asked Questions
 
