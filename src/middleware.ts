@@ -1,49 +1,29 @@
-import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { STUDIO_COOKIE, expectedSessionToken } from "@/lib/studio/auth";
 
 /**
- * Refreshes the Supabase auth session cookie on every request to
- * /studio/*, and bounces unauthenticated visitors to the login page.
- * Everything outside /studio (the marketing site, /preview, /company)
- * is untouched.
+ * Gates /studio/* behind a single shared password. Everything outside
+ * /studio (the marketing site, /business, /company) is untouched.
  */
 export async function middleware(request: NextRequest) {
   if (!request.nextUrl.pathname.startsWith("/studio")) {
     return NextResponse.next();
   }
 
-  let response = NextResponse.next({ request });
+  if (request.nextUrl.pathname === "/studio/login") {
+    return NextResponse.next();
+  }
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options),
-          );
-        },
-      },
-    },
-  );
+  const token = request.cookies.get(STUDIO_COOKIE)?.value;
+  const expected = await expectedSessionToken();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user && request.nextUrl.pathname !== "/studio/login") {
+  if (!token || token !== expected) {
     const url = request.nextUrl.clone();
     url.pathname = "/studio/login";
     return NextResponse.redirect(url);
   }
 
-  return response;
+  return NextResponse.next();
 }
 
 export const config = {

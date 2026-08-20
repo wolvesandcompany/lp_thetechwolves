@@ -37,7 +37,7 @@ import {
   initialsFromName,
   parseHeadline,
   type DoctorBusinessProfile,
-} from "@/lib/wizard/doctor-profile-schema";
+} from "./doctor-profile-schema";
 import "./theme.css";
 
 const NAV = ["Treatments", "Her Story", "Testimonials", "Book"];

@@ -29,6 +29,10 @@ services:
     restart: unless-stopped
     env_file:
       - .env.production
+    environment:
+      - BUSINESS_DATA_DIR=/app/data/business
+    volumes:
+      - "./uploads:/app/data/business"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.landing.rule=Host(`thetechwolves.com`) || Host(`www.thetechwolves.com`)"
