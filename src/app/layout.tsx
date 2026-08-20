@@ -63,7 +63,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" prefix="og: http://ogp.me/ns#">
       <head>
-        <link rel="canonical" href="https://thetechwolves.com/" />
         <link rel="alternate" type="text/plain" title="llms.txt (AI summary)" href="/llms.txt" />
         <link rel="alternate" type="text/plain" title="llms-full.txt (AI full content)" href="/llms-full.txt" />
         <link rel="alternate" type="application/rss+xml" title="The Tech Wolves Blog RSS" href="/rss.xml" />
