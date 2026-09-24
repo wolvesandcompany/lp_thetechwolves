@@ -1,0 +1,87 @@
+/* Flowdesk SaaS template — scoped dark glassmorphism theme tokens.
+   Scoped under .tpl-saas so it never leaks into the main site.
+   Premium developer/SaaS aesthetic: indigo + violet + emerald on near-black. */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap");
+
+.tpl-saas {
+  --tpl-bg: #0b0f17;
+  --tpl-surface: #151a24;
+  --tpl-fg: #f1f5f9;
+  --tpl-fg-muted: #94a3b8;
+  --tpl-primary: #6366f1;
+  --tpl-secondary: #8b5cf6;
+  --tpl-accent: #22c55e;
+  --tpl-border: rgba(148, 163, 184, 0.15);
+
+  background-color: var(--tpl-bg);
+  color: var(--tpl-fg);
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Headings use Space Grotesk */
+.tpl-saas h1,
+.tpl-saas h2,
+.tpl-saas h3,
+.tpl-saas .tpl-display {
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Ambient glow blobs used behind sections */
+.tpl-saas .tpl-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Fine grid backdrop for the dashboard preview */
+.tpl-saas .tpl-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Animated growth for the SVG line/bar chart draw-in */
+@keyframes tpl-draw {
+  from {
+    stroke-dashoffset: var(--tpl-dash, 1000);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes tpl-bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.tpl-saas .tpl-live-dot {
+  animation: tpl-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes tpl-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl-saas * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

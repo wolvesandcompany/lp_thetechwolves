@@ -23,7 +23,9 @@ import Service from "../components/Service";
 import TechStack from "../components/tech-stack";
 import Pricing from "../components/pricing";
 import ExploreTemplates from "../components/templates";
+import { FAQ, FAQ_ITEMS } from "../components/faq";
 import { StructuredData } from "../components/StructuredData";
+import { track } from "../lib/analytics";
 import {
   generateOrganizationSchema,
   generateWebsiteSchema,
@@ -47,11 +49,8 @@ export default function HomePage() {
     { name: "Digital Transformation Consulting", description: "Strategic guidance to modernize your business operations and accelerate growth.", url: "#service" },
     { name: "Business Process Optimization", description: "Streamline workflows and eliminate inefficiencies with data-driven process improvements.", url: "#service" },
   ];
-  const faqs = [
-    { question: "How quickly can we see results from AI automation?", answer: "Most clients see initial results within 2-4 weeks of implementation, with full optimization achieved in 8-12 weeks." },
-    { question: "What types of businesses benefit most from our solutions?", answer: "SMEs and startups in healthcare, finance, manufacturing, and e-commerce see the highest ROI from our AI automation services." },
-    { question: "Do you provide ongoing support after implementation?", answer: "Yes, we offer 24/7 technical support, regular system updates, and performance optimization as part of our service packages." },
-  ];
+  // Visible FAQ section and the FAQPage schema share one source (FAQ_ITEMS).
+  const faqs = FAQ_ITEMS;
   const howToSteps = [
     { name: "Book a Discovery Call", text: "Schedule a free 30-minute consultation to discuss your business needs and automation opportunities." },
     { name: "Receive Custom Strategy", text: "Get a detailed implementation plan with timeline, costs, and expected ROI within 48 hours." },
@@ -68,6 +67,7 @@ export default function HomePage() {
   ];
 
   const handleMobileClick = () => {
+    track.bookCall("mobile_nav");
     setIsMobileMenuOpen(false);
     setIsOpen(true);
   };
@@ -87,7 +87,10 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                track.bookCall("navbar");
+                setIsOpen(true);
+              }}
               className="tw-focus inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-medium text-[#050505] transition-shadow duration-300 hover:shadow-[0_0_30px_-8px_rgba(52,211,153,0.6)]"
             >
               Book a call
@@ -139,6 +142,7 @@ export default function HomePage() {
       <Industries />
       <TechStack />
       <Pricing />
+      <FAQ />
       <Review />
       <ContactUs />
       <Footer />

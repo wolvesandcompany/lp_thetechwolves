@@ -1,0 +1,53 @@
+/* Doctor Profile template — scoped light theme tokens.
+   Scoped under .tpl-doctor-profile so it never leaks into the main site.
+   Warm, personal, premium: cream + deep sage + antique-gold accent.
+   Deliberately distinct from the clinic template's blue-teal institutional
+   palette — this reads as ONE trusted physician's private practice. */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap");
+
+.tpl-doctor-profile {
+  --tpl-bg: #FAF7F1;
+  --tpl-surface: #FFFFFF;
+  --tpl-fg: #2B2621;
+  --tpl-fg-muted: #7C7266;
+  --tpl-primary: #45604F;
+  --tpl-secondary: #7C9885;
+  --tpl-accent: #BE8A3D;
+  --tpl-border: rgba(43, 38, 33, 0.12);
+
+  background-color: var(--tpl-bg);
+  color: var(--tpl-fg);
+  font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Warm editorial serif for headings — feels personal, not institutional. */
+.tpl-doctor-profile h1,
+.tpl-doctor-profile h2,
+.tpl-doctor-profile h3,
+.tpl-doctor-profile .tpl-heading {
+  font-family: Fraunces, ui-serif, Georgia, serif;
+}
+
+/* Soft ambient glow blobs used behind sections. */
+.tpl-doctor-profile .tpl-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+/* Thin gold rule accent, used near the doctor's signature/quote. */
+.tpl-doctor-profile .tpl-rule {
+  height: 2px;
+  width: 3rem;
+  background: var(--tpl-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl-doctor-profile * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

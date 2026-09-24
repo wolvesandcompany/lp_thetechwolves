@@ -1,0 +1,423 @@
+/*
+ * Live design-system engine.
+ *
+ * Selecting a design sets `data-design="<id>"` on <html>. Each design defines a
+ * full token set (fonts, accent, canvas, radii, CTA, display fill, surface
+ * treatment); generic rules below map those tokens onto the classes the site
+ * actually uses (emerald accents, `bg-[#050505]` canvases, rounded pills,
+ * `.tw-glass` surfaces, white CTAs, `.tw-display-gradient` headline). The result
+ * is a whole-site taste change — typography + color + shape + surfaces — not a
+ * surface re-skin. Default (no attribute) is untouched; templates are exempt
+ * (attribute removed on their routes; they use none of these classes).
+ *
+ * Fonts + surface specs grounded in the ui-ux-pro-max style/typography database.
+ *
+ * NOTE: the design fonts are NOT imported here — that would make every visitor
+ * (including the default theme, which uses none of them) parse a 14-family
+ * @import. Instead DesignSystemProvider injects the font stylesheet on demand,
+ * only when a non-default design is selected. Default visitors pay nothing.
+ */
+
+/* Accent source of truth. Default = Tech Wolves emerald; each design overrides
+   both below. Components (cursor, card spotlight, form fields, map, beams,
+   globe) read these instead of hardcoding green, so they follow the theme.
+   --ds-accent-rgb is space-separated so it composes: rgb(var(--ds-accent-rgb) / a) */
+:root {
+  --ds-accent: #34d399;
+  --ds-accent-rgb: 52 211 153;
+}
+
+/* ============================================================= *
+ * GENERIC TOKEN APPLICATION (runs whenever any design is active) *
+ * ============================================================= */
+
+.tw-glass {
+  transition:
+    background 0.45s ease,
+    border-color 0.45s ease,
+    border-radius 0.45s ease,
+    box-shadow 0.45s ease,
+    backdrop-filter 0.45s ease,
+    -webkit-backdrop-filter 0.45s ease;
+}
+
+/* Typography */
+html[data-design] body {
+  font-family: var(--ds-font-body) !important;
+  background-color: var(--ds-bg) !important;
+}
+html[data-design] h1,
+html[data-design] h2,
+html[data-design] h3,
+html[data-design] h4,
+html[data-design] h5,
+html[data-design] h6,
+html[data-design] .tw-display-gradient,
+html[data-design] .tw-shimmer {
+  font-family: var(--ds-font-display) !important;
+  font-weight: var(--ds-heading-weight) !important;
+  letter-spacing: var(--ds-heading-tracking) !important;
+  text-transform: var(--ds-heading-transform) !important;
+}
+
+/* Canvas / section backgrounds (site uses hardcoded #050505) */
+html[data-design] .bg-\[\#050505\] {
+  background-color: var(--ds-bg) !important;
+}
+html[data-design] .bg-\[\#0b0b0e\] {
+  background-color: var(--ds-surface) !important;
+}
+
+/* Accent remap — every emerald highlight becomes the design's accent */
+html[data-design] [class*="text-emerald"] {
+  color: var(--ds-accent) !important;
+}
+html[data-design] [class*="border-emerald"] {
+  border-color: var(--ds-accent) !important;
+}
+html[data-design] [class*="ring-emerald"] {
+  --tw-ring-color: var(--ds-accent) !important;
+}
+html[data-design] .bg-emerald-400,
+html[data-design] .bg-emerald-500 {
+  background-color: var(--ds-accent) !important;
+  color: var(--ds-accent-contrast) !important;
+}
+
+/* Display headline fill */
+html[data-design] .tw-display-gradient {
+  background-image: var(--ds-display-fill) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Shimmer headline line — remap its sweep to white + design accent (kills the
+   default emerald-green tint that would otherwise leak through) */
+html[data-design] .tw-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    #ffffff 20%,
+    var(--ds-accent) 50%,
+    #ffffff 80%,
+    rgba(255, 255, 255, 0.55) 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Pills / badges / rounded buttons take the design's pill radius */
+html[data-design] .rounded-full {
+  border-radius: var(--ds-radius-pill) !important;
+}
+
+/* Primary white CTA buttons + their green hover glow */
+html[data-design] a.bg-white,
+html[data-design] button.bg-white {
+  background: var(--ds-cta-bg) !important;
+  color: var(--ds-cta-fg) !important;
+}
+html[data-design] a.bg-white:hover,
+html[data-design] button.bg-white:hover {
+  box-shadow: 0 0 40px -8px rgb(var(--ds-accent-rgb) / 0.5) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-glass {
+    transition: none;
+  }
+}
+
+/* ============================================================= *
+ * PER-DESIGN TOKENS + SURFACE TREATMENT                          *
+ * ============================================================= */
+
+/* ---- Neomorphism — soft, extruded, dual shadows ---- */
+html[data-design="neomorphism"] {
+  --ds-font-display: "Varela Round", sans-serif;
+  --ds-font-body: "Nunito Sans", sans-serif;
+  --ds-heading-weight: 700;
+  --ds-heading-tracking: -0.01em;
+  --ds-heading-transform: none;
+  --ds-accent: #818cf8;
+  --ds-accent-rgb: 129 140 248;
+  --ds-accent-contrast: #0b0b14;
+  --ds-bg: #0e0e14;
+  --ds-surface: #14141c;
+  --ds-radius-pill: 14px;
+  --ds-cta-bg: #818cf8;
+  --ds-cta-fg: #0b0b14;
+  --ds-display-fill: linear-gradient(135deg, #a5b4fc, #818cf8);
+}
+html[data-design="neomorphism"] .tw-glass {
+  background: #101018 !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    6px 6px 16px rgba(0, 0, 0, 0.6),
+    -6px -6px 16px rgba(255, 255, 255, 0.035) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ---- Glassmorphism — frosted translucent glass ---- */
+html[data-design="glassmorphism"] {
+  --ds-font-display: "Figtree", sans-serif;
+  --ds-font-body: "Noto Sans", sans-serif;
+  --ds-heading-weight: 700;
+  --ds-heading-tracking: -0.02em;
+  --ds-heading-transform: none;
+  --ds-accent: #38bdf8;
+  --ds-accent-rgb: 56 189 248;
+  --ds-accent-contrast: #04121a;
+  --ds-bg: #0a1018;
+  --ds-surface: #0f1620;
+  --ds-radius-pill: 9999px;
+  --ds-cta-bg: #38bdf8;
+  --ds-cta-fg: #04121a;
+  --ds-display-fill: linear-gradient(135deg, #7dd3fc, #38bdf8);
+}
+html[data-design="glassmorphism"] .tw-glass {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+}
+
+/* ---- Claymorphism — puffy clay, inset highlights, playful ---- */
+html[data-design="claymorphism"] {
+  --ds-font-display: "Baloo 2", sans-serif;
+  --ds-font-body: "Nunito Sans", sans-serif;
+  --ds-heading-weight: 800;
+  --ds-heading-tracking: 0em;
+  --ds-heading-transform: none;
+  --ds-accent: #a78bfa;
+  --ds-accent-rgb: 167 139 250;
+  --ds-accent-contrast: #1b1030;
+  --ds-bg: #150f24;
+  --ds-surface: #1b1533;
+  --ds-radius-pill: 9999px;
+  --ds-cta-bg: #a78bfa;
+  --ds-cta-fg: #1b1030;
+  --ds-display-fill: linear-gradient(135deg, #c4b5fd, #a78bfa 55%, #f0abfc);
+}
+html[data-design="claymorphism"] .tw-glass {
+  background: #1b1533 !important;
+  border: none !important;
+  border-radius: 28px !important;
+  box-shadow:
+    inset 0 -8px 14px rgba(0, 0, 0, 0.45),
+    inset 0 8px 14px rgba(167, 139, 250, 0.16),
+    0 16px 30px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ---- Minimalism — stark monochrome, oversized display, sharp ---- */
+html[data-design="minimalism"] {
+  --ds-font-display: "Bebas Neue", sans-serif;
+  --ds-font-body: "Source Sans 3", sans-serif;
+  --ds-heading-weight: 400;
+  --ds-heading-tracking: 0.02em;
+  --ds-heading-transform: none;
+  --ds-accent: #fafafa;
+  --ds-accent-rgb: 250 250 250;
+  --ds-accent-contrast: #000000;
+  --ds-bg: #000000;
+  --ds-surface: #0a0a0a;
+  --ds-radius-pill: 2px;
+  --ds-cta-bg: #fafafa;
+  --ds-cta-fg: #000000;
+  --ds-display-fill: linear-gradient(#fafafa, #fafafa);
+}
+html[data-design="minimalism"] .tw-glass {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+html[data-design="minimalism"] h1,
+html[data-design="minimalism"] h2 {
+  line-height: 0.95 !important;
+}
+
+/* ---- Maximalism — loud clashing gradients, uppercase display ---- */
+html[data-design="maximalism"] {
+  --ds-font-display: "Anton", sans-serif;
+  --ds-font-body: "Epilogue", sans-serif;
+  --ds-heading-weight: 400;
+  --ds-heading-tracking: 0.01em;
+  --ds-heading-transform: uppercase;
+  --ds-accent: #ff2ec4;
+  --ds-accent-rgb: 255 46 196;
+  --ds-accent-contrast: #10001a;
+  --ds-bg: #0c0316;
+  --ds-surface: #160326;
+  --ds-radius-pill: 9999px;
+  --ds-cta-bg: #ff2ec4;
+  --ds-cta-fg: #10001a;
+  --ds-display-fill: linear-gradient(90deg, #ff2ec4, #8b5cf6 40%, #22d3ee 70%, #facc15);
+}
+html[data-design="maximalism"] .tw-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.16),
+    rgba(139, 92, 246, 0.16) 55%,
+    rgba(34, 211, 238, 0.16)
+  ) !important;
+  border: 2px solid rgba(236, 72, 153, 0.55) !important;
+  border-radius: 18px !important;
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.22),
+    0 10px 40px rgba(236, 72, 153, 0.3) !important;
+  backdrop-filter: blur(6px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(6px) saturate(170%) !important;
+}
+
+/* ---- Brutalism — raw mono, 0px radius, hard acid-yellow shadow ---- */
+html[data-design="brutalism"] {
+  --ds-font-display: "Space Mono", monospace;
+  --ds-font-body: "Space Mono", monospace;
+  --ds-heading-weight: 700;
+  --ds-heading-tracking: -0.01em;
+  --ds-heading-transform: uppercase;
+  --ds-accent: #dfe104;
+  --ds-accent-rgb: 223 225 4;
+  --ds-accent-contrast: #000000;
+  --ds-bg: #0a0a0a;
+  --ds-surface: #0f0f0f;
+  --ds-radius-pill: 0px;
+  --ds-cta-bg: #dfe104;
+  --ds-cta-fg: #000000;
+  --ds-display-fill: linear-gradient(#dfe104, #dfe104);
+}
+html[data-design="brutalism"] .tw-glass {
+  background: #0a0a0a !important;
+  border: 2px solid #f4f4f5 !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0 0 #dfe104 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+html[data-design="brutalism"] .tw-glass:hover {
+  box-shadow: 3px 3px 0 0 #dfe104 !important;
+}
+
+/* ---- Liquid Glass — deep glass, glossy highlight, iridescent ---- */
+html[data-design="liquid-glass"] {
+  --ds-font-display: "Montserrat", sans-serif;
+  --ds-font-body: "Montserrat", sans-serif;
+  --ds-heading-weight: 700;
+  --ds-heading-tracking: -0.02em;
+  --ds-heading-transform: none;
+  --ds-accent: #7dd3fc;
+  --ds-accent-rgb: 125 211 252;
+  --ds-accent-contrast: #04121a;
+  --ds-bg: #06080f;
+  --ds-surface: #0b0e18;
+  --ds-radius-pill: 9999px;
+  --ds-cta-bg: #7dd3fc;
+  --ds-cta-fg: #04121a;
+  --ds-display-fill: linear-gradient(120deg, #a5f3fc, #c4b5fd 50%, #f0abfc);
+}
+html[data-design="liquid-glass"] .tw-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.03)
+  ) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 22px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+}
+
+/* ---- Bento Grid — modular tiles, Apple-like, evenly rounded ---- */
+html[data-design="bento"] {
+  --ds-font-display: "Manrope", sans-serif;
+  --ds-font-body: "Manrope", sans-serif;
+  --ds-heading-weight: 800;
+  --ds-heading-tracking: -0.03em;
+  --ds-heading-transform: none;
+  --ds-accent: #0a84ff;
+  --ds-accent-rgb: 10 132 255;
+  --ds-accent-contrast: #ffffff;
+  --ds-bg: #0b0b0d;
+  --ds-surface: #131316;
+  --ds-radius-pill: 9999px;
+  --ds-cta-bg: #0a84ff;
+  --ds-cta-fg: #ffffff;
+  --ds-display-fill: linear-gradient(135deg, #60a5fa, #0a84ff);
+}
+html[data-design="bento"] .tw-glass {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 22px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 10px 30px rgba(0, 0, 0, 0.25) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* ---- Skeuomorphism — realistic serif, glossy gradient depth ---- */
+html[data-design="skeuomorphism"] {
+  --ds-font-display: "Cormorant Garamond", serif;
+  --ds-font-body: "Libre Baskerville", serif;
+  --ds-heading-weight: 700;
+  --ds-heading-tracking: 0em;
+  --ds-heading-transform: none;
+  --ds-accent: #e0a458;
+  --ds-accent-rgb: 224 164 88;
+  --ds-accent-contrast: #1a1206;
+  --ds-bg: #14110b;
+  --ds-surface: #1c1810;
+  --ds-radius-pill: 12px;
+  --ds-cta-bg: linear-gradient(180deg, #f0c079, #c8873a);
+  --ds-cta-fg: #1a1206;
+  --ds-display-fill: linear-gradient(180deg, #f0d9a8, #c8873a);
+}
+html[data-design="skeuomorphism"] .tw-glass {
+  background: linear-gradient(180deg, #26282e 0%, #191b20 55%, #101216 100%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.6) !important;
+  border-radius: 12px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6),
+    0 2px 3px rgba(0, 0, 0, 0.5),
+    0 10px 20px rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ============================================================= *
+ * KEEP THE SWITCHER CONTROL STABLE ACROSS DESIGNS               *
+ * (higher specificity than the generic remaps above)            *
+ * ============================================================= */
+html body [data-ds-control] .rounded-full {
+  border-radius: 9999px !important;
+}
+html body [data-ds-control] .rounded-2xl {
+  border-radius: 1rem !important;
+}
+html body [data-ds-control] .rounded-xl {
+  border-radius: 0.75rem !important;
+}
+html body [data-ds-control],
+html body [data-ds-control] * {
+  font-family:
+    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}

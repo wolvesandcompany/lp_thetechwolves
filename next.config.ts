@@ -5,16 +5,23 @@ import bundleAnalyzer from "@next/bundle-analyzer";
 const nextConfig = {
   reactStrictMode: true,
 
-  // ✅ Output configuration for static export
-  output: 'standalone', // Use 'export' for fully static sites, 'standalone' for server features
+  // ✅ Output configuration: 'standalone' is for the Docker/droplet deploy
+  // (self-hosted node server.js). Vercel packages the app itself and
+  // explicitly recommends against 'standalone' there, so skip it when
+  // building on Vercel (VERCEL=1 is set automatically in that environment).
+  ...(process.env.VERCEL ? {} : { output: 'standalone' as const }),
+
+  // Pin the file-tracing root to this project. Without this, Next.js walks
+  // up looking for a lockfile and can lock onto an unrelated one in a
+  // parent directory (varies per machine), which nests .next/standalone
+  // output under extra path segments and breaks `node server.js` in Docker.
+  outputFileTracingRoot: process.cwd(),
 
   // ✅ TypeScript & ESLint settings
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  
 
   // ✅ Image optimization
   images: {

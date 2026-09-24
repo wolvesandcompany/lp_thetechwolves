@@ -1,0 +1,49 @@
+services:
+  traefik:
+    image: traefik:v2.11
+    container_name: traefik
+    command:
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.le.acme.tlschallenge=true"
+      - "--certificatesresolvers.le.acme.email=ibrahim.jogilkar@thetechwolves.com"
+      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+    environment:
+      - DOCKER_API_VERSION=1.41
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    restart: unless-stopped
+
+  landing-page:
+    image: ghcr.io/wolvesandcompany/lp_thetechwolves:latest
+    container_name: techwolves-landing
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      - BUSINESS_DATA_DIR=/app/data/business
+    volumes:
+      - "./uploads:/app/data/business"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.landing.rule=Host(`thetechwolves.com`) || Host(`www.thetechwolves.com`)"
+      - "traefik.http.routers.landing.entrypoints=websecure"
+      - "traefik.http.routers.landing.tls.certresolver=le"
+      - "traefik.http.services.landing.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.www-redirect.redirectregex.regex=^https://www\\.thetechwolves\\.com(.*)"
+      - "traefik.http.middlewares.www-redirect.redirectregex.replacement=https://thetechwolves.com$${1}"
+      - "traefik.http.middlewares.www-redirect.redirectregex.permanent=true"
+      - "traefik.http.routers.landing.middlewares=www-redirect"
+
+networks:
+  default:
+    name: thetechwolves_default

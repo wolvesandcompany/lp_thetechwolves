@@ -2,53 +2,33 @@ import React from "react";
 import { Metadata } from "next";
 import { generateMetadata, generateBreadcrumbSchema } from "@/lib/seo";
 import { StructuredData } from "@/components/StructuredData";
-import Image from "next/image";
 import Link from "next/link";
-import business from "../../../public/business.webp";
-import eco from "../../../public/eco.webp";
-import healthtech from "../../../public/healthtech.webp";
-import dentist from "../../../public/dentist.webp";
-import dentist2 from "../../../public/dental2.webp";
-import consultant from "../../../public/consultant2.webp";
-import ecosol from "../../../public/ecosol.webp";
-import healthtech2 from "../../../public/healttech2.webp";
-import homeserv from "../../../public/homeserv.webp";
-import interior from "../../../public/interior.webp";
 import { ArrowUpRight } from "lucide-react";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { Footer } from "@/components/Footer";
+import { TemplatePreview } from "@/components/TemplatePreview";
+import { IN_HOUSE_TEMPLATES, templateHref } from "@/lib/templates-data";
 
 export const metadata: Metadata = generateMetadata({
   title: "Website Templates - Professional & Industry-Specific Designs",
   description:
-    "Explore our collection of premium website templates for healthcare, business consulting, e-commerce, and more. Ready-to-use designs optimized for conversion and SEO.",
+    "Explore our in-house collection of premium, hand-built website, SaaS, and automation templates — AI agency, e-commerce, restaurant, real estate, fitness, spa, law, and more. Live previews, conversion-tuned, fully customizable.",
   path: "/templates",
   keywords: [
     "website templates",
-    "business templates",
-    "healthcare website design",
-    "consulting templates",
-    "e-commerce templates",
-    "professional website designs",
-    "responsive templates",
-    "industry-specific templates",
+    "in-house templates",
+    "AI agency template",
+    "SaaS landing template",
+    "e-commerce template",
+    "restaurant website template",
+    "real estate template",
+    "fitness gym template",
+    "beauty spa template",
+    "law firm template",
     "conversion-optimized",
     "SEO-friendly templates",
   ],
 });
-
-const TEMPLATES = [
-  { name: "Business Consultant", url: "https://business-consultant-template.vercel.app/", image: business, description: "Professional template for business consultants, agencies, and freelancers.", keywords: ["Consulting", "Business", "Agency"] },
-  { name: "Dental Clinic", url: "https://dental-website-template.vercel.app/", image: dentist, description: "Clean, friendly template designed for dental clinics and healthcare professionals.", keywords: ["Dental", "Healthcare", "Clinic"] },
-  { name: "Eco Stride", url: "https://eco-stride-template.vercel.app/", image: eco, description: "Vibrant, eco-friendly template for sustainability startups and green businesses.", keywords: ["Eco", "Sustainability", "Green"] },
-  { name: "HealthTech", url: "https://healthtech-template.vercel.app/", image: healthtech, description: "Cutting-edge template for healthtech companies, SaaS, and digital health products.", keywords: ["HealthTech", "SaaS", "Medical"] },
-  { name: "Smile Care", url: "https://bright-smile-template.vercel.app/", image: dentist2, description: "Welcoming, modern template for dental and healthcare clinics.", keywords: ["Dental", "Healthcare", "Booking"] },
-  { name: "Greentech Solutions", url: "https://eco-tech-solutions-blush.vercel.app/", image: ecosol, description: "Clean, eco-focused template for green businesses and sustainability startups.", keywords: ["Eco", "Green", "Startup"] },
-  { name: "HealthTech Five", url: "https://medtech-portal.vercel.app/", image: healthtech2, description: "Modern template for healthtech companies and digital health products.", keywords: ["HealthTech", "SaaS", "Modern"] },
-  { name: "Elevate Consult", url: "https://consult-template.vercel.app/", image: consultant, description: "Professional template for consulting agencies and business advisors.", keywords: ["Consulting", "Business", "Agency"] },
-  { name: "Aura Interior", url: "https://aura-interior-nine.vercel.app/", image: interior, description: "Stylish template for interior design studios and creative agencies.", keywords: ["Interior", "Design", "Portfolio"] },
-  { name: "Home Services Eosin", url: "https://homehub-pro-template.vercel.app/", image: homeserv, description: "Conversion-focused template for home service businesses.", keywords: ["Home Services", "Booking", "Service"] },
-];
 
 export default function TemplatesShowcase() {
   const breadcrumbItems = [
@@ -63,17 +43,17 @@ export default function TemplatesShowcase() {
     url: "https://thetechwolves.com/templates",
     mainEntity: {
       "@type": "ItemList",
-      name: "Premium Website Templates",
-      itemListElement: TEMPLATES.slice(0, 6).map((t, idx) => ({
+      name: "In-house Website, SaaS & Automation Templates",
+      itemListElement: IN_HOUSE_TEMPLATES.map((t, idx) => ({
         "@type": "SoftwareApplication",
         position: idx + 1,
-        name: t.name,
-        description: t.description,
-        url: t.url,
+        name: `${t.brand} — ${t.niche}`,
+        description: t.blurb,
+        url: `https://thetechwolves.com${templateHref(t.slug)}`,
         applicationCategory: "WebApplication",
         operatingSystem: "All",
         creator: { "@type": "Organization", name: "The Tech Wolves" },
-        keywords: t.keywords.join(", "),
+        keywords: `${t.niche}, ${t.pillar}`,
       })),
     },
   };
@@ -98,54 +78,49 @@ export default function TemplatesShowcase() {
           <span className="tw-shimmer">foundations.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-[65ch] text-base leading-[1.6] text-white/70 md:text-lg">
-          Industry-specific website templates. Live previews. Conversion-tuned.
+          In-house templates across every service we ship — websites, SaaS
+          products, and automations. Live previews. Conversion-tuned.
           Mobile-responsive. Built to ship and customize.
         </p>
       </section>
 
       <section className="relative z-10 mx-auto max-w-6xl px-6 pb-32">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {TEMPLATES.map((t) => (
+          {IN_HOUSE_TEMPLATES.map((t) => (
             <a
-              key={t.name}
-              href={t.url}
+              key={t.slug}
+              href={templateHref(t.slug)}
               target="_blank"
               rel="noopener noreferrer"
               className="tw-focus tw-glass tw-light-leak group relative overflow-hidden rounded-2xl transition-transform duration-300 hover:-translate-y-[1px]"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={t.image}
-                  alt={`${t.name} preview`}
-                  fill
-                  sizes="(max-width:768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  placeholder="blur"
-                  loading="lazy"
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent"
-                />
+                <TemplatePreview t={t} />
+                <span className="absolute right-3 top-3 rounded-full bg-black/40 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300 backdrop-blur-md">
+                  {t.pillar}
+                </span>
               </div>
 
               <div className="p-6">
                 <div className="flex items-start justify-between gap-4">
-                  <h2 className="text-xl font-medium tracking-[-0.02em] text-white">
-                    {t.name}
-                  </h2>
+                  <div>
+                    <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/45">
+                      {t.brand}
+                    </p>
+                    <h2 className="mt-1 text-xl font-medium tracking-[-0.02em] text-white">
+                      {t.niche}
+                    </h2>
+                  </div>
                   <ArrowUpRight className="h-5 w-5 shrink-0 text-white/50 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-emerald-400" />
                 </div>
-                <p className="mt-2 text-sm leading-[1.6] text-white/65">{t.description}</p>
+                <p className="mt-2 text-sm leading-[1.6] text-white/65">{t.blurb}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {t.keywords.map((k) => (
-                    <span
-                      key={k}
-                      className="rounded-full bg-white/[0.04] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.15em] text-white/60"
-                    >
-                      {k}
-                    </span>
-                  ))}
+                  <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.15em] text-white/60">
+                    {t.pillar}
+                  </span>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-400/10 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.15em] text-emerald-300">
+                    Live preview
+                  </span>
                 </div>
               </div>
             </a>

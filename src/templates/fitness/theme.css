@@ -1,0 +1,51 @@
+/* Ironpeak — Fitness / Gym template scoped dark theme.
+   Scoped under .tpl-fitness so it never leaks into the main site.
+   Bold, energetic, high-contrast. Barlow Condensed headings + Barlow body. */
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap");
+
+.tpl-fitness {
+  --tpl-bg: #0a0a0a;
+  --tpl-surface: #141414;
+  --tpl-fg: #fafafa;
+  --tpl-fg-muted: #a3a3a3;
+  --tpl-primary: #f97316;
+  --tpl-secondary: #fb923c;
+  --tpl-accent: #22c55e;
+  --tpl-border: rgba(255, 255, 255, 0.1);
+
+  background-color: var(--tpl-bg);
+  color: var(--tpl-fg);
+  font-family: Barlow, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Condensed, punchy, uppercase headings. */
+.tpl-fitness .tpl-head {
+  font-family: "Barlow Condensed", "Barlow", ui-sans-serif, system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* Ambient glow blobs used behind sections. */
+.tpl-fitness .tpl-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Subtle diagonal energy grid for hero backdrop. */
+.tpl-fitness .tpl-grid {
+  background-image: linear-gradient(var(--tpl-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--tpl-border) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl-fitness * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -3,14 +3,34 @@ import emailjs from "@emailjs/browser";
 import React, { useRef, useState, ChangeEvent, FormEvent } from "react";
 import { toast } from "sonner";
 import { ArrowUpRight, Loader2 } from "lucide-react";
+import { track } from "@/lib/analytics";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { cn } from "../lib/utils";
 
-export default function ContactForm() {
+export type ContactFormState = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+};
+
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_ID = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_ID;
+const EMAILJS_CONFIGURED = Boolean(
+  EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_ID,
+);
+export const CONTACT_EMAIL = "hello@thetechwolves.com";
+
+export default function ContactForm({
+  onFormChange,
+}: {
+  onFormChange?: (form: ContactFormState) => void;
+}) {
   const formRef = useRef<HTMLFormElement>(null);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ContactFormState>({
     firstName: "",
     lastName: "",
     email: "",
@@ -21,7 +41,9 @@ export default function ContactForm() {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const nextForm = { ...form, [e.target.name]: e.target.value };
+    setForm(nextForm);
+    onFormChange?.(nextForm);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -32,17 +54,28 @@ export default function ContactForm() {
     }
     setLoading(true);
 
+    if (!EMAILJS_CONFIGURED) {
+      openEmailDraft(form);
+      setLoading(false);
+      track.contactSubmit();
+      toast.success("Email draft opened — send it from your mail app.");
+      return;
+    }
+
     emailjs
       .sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
+        EMAILJS_SERVICE_ID!,
+        EMAILJS_TEMPLATE_ID!,
         formRef.current!,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_ID as string,
+        EMAILJS_PUBLIC_ID!,
       )
       .then(
         () => {
           setLoading(false);
-          setForm({ firstName: "", lastName: "", email: "", message: "" });
+          const emptyForm = { firstName: "", lastName: "", email: "", message: "" };
+          setForm(emptyForm);
+          onFormChange?.(emptyForm);
+          track.contactSubmit();
           toast.success("Message sent — we'll be in touch shortly.");
         },
         (error) => {
@@ -122,7 +155,7 @@ export default function ContactForm() {
       >
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_50%_120%,rgba(52,211,153,0.5),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_50%_120%,rgb(var(--ds-accent-rgb)_/_0.5),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         />
         {loading ? (
           <>
@@ -148,4 +181,19 @@ function Field({
   className?: string;
 }) {
   return <div className={cn("flex w-full flex-col gap-2", className)}>{children}</div>;
+}
+
+function openEmailDraft(form: ContactFormState) {
+  const fullName = [form.firstName, form.lastName].filter(Boolean).join(" ");
+  const subject = `Website enquiry from ${fullName || form.email}`;
+  const body = [
+    `Name: ${fullName || form.firstName}`,
+    `Email: ${form.email}`,
+    "",
+    form.message,
+  ].join("\n");
+
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+    subject,
+  )}&body=${encodeURIComponent(body)}`;
 }
