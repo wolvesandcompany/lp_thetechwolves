@@ -13,10 +13,11 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "./resizable-navbar";
+import { track } from "@/lib/analytics";
 
 const NAV_ITEMS = [
-  { name: "Service", link: "/#service" },
-  { name: "Pricing", link: "/#pricing" },
+  { name: "Services", link: "/services" },
+  { name: "Industries", link: "/industries" },
   { name: "Templates", link: "/templates" },
   { name: "Case studies", link: "/case-study" },
   { name: "Team", link: "/team" },
@@ -41,7 +42,10 @@ export function SiteNavbar() {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={() => setCalendlyOpen(true)}
+              onClick={() => {
+                track.bookCall("site_navbar");
+                setCalendlyOpen(true);
+              }}
               className="tw-focus inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-medium text-[#050505] transition-shadow duration-300 hover:shadow-[0_0_30px_-8px_rgba(52,211,153,0.6)]"
             >
               Book a call
@@ -72,6 +76,7 @@ export function SiteNavbar() {
             <button
               type="button"
               onClick={() => {
+                track.bookCall("site_navbar_mobile");
                 setMobileOpen(false);
                 setCalendlyOpen(true);
               }}

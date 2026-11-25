@@ -50,7 +50,7 @@ export default function Service() {
     <section id="service" className="tw-noise relative w-full overflow-hidden bg-[#050505] py-32 md:py-40">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-[radial-gradient(ellipse_at_top,rgba(52,211,153,0.06),transparent_60%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-[radial-gradient(ellipse_at_top,rgb(var(--ds-accent-rgb)_/_0.06),transparent_60%)]"
       />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">

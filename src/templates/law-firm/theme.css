@@ -1,0 +1,48 @@
+/* Law Firm template — scoped light theme tokens.
+   Scoped under .tpl-law-firm so it never leaks into the main site.
+   Formal, authoritative, high-trust: navy + gold on warm off-white. */
+
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@400;700;900&display=swap");
+
+.tpl-law-firm {
+  --tpl-bg: #FBFAF7;
+  --tpl-surface: #FFFFFF;
+  --tpl-fg: #1A202C;
+  --tpl-fg-muted: #64748B;
+  --tpl-primary: #1E293B;
+  --tpl-secondary: #334155;
+  --tpl-accent: #B45309;
+  --tpl-border: rgba(30, 41, 59, 0.12);
+
+  background-color: var(--tpl-bg);
+  color: var(--tpl-fg);
+  font-family: Lato, ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Serif authority for headings. */
+.tpl-law-firm .tpl-serif {
+  font-family: "EB Garamond", ui-serif, Georgia, serif;
+}
+
+/* Subtle radial parchment glow used behind formal sections. */
+.tpl-law-firm .tpl-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Thin gold rule accent. */
+.tpl-law-firm .tpl-rule {
+  height: 2px;
+  width: 3rem;
+  background: var(--tpl-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl-law-firm * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

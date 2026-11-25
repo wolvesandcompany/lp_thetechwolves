@@ -13,7 +13,7 @@ export function SpotlightCard({
   children,
   className,
   as: Tag = "div",
-  spotlightColor = "rgba(52, 211, 153, 0.18)",
+  spotlightColor = "rgb(var(--ds-accent-rgb) / 0.18)",
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 

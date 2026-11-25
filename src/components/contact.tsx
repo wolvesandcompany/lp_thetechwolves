@@ -1,12 +1,26 @@
 "use client";
+import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import Globe from "./globe";
-import ContactForm from "./contact-form";
+import ContactForm, { ContactFormState } from "./contact-form";
+import { WhatsAppGlyph } from "./WhatsAppButton";
+import { whatsappLink } from "@/lib/whatsapp";
+import { track } from "@/lib/analytics";
 
 const ENTRANCE = { type: "spring" as const, stiffness: 120, damping: 20, mass: 0.8 };
 
 export function ContactUs() {
   const reduced = useReducedMotion();
+  const [formDraft, setFormDraft] = useState<ContactFormState>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+  const contactWhatsappLink = useMemo(
+    () => whatsappLink(contactFormToWhatsappMessage(formDraft)),
+    [formDraft],
+  );
 
   return (
     <section
@@ -52,7 +66,29 @@ export function ContactUs() {
             transition={{ ...ENTRANCE, delay: reduced ? 0 : 0.06 }}
             className="tw-glass tw-light-leak relative overflow-hidden rounded-2xl p-7"
           >
-            <ContactForm />
+            <ContactForm onFormChange={setFormDraft} />
+
+            <div className="my-6 flex items-center gap-3">
+              <div className="h-px flex-1 bg-white/10" />
+              <span className="text-[11px] uppercase tracking-[0.2em] text-white/40">
+                or reach us instantly
+              </span>
+              <div className="h-px flex-1 bg-white/10" />
+            </div>
+
+            <a
+              href={contactWhatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track.whatsapp("contact_section")}
+              className="tw-focus flex items-center justify-center gap-2.5 rounded-xl border border-[#25D366]/30 bg-[#25D366]/10 px-5 py-3.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#25D366]/20"
+            >
+              <span className="text-[#25D366]">
+                <WhatsAppGlyph size={20} />
+              </span>
+              Chat on WhatsApp
+              <span className="text-white/45">· we reply in minutes</span>
+            </a>
           </motion.div>
 
           <motion.div
@@ -68,4 +104,23 @@ export function ContactUs() {
       </div>
     </section>
   );
+}
+
+function contactFormToWhatsappMessage(form: ContactFormState) {
+  const fullName = [form.firstName, form.lastName].filter(Boolean).join(" ");
+  const hasFormDetails = fullName || form.email || form.message;
+
+  if (!hasFormDetails) {
+    return "Hi Tech Wolves 👋 I'd like to talk about a project —";
+  }
+
+  return [
+    "Hi Tech Wolves 👋 I'd like to talk about a project.",
+    "",
+    fullName ? `Name: ${fullName}` : "",
+    form.email ? `Email: ${form.email}` : "",
+    form.message ? `Message: ${form.message}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
 }

@@ -193,7 +193,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="tw-glass tw-light-leak relative overflow-hidden rounded-3xl p-10 text-center md:p-14">
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(52,211,153,0.08),transparent_60%)]"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(var(--ds-accent-rgb)_/_0.08),transparent_60%)]"
               />
               <div className="relative">
                 <h2 className="text-2xl font-medium tracking-[-0.04em] md:text-3xl">
@@ -218,6 +218,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </Link>
                 </div>
               </div>
+            </div>
+          </section>
+
+          {/* Blog → service internal links (the discovery-to-conversion funnel) */}
+          <section className="mt-12">
+            <h2 className="text-lg font-medium tracking-[-0.02em] text-white">
+              Explore how we can help
+            </h2>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {[
+                { href: "/services/ai-automation-agency", label: "AI Automation Agency" },
+                { href: "/services/business-process-automation", label: "Business Process Automation" },
+                { href: "/services/ai-chatbot-development", label: "AI Chatbot Development" },
+                { href: "/services/crm-automation", label: "CRM Automation" },
+                { href: "/services/n8n-automation-agency", label: "n8n Automation Agency" },
+                { href: "/tools/ai-automation-cost-calculator", label: "AI Automation Cost Calculator" },
+              ].map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="tw-focus group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3.5 text-sm font-medium text-white/80 transition-colors hover:border-white/25 hover:text-white"
+                >
+                  {l.label}
+                  <ArrowRight className="h-4 w-4 text-white/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-emerald-400" />
+                </Link>
+              ))}
             </div>
           </section>
         </article>

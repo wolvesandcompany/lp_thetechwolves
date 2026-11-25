@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local studio uploads (production uses a Docker volume, see docker-compose.prod.yml)
+/data/business/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

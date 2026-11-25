@@ -1,0 +1,43 @@
+/* Restaurant / Café template — "Ember & Oak".
+   Scoped under .tpl-restaurant so it never leaks into the main site.
+   Warm, upscale-casual LIGHT theme: ember red + oak gold on warm cream. */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Karla:wght@300;400;500;600;700&display=swap");
+
+.tpl-restaurant {
+  --tpl-bg: #FDF8F3;
+  --tpl-surface: #FFFFFF;
+  --tpl-fg: #1C1410;
+  --tpl-fg-muted: #7A6A5C;
+  --tpl-primary: #B91C1C;
+  --tpl-secondary: #DC2626;
+  --tpl-accent: #A16207;
+  --tpl-border: rgba(120, 90, 60, 0.15);
+
+  background-color: var(--tpl-bg);
+  color: var(--tpl-fg);
+  font-family: Karla, ui-sans-serif, system-ui, sans-serif;
+}
+
+.tpl-restaurant h1,
+.tpl-restaurant h2,
+.tpl-restaurant h3,
+.tpl-restaurant .tpl-serif {
+  font-family: "Playfair Display SC", Georgia, "Times New Roman", serif;
+}
+
+/* Warm ambient glow blobs used behind sections */
+.tpl-restaurant .tpl-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tpl-restaurant * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
