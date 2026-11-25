@@ -51,6 +51,24 @@ export default function ServicesHub() {
 
       <section className="relative z-10 mx-auto max-w-6xl px-6 pb-28">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <Link
+            href="/services/ai-jewellery-photography"
+            className="tw-focus group tw-glass tw-light-leak flex flex-col justify-between rounded-2xl border border-white/10 p-6 transition-colors hover:border-white/25"
+          >
+            <div>
+              <div className="flex items-start justify-between gap-4">
+                <h2 className="text-lg font-medium tracking-[-0.01em] text-white">
+                  AI Jewellery Photography
+                </h2>
+                <ArrowUpRight className="h-5 w-5 shrink-0 text-white/40 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-emerald-400" />
+              </div>
+              <p className="mt-3 text-sm leading-[1.6] text-white/60">
+                Send one phone photo and get studio-grade, marketplace-ready
+                jewellery product shots back — ring, earring, necklace, bangles,
+                pendant, set and more.
+              </p>
+            </div>
+          </Link>
           {SERVICES.map((s) => (
             <Link
               key={s.slug}

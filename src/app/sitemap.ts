@@ -93,6 +93,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
+    {
+      url: `${SITE_URL}/services/ai-jewellery-photography`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
     ...SERVICES.map((s) => ({
       url: `${SITE_URL}/services/${s.slug}`,
       lastModified: new Date().toISOString(),
